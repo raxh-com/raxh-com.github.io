@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#0F0F0F">
+  <title>Raheel Ahmad Aguirre</title>
+  <meta property="og:title" content="Raheel Ahmad Aguirre">
+  <meta property="og:description" content="Industrial Civil Engineer · Director Ejecutivo · RTR · Santiago, Chile">
+  <meta property="og:type" content="profile">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ══════════════════════════════════════
+       RESET & VARIABLES
+    ══════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #F8F6F1;
+      --cream:       #F4F1EA;
+      --ink:         #0F0F0F;
+      --ink-mid:     #4A4A4A;
+      --ink-soft:    #888888;
+      --line:        #DDD9D0;
+      --accent:      #B8A898;
+      --chip-bg:     #EDEAE4;
+      --back-dark:   #0F0F0F;
+      --serif:       'EB Garamond', Georgia, 'Times New Roman', serif;
+      --sans:        'Inter', -apple-system, system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════════════════════
+       PAGE HEADER
+    ══════════════════════════════════════ */
+    .page-header {
+      text-align: center;
+      padding: 64px 24px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ph-eyebrow {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .ph-name {
+      font-family: var(--serif);
+      font-size: clamp(30px, 8vw, 52px);
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .ph-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(15px, 3.5vw, 20px);
+      color: var(--ink-mid);
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .ph-location {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--ink-soft);
+      margin-top: 16px;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════
+       3D BUSINESS CARD
+    ══════════════════════════════════════ */
+    .card-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 24px 36px;
+      gap: 18px;
+    }
+
+    .card-hint {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-hint::before,
+    .card-hint::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* Standard business card ratio: 3.5 × 2 in */
+    .card-scene {
+      width: min(378px, 90vw);
+      height: min(216px, 51.4vw);
+      perspective: 1000px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .card-tilt {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+    }
+
+    .card-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 5px;
+    }
+
+    .card-3d.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: 5px;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%);
+      opacity: 0;
+      mix-blend-mode: soft-light;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    /* ── Card Front ── */
+    .card-face--front {
+      background: var(--cream);
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.10),
+        0 8px 32px rgba(0,0,0,0.12),
+        inset 0 0 0 0.5px rgba(0,0,0,0.06);
+    }
+
+    /* All card-front positions are % to be fully responsive */
+    .cf-phone {
+      position: absolute;
+      top: 12%;
+      left: 5%;
+      font-family: var(--serif);
+      font-size: clamp(7px, 2vw, 10.5px);
+      letter-spacing: 0.03em;
+      color: var(--ink);
+    }
+
+    .cf-company {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      text-align: right;
+    }
+
+    .cf-company-name {
+      display: flex;
+      justify-content: flex-end;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(10px, 2.9vw, 15px);
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .cf-company-name span {
+      display: inline-block;
+      width: 1.05em;
+      text-align: center;
+    }
+
+    .cf-company-name .r-mirror {
+      transform: scaleX(-1);
+    }
+
+    .cf-company-tag {
+      font-family: var(--serif);
+      font-size: clamp(5.5px, 1.5vw, 8.5px);
+      letter-spacing: 0.07em;
+      color: var(--ink);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .cf-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .cf-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(9px, 2.6vw, 14px);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .cf-role {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(7px, 1.9vw, 10.5px);
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-top: 5px;
+    }
+
+    .cf-rule {
+      width: 32px;
+      height: 0.5px;
+      background: var(--accent);
+      margin: 6px auto 0;
+    }
+
+    .cf-address {
+      position: absolute;
+      bottom: 11%;
+      left: 0;
+      right: 0;
+      font-family: var(--serif);
+      font-size: clamp(5.5px, 1.5vw, 8.5px);
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    /* ── Card Back ── */
+    .card-face--back {
+      background: var(--back-dark);
+      transform: rotateY(180deg);
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.25),
+        0 8px 40px rgba(0,0,0,0.30);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10%;
+      gap: 0;
+    }
+
+    .cb-brand {
+      display: flex;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(18px, 5vw, 28px);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .cb-brand span {
+      display: inline-block;
+      width: 1.12em;
+      text-align: center;
+    }
+
+    .cb-brand .r-mirror {
+      transform: scaleX(-1);
+    }
+
+    .cb-rule {
+      width: 36%;
+      height: 0.5px;
+      background: rgba(255,255,255,0.18);
+      margin: 10% 0;
+    }
+
+    .cb-contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5%;
+      width: 100%;
+    }
+
+    .cb-contact {
+      font-family: var(--sans);
+      font-size: clamp(6.5px, 1.7vw, 9.5px);
+      color: rgba(255,255,255,0.60);
+      letter-spacing: 0.04em;
+    }
+
+    .cb-tag {
+      margin-top: 10%;
+      font-family: var(--sans);
+      font-size: clamp(5px, 1.3vw, 8px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ══════════════════════════════════════
+       QUICK ACTIONS
+    ══════════════════════════════════════ */
+    .quick-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px 52px;
+      flex-wrap: wrap;
+    }
+
+    .qa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      border: none;
+    }
+
+    .qa-btn--dark {
+      background: var(--ink);
+      color: #fff;
+    }
+    .qa-btn--dark:hover { background: #333; }
+
+    .qa-btn--light {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .qa-btn--light:hover { border-color: var(--accent); background: var(--cream); }
+
+    /* ══════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════ */
+    .divider { height: 1px; background: var(--line); }
+
+    /* ══════════════════════════════════════
+       CV SECTION
+    ══════════════════════════════════════ */
+    .cv-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 72px 36px 80px;
+    }
+
+    /* ── Section label ── */
+    .cv-label {
+      font-family: var(--sans);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+
+    .cv-block { margin-bottom: 56px; }
+    .cv-block:last-child { margin-bottom: 0; }
+
+    /* ── Profile text ── */
+    .cv-profile {
+      font-family: var(--serif);
+      font-size: clamp(15px, 2.8vw, 18px);
+      line-height: 1.75;
+      color: var(--ink-mid);
+    }
+
+    /* ── Entry (education / experience) ── */
+    .cv-entry {
+      padding-left: 20px;
+      border-left: 1.5px solid var(--line);
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .cv-entry::before {
+      content: '';
+      position: absolute;
+      left: -4.5px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    .cv-entry:last-child { margin-bottom: 0; }
+
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cv-entry-role {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(14px, 2.6vw, 17px);
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+    }
+
+    .cv-entry-date {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      color: var(--ink-soft);
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+
+    .cv-entry-org {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      margin-top: 3px;
+    }
+
+    .cv-bullets {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .cv-bullets li {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 7px;
+    }
+
+    .cv-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 300;
+    }
+
+    /* ── Education highlight box ── */
+    .edu-box {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+
+    .edu-box .cv-entry-role { color: var(--ink); }
+    .edu-box .cv-entry-date { font-size: 12px; }
+
+    /* ── IELTS scores ── */
+    .ielts-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ielts-cell {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 7px 12px;
+      text-align: center;
+      min-width: 58px;
+    }
+
+    .ielts-val {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .ielts-lbl {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* ── Skills ── */
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-chip {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink-mid);
+      background: var(--chip-bg);
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── Languages ── */
+    .lang-table { width: 100%; border-collapse: collapse; }
+
+    .lang-row td {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .lang-row:first-child td { border-top: 1px solid var(--line); }
+
+    .lang-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .lang-level {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════════
+       QR SHARE SECTION
+    ══════════════════════════════════════ */
+    .qr-section {
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 64px 24px;
+    }
+
+    .qr-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+
+    #qrcode {
+      display: inline-block;
+      padding: 18px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .qr-caption {
+      margin-top: 18px;
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+
+    .qr-url {
+      margin-top: 6px;
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .page-footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 28px 24px;
+    }
+
+    .footer-text {
+      font-family: var(--serif);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════
+       PRINT MODE — solo el CV
+    ══════════════════════════════════════ */
+    @media print {
+      .card-section, .quick-actions, .qr-section, .page-footer,
+      .divider:first-of-type { display: none; }
+      .page-header { border: none; padding: 0 0 24px; }
+      .cv-wrap { padding: 0; max-width: 100%; }
+      body { background: white; font-size: 12px; }
+      .cv-entry::before { display: none; }
+    }
+
+    /* ══════════════════════════════════════
+       MOBILE
+    ══════════════════════════════════════ */
+    @media (max-width: 520px) {
+      .page-header { padding: 48px 20px 36px; }
+      .cv-wrap { padding: 48px 20px 60px; }
+      .cv-entry-header { flex-direction: column; gap: 2px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       PAGE HEADER
+  ═══════════════════════════════════ -->
+  <header class="page-header">
+    <div class="ph-eyebrow">RTR · Santiago, Chile</div>
+    <h1 class="ph-name">Raheel Ahmad Aguirre</h1>
+    <div class="ph-title">Industrial Civil Engineer &amp; Director Ejecutivo</div>
+    <div class="ph-location">Las Condes · Santiago · Chile</div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════
+       3D BUSINESS CARD
+  ═══════════════════════════════════ -->
+  <section class="card-section">
+    <div class="card-hint">Toca para ver el reverso</div>
+
+    <div class="card-scene" id="cardScene">
+      <div class="card-tilt" id="cardTilt">
+      <div class="card-3d" id="card3d">
+
+        <!-- FRENTE -->
+        <div class="card-face card-face--front">
+          <div class="cf-phone">+56 9 6320 0075</div>
+          <div class="cf-company">
+            <div class="cf-company-name"><span>R</span><span>T</span><span class="r-mirror">R</span></div>
+            <div class="cf-company-tag">rtr.raheel@gmail.com</div>
+          </div>
+          <div class="cf-center">
+            <div class="cf-name">Raheel Ahmad Aguirre</div>
+            <div class="cf-rule"></div>
+            <div class="cf-role">Director Ejecutivo</div>
+          </div>
+          <div class="cf-address">Gredos 7700, Las Condes, Santiago, Chile</div>
+          <div class="card-glare"></div>
+        </div>
+
+        <!-- REVERSO -->
+        <div class="card-face card-face--back">
+          <div class="cb-brand"><span>R</span><span>T</span><span class="r-mirror">R</span></div>
+          <div class="cb-rule"></div>
+          <div class="cb-contacts">
+            <div class="cb-contact">+56 9 6320 0075</div>
+            <div class="cb-contact">raheelahmad2019@gmail.com</div>
+            <div class="cb-contact">rtr.raheel@gmail.com</div>
+            <div class="cb-contact">Las Condes · Santiago · Chile</div>
+          </div>
+          <div class="cb-tag">Director Ejecutivo</div>
+          <div class="card-glare"></div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       QUICK ACTIONS
+  ═══════════════════════════════════ -->
+  <div class="quick-actions">
+    <a href="tel:+56963200075" class="qa-btn qa-btn--dark">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.99 1.18 2 2 0 012.98 0h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      Llamar
+    </a>
+    <a href="mailto:raheelahmad2019@gmail.com" class="qa-btn qa-btn--light">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      Email
+    </a>
+    <a href="https://wa.me/56963200075" class="qa-btn qa-btn--light">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      WhatsApp
+    </a>
+    <button onclick="downloadVCard()" class="qa-btn qa-btn--light">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Guardar Contacto
+    </button>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════
+       CURRICULUM VITAE
+  ═══════════════════════════════════ -->
+  <main class="cv-wrap">
+
+    <!-- PROFILE -->
+    <section class="cv-block">
+      <div class="cv-label">Professional Profile</div>
+      <p class="cv-profile">
+        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector and the founding of a digital content venture. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
+      </p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="cv-block">
+      <div class="cv-label">Education</div>
+
+      <!-- UWA highlight box -->
+      <div class="edu-box">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Master of Commerce</div>
+          <div class="cv-entry-date">Jul 2026 – Jun 2028</div>
+        </div>
+        <div class="cv-entry-org">The University of Western Australia · Perth, Australia</div>
+        <ul class="cv-bullets" style="margin-top:10px;">
+          <li>Commencing July 2026 · CRICOS Provider 00126G · CoE No. 113FD0694</li>
+          <li>Focus: global commercial strategy, business management, and leadership in international markets</li>
+        </ul>
+      </div>
+
+      <!-- UDP -->
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Industrial Civil Engineer</div>
+          <div class="cv-entry-date">2020 – 2026</div>
+        </div>
+        <div class="cv-entry-org">Universidad Diego Portales · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>49 courses across engineering, economics, finance, data science, and management · Grade 4.8 / 7.0</li>
+          <li>Highest-scoring subjects: Simulation 6.3, Strategic Management 6.2, Finance 6.1, Business Plan 6.0</li>
+          <li>Additional strengths: Mining Industry Management 5.7, Marketing 5.4, Data Mining 5.1</li>
+          <li>Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
+        </ul>
+      </div>
+
+      <!-- IELTS -->
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">IELTS Academic · English Proficiency</div>
+          <div class="cv-entry-date">May 28, 2026</div>
+        </div>
+        <div class="cv-entry-org">British Council / IDP · CEFR Level C1 · TRF No. 26CL500665AHMR035A</div>
+        <div class="ielts-row">
+          <div class="ielts-cell">
+            <span class="ielts-val">7.0</span>
+            <span class="ielts-lbl">Listening</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">8.0</span>
+            <span class="ielts-lbl">Reading</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">7.5</span>
+            <span class="ielts-lbl">Writing</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">8.0</span>
+            <span class="ielts-lbl">Speaking</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val" style="color:var(--ink);">7.5</span>
+            <span class="ielts-lbl">Overall</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">C1</span>
+            <span class="ielts-lbl">CEFR</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="cv-block">
+      <div class="cv-label">Professional Experience</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">CORFO — Innovation Department Intern</div>
+          <div class="cv-entry-date">Apr – Jul 2025</div>
+        </div>
+        <div class="cv-entry-org">Chilean Economic Development Agency · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Designed and deployed a Power BI dashboard tracking national innovation KPIs across CORFO's portfolio, adopted by senior management for strategic planning and performance review</li>
+          <li>Resolved a systemic operational bottleneck through data-driven root-cause analysis, improving departmental throughput and workflow efficiency</li>
+          <li>Authored formal issue reports that standardised incident documentation and escalation protocols across the innovation department</li>
+          <li>Led continuous improvement initiatives contributing to the national public-sector innovation pipeline</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">RTR Marketing Digital — Co-Founder</div>
+          <div class="cv-entry-date">Nov 2024 – Apr 2025</div>
+        </div>
+        <div class="cv-entry-org">Digital Content Agency · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Founded and scaled a multi-platform digital content agency operating across Instagram, TikTok, and YouTube</li>
+          <li>Directed the full production pipeline: concept development, scriptwriting, filming, post-production, and publication scheduling</li>
+          <li>Managed brand governance and client delivery logistics across concurrent client mandates</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Servicios Naxos SPA — Engineering Assistant</div>
+          <div class="cv-entry-date">Dec 2024 – Mar 2025</div>
+        </div>
+        <div class="cv-entry-org">Mining Machinery &amp; Metal Workshop · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Prepared technical bids and cost quotations for heavy mining equipment repair and fabrication (hoppers, buckets), supporting contract acquisition in Chile's mining sector</li>
+          <li>Evaluated client technical specifications against workshop capacity and tolerances for industrial metalworking tenders</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Servicios MOR — Engineering Intern  <span style="font-weight:400;font-size:12px;">(Internship I)</span></div>
+          <div class="cv-entry-date">Jan – Mar 2023</div>
+        </div>
+        <div class="cv-entry-org">Metalworking Company · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Executed structural steel profile calculations for project cost-submission packages</li>
+          <li>Developed hands-on knowledge of manufacturing processes, production workflows, and quality control protocols</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="cv-block">
+      <div class="cv-label">Technical Skills</div>
+      <div class="skills-wrap">
+        <span class="skill-chip">Power BI &amp; Dashboards</span>
+        <span class="skill-chip">Data Science (R / RStudio)</span>
+        <span class="skill-chip">Statistical Modelling</span>
+        <span class="skill-chip">Econometrics &amp; Simulation</span>
+        <span class="skill-chip">ADempiere ERP</span>
+        <span class="skill-chip">KPI Design</span>
+        <span class="skill-chip">Microsoft Excel (Advanced)</span>
+        <span class="skill-chip">Process Optimisation</span>
+        <span class="skill-chip">Mining Industry Operations</span>
+        <span class="skill-chip">Business Planning</span>
+        <span class="skill-chip">Digital Content Production</span>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section class="cv-block">
+      <div class="cv-label">Languages</div>
+      <table class="lang-table">
+        <tr class="lang-row">
+          <td class="lang-name">Spanish</td>
+          <td class="lang-level">Native</td>
+        </tr>
+        <tr class="lang-row">
+          <td class="lang-name">English</td>
+          <td class="lang-level">Advanced — IELTS 7.5 Overall · CEFR C1 · May 2026</td>
+        </tr>
+      </table>
+    </section>
+
+  </main>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════
+       QR — SHARE THIS PAGE
+  ═══════════════════════════════════ -->
+  <section class="qr-section">
+    <div class="qr-label">Compartir este perfil</div>
+    <div id="qrcode"></div>
+    <div class="qr-caption">Escanea para abrir este perfil</div>
+    <div class="qr-url" id="qrUrlText"></div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════ -->
+  <footer class="page-footer">
+    <div class="footer-text">Raheel Ahmad Aguirre · RTR · Santiago, Chile</div>
+  </footer>
+
+
+  <!-- QR Code library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    /* ════════════════════════════════════
+       TARJETA 3D — flip + inclinación espacial + brillo
+    ════════════════════════════════════ */
+    const scene  = document.getElementById('cardScene');
+    const tilt   = document.getElementById('cardTilt');
+    const card   = document.getElementById('card3d');
+    const glares = document.querySelectorAll('.card-glare');
+
+    const MAX_TILT = 16;          // grados máximos de inclinación
+    let gyroActive = false;       // ¿el giroscopio tomó el control?
+    let downX, downY;             // posición inicial del toque (para distinguir tap de arrastre)
+
+    function flipCard() {
+      card.classList.toggle('flipped');
+    }
+
+    function applyTilt(rotX, rotY) {
+      tilt.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    }
+
+    /* El brillo se mueve siguiendo el punto de contacto, como luz reflejada */
+    function moveGlare(px, py) {
+      glares.forEach(g => {
+        g.style.background =
+          `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%)`;
+        g.style.opacity = '1';
+      });
+    }
+
+    function resetTilt() {
+      tilt.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      applyTilt(0, 0);
+      glares.forEach(g => g.style.opacity = '0');
+    }
+
+    /* ── Inclinación según el cursor (escritorio) o el dedo (táctil) ── */
+    function pointerTilt(e) {
+      if (gyroActive) return;
+      const rect = scene.getBoundingClientRect();
+      const px = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const py = Math.max(0, Math.min(1, (e.clientY - rect.top)  / rect.height));
+      tilt.style.transition = 'transform 0.1s ease-out';   // seguimiento inmediato
+      applyTilt((0.5 - py) * MAX_TILT * 2, (px - 0.5) * MAX_TILT * 2);
+      moveGlare(px, py);
+    }
+
+    scene.addEventListener('pointermove', pointerTilt);
+
+    scene.addEventListener('pointerdown', e => {
+      downX = e.clientX;
+      downY = e.clientY;
+    });
+
+    scene.addEventListener('pointerup', e => {
+      const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
+      if (dist < 8) {            // fue un toque, no un arrastre → voltea la tarjeta
+        flipCard();
+        enableGyroOnce();        // el primer toque pide permiso de giroscopio en iPhone
+      }
+      if (e.pointerType !== 'mouse') resetTilt();   // en táctil, vuelve a neutro al soltar
+    });
+
+    scene.addEventListener('pointerleave', () => {
+      if (!gyroActive) resetTilt();
+    });
+
+    /* ── Giroscopio: mover físicamente el teléfono inclina la tarjeta ── */
+    function handleOrientation(e) {
+      // En escritorio el evento puede llegar sin datos reales → ignorar y NO bloquear el ratón
+      if (e.beta === null && e.gamma === null) return;
+      gyroActive = true;   // solo ahora (con datos reales) el giroscopio toma el control
+      const gamma = e.gamma || 0;   // izquierda/derecha  (-90 a 90)
+      const beta  = e.beta  || 0;   // adelante/atrás      (-180 a 180)
+      const rotY = Math.max(-MAX_TILT, Math.min(MAX_TILT, gamma * 0.8));
+      const rotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, (beta - 45) * -0.5));
+      tilt.style.transition = 'transform 0.15s ease-out';
+      applyTilt(rotX, rotY);
+    }
+
+    let gyroAsked = false;
+    function enableGyroOnce() {
+      if (gyroAsked) return;
+      gyroAsked = true;
+      // Candado 1: solo dispositivos táctiles. El escritorio no tiene giroscopio.
+      const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+      if (!isTouch) return;
+      // iOS 13+ exige pedir permiso desde un gesto del usuario (el toque)
+      if (typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+          .then(state => {
+            if (state === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+            }
+          })
+          .catch(() => {});
+      } else if (typeof DeviceOrientationEvent !== 'undefined') {
+        // Android y otros: no requiere permiso explícito.
+        // gyroActive se activa dentro de handleOrientation solo si llegan datos reales (Candado 2).
+        window.addEventListener('deviceorientation', handleOrientation);
+      }
+    }
+
+    /* ── Hint inicial: un giro 3D + brillo + flip para invitar a interactuar ── */
+    setTimeout(() => {
+      tilt.style.transition = 'transform 0.9s cubic-bezier(0.23, 1, 0.32, 1)';
+      applyTilt(-7, 13);
+      moveGlare(0.8, 0.2);
+      setTimeout(() => {
+        card.classList.add('flipped');
+        setTimeout(() => {
+          card.classList.remove('flipped');
+          resetTilt();
+        }, 2000);
+      }, 800);
+    }, 900);
+
+    /* ── QR Code (auto-uses current page URL) ── */
+    const pageURL = window.location.href;
+    document.getElementById('qrUrlText').textContent = pageURL;
+
+    new QRCode(document.getElementById('qrcode'), {
+      text: pageURL,
+      width: 168,
+      height: 168,
+      colorDark: '#0F0F0F',
+      colorLight: '#FFFFFF',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    /* ── vCard download (adds contact to phone) ── */
+    function downloadVCard() {
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Raheel Ahmad Aguirre',
+        'N:Ahmad Aguirre;Raheel;;;',
+        'TEL;TYPE=CELL:+56963200075',
+        'EMAIL;TYPE=WORK:rtr.raheel@gmail.com',
+        'EMAIL;TYPE=HOME:raheelahmad2019@gmail.com',
+        'ORG:RTR',
+        'TITLE:Director Ejecutivo',
+        'ADR;TYPE=WORK:;;Gredos 7700;Las Condes;Santiago;;Chile',
+        'URL:' + pageURL,
+        'END:VCARD'
+      ].join('\n');
+
+      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'Raheel_Ahmad_Aguirre.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>
