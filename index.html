@@ -2,561 +2,377 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academic Curriculum · Raheel Ahmad Aguirre</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Curriculum · Raheel Ahmad Aguirre</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --bg:       #F8F6F1;
-      --cream:    #F4F1EA;
-      --ink:      #0F0F0F;
-      --ink-mid:  #4A4A4A;
-      --ink-soft: #888888;
-      --line:     #DDD9D0;
-      --accent:   #B8A898;
-      --serif:    'EB Garamond', Georgia, serif;
-      --sans:     'Inter', -apple-system, system-ui, sans-serif;
+      --bg: #F8F6F1; --cream: #F0EDE4; --ink: #0F0F0F;
+      --mid: #4A4A4A; --soft: #888; --line: #E0DDD5;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --card-w: 300px; --card-h: 420px;
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow: hidden; }
+    .page { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
 
-      /* category colors */
-      --c-math:   #6E9DC5;
-      --c-comp:   #5A9E9B;
-      --c-econ:   #77A87A;
-      --c-mgmt:   #C4946A;
-      --c-engr:   #B87C5E;
-      --c-lang:   #9B8EC4;
-      --c-cape:   #8FA8A0;
-    }
+    /* HEADER */
+    .hdr { flex-shrink: 0; background: var(--ink); color: #fff; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .hdr-eye { font-size: 9px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 2px; }
+    .hdr-title { font-family: var(--serif); font-size: 17px; color: #fff; }
+    .hdr-stats { display: flex; gap: 20px; flex-shrink: 0; }
+    .stat-v { display: block; font-family: var(--serif); font-size: 20px; font-weight: 600; color: #fff; line-height: 1; }
+    .stat-l { display: block; font-size: 8.5px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.38); margin-top: 2px; }
+    .back-btn { display: flex; align-items: center; gap: 5px; color: rgba(255,255,255,.4); font-size: 11px; text-decoration: none; padding: 6px 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 6px; transition: all .2s; flex-shrink: 0; }
+    .back-btn:hover { color: #fff; border-color: rgba(255,255,255,.3); }
 
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 14px;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    /* NAV */
+    .nav-bar { flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 9px 24px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+    .nav-bar::-webkit-scrollbar { display: none; }
+    .nav-sem { font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: all .2s; white-space: nowrap; border: 1px solid transparent; background: none; }
+    .nav-sem.active { color: var(--ink); border-color: var(--line); background: var(--cream); }
 
-    /* ── TOP BAR ── */
-    .topbar {
-      background: var(--ink);
-      color: #fff;
-      padding: 18px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .topbar-left { display: flex; flex-direction: column; gap: 2px; }
-    .topbar-eyebrow {
-      font-size: 9px; font-weight: 600; letter-spacing: .22em;
-      text-transform: uppercase; color: rgba(255,255,255,.45);
-    }
-    .topbar-title {
-      font-family: var(--serif); font-size: 18px; font-weight: 500;
-      letter-spacing: .04em; color: rgba(255,255,255,.95);
-    }
-    .topbar-stats { display: flex; gap: 28px; }
-    .stat { text-align: center; }
-    .stat-val {
-      display: block; font-family: var(--serif); font-size: 22px;
-      font-weight: 600; color: #fff; line-height: 1;
-    }
-    .stat-lbl {
-      display: block; font-size: 9px; font-weight: 500;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(255,255,255,.45); margin-top: 3px;
-    }
-    .back-link {
-      color: rgba(255,255,255,.55); font-size: 12px; text-decoration: none;
-      display: flex; align-items: center; gap: 5px;
-      transition: color .2s;
-    }
-    .back-link:hover { color: #fff; }
+    /* STRIP */
+    .strip-area { flex: 1; display: flex; align-items: center; position: relative; overflow: hidden; min-height: 0; }
+    .strip-area::before, .strip-area::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 10; pointer-events: none; }
+    .strip-area::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+    .strip-area::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .strip-track { display: flex; align-items: center; gap: 20px; overflow-x: scroll; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 20px calc(50vw - var(--card-w)/2); width: 100%; height: 100%; cursor: grab; }
+    .strip-track:active { cursor: grabbing; }
+    .strip-track::-webkit-scrollbar { display: none; }
 
-    /* ── LEGEND ── */
-    .legend {
-      display: flex; flex-wrap: wrap; gap: 10px 20px;
-      padding: 16px 32px;
-      border-bottom: 1px solid var(--line);
-      background: var(--cream);
-    }
-    .legend-item {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 500; color: var(--ink-mid);
-    }
-    .legend-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      flex-shrink: 0;
-    }
+    /* CARDS */
+    .s-card { flex: 0 0 var(--card-w); height: var(--card-h); scroll-snap-align: center; perspective: 1000px; transition: opacity .3s, transform .3s; opacity: .42; transform: scale(.88); user-select: none; -webkit-user-select: none; }
+    .s-card.active { opacity: 1; transform: scale(1); }
+    .s-card.active .card-front { cursor: pointer; }
+    .s-card.flipped .card-inner { transform: rotateY(180deg); }
+    .card-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.4,0,.2,1); position: relative; }
+    .card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; overflow: hidden; }
 
-    /* ── GRADE SCALE ── */
-    .grade-scale {
-      display: flex; align-items: center; gap: 6px;
-      padding: 10px 32px;
-      border-bottom: 1px solid var(--line);
-      font-size: 11px; color: var(--ink-soft);
-      background: var(--bg);
-    }
-    .gs-bar {
-      display: flex; height: 8px; width: 160px; border-radius: 4px;
-      overflow: hidden; border: 1px solid var(--line);
-    }
-    .gs-seg { flex: 1; }
+    /* FRONT */
+    .card-front { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.09); display: flex; flex-direction: column; }
+    .card-band { height: 6px; flex-shrink: 0; }
+    .card-body { flex: 1; display: flex; flex-direction: column; padding: 20px 22px 0; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .card-badge { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #fff; padding: 3px 8px; border-radius: 20px; }
+    .card-cat { font-size: 9px; font-weight: 500; color: var(--soft); text-align: right; max-width: 120px; line-height: 1.3; }
+    .card-name { font-family: var(--serif); font-size: 21px; line-height: 1.3; color: var(--ink); flex: 1; display: flex; align-items: center; }
+    .ring-wrap { display: flex; align-items: center; justify-content: center; padding: 14px 0 6px; position: relative; }
+    .ring-svg { transform: rotate(-90deg); }
+    .ring-bg  { fill: none; stroke: var(--line); stroke-width: 5; }
+    .ring-val { fill: none; stroke-width: 5; stroke-linecap: round; }
+    .ring-txt { position: absolute; text-align: center; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .ring-num { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1; }
+    .ring-den { display: block; font-size: 9px; color: var(--soft); letter-spacing: .08em; }
+    .ring-ap  { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    .card-hint { border-top: 1px solid var(--line); padding: 12px 22px; display: flex; align-items: center; justify-content: center; gap: 5px; color: var(--soft); font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
 
-    /* ── TIMELINE ── */
-    .timeline-wrap {
-      overflow-x: auto;
-      padding: 28px 32px 48px;
-      cursor: grab;
-    }
-    .timeline-wrap:active { cursor: grabbing; }
+    /* BACK */
+    .card-back { background: var(--ink); transform: rotateY(180deg); display: flex; flex-direction: column; padding: 22px 22px 18px; color: #fff; }
+    .back-close { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .back-close:hover { color: rgba(255,255,255,.6); }
+    .back-tag  { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #fff; padding: 3px 9px; border-radius: 20px; margin-bottom: 12px; }
+    .back-name { font-family: var(--serif); font-size: 18px; line-height: 1.25; color: #fff; margin-bottom: 14px; }
+    .back-desc { font-size: 12.5px; line-height: 1.72; color: rgba(255,255,255,.68); flex: 1; overflow-y: auto; scrollbar-width: none; }
+    .back-desc::-webkit-scrollbar { display: none; }
+    .back-meta { display: flex; gap: 18px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.1); flex-shrink: 0; }
+    .bm-l { font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.28); display: block; margin-bottom: 3px; }
+    .bm-v { font-family: var(--serif); font-size: 15px; color: rgba(255,255,255,.88); }
 
-    .timeline {
-      display: flex;
-      gap: 0;
-      min-width: max-content;
-    }
+    /* ARROWS */
+    .arrow { position: absolute; top: 50%; z-index: 20; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(255,255,255,.92); border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,.1); transition: all .2s; -webkit-tap-highlight-color: transparent; }
+    .arrow:hover { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+    #aPrev { left: 16px; } #aNext { right: 16px; }
 
-    .semester-col {
-      display: flex;
-      flex-direction: column;
-      min-width: 160px;
-      border-right: 1px solid var(--line);
-      padding-right: 0;
-    }
-    .semester-col:last-child { border-right: none; }
+    /* FILMSTRIP */
+    .film-wrap { flex-shrink: 0; padding: 10px 24px 14px; border-top: 1px solid var(--line); background: var(--cream); }
+    .film-lbl { font-size: 8.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--soft); margin-bottom: 8px; text-align: center; }
+    .film-scroll { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .film-scroll::-webkit-scrollbar { display: none; }
+    .film-track { display: flex; gap: 3px; align-items: center; width: max-content; margin: 0 auto; padding: 4px 2px; }
+    .film-chip { width: 8px; height: 24px; border-radius: 3px; cursor: pointer; transition: all .22s; opacity: .45; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
+    .film-chip:hover { opacity: .75; transform: scaleY(1.1); }
+    .film-chip.active { opacity: 1; width: 13px; height: 30px; box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px rgba(0,0,0,.18); }
+    .film-div { width: 1px; height: 26px; background: var(--line); flex-shrink: 0; margin: 0 5px; }
 
-    .sem-header {
-      padding: 10px 12px 14px;
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      border-bottom: 2px solid var(--ink);
-      margin-bottom: 14px;
-      z-index: 10;
-    }
-    .sem-year {
-      font-family: var(--serif); font-size: 17px; font-weight: 600;
-      color: var(--ink); line-height: 1;
-    }
-    .sem-label {
-      font-size: 9.5px; font-weight: 500; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--ink-soft); margin-top: 3px;
-    }
-    .sem-count {
-      font-size: 9px; color: var(--accent); margin-top: 4px;
-    }
+    /* LEGEND */
+    .leg-row { flex-shrink: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; padding: 7px 24px 10px; border-top: 1px solid var(--line); }
+    .leg-i { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 500; color: var(--mid); }
+    .leg-d { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
-    .courses-list {
-      display: flex; flex-direction: column;
-      gap: 7px; padding: 0 10px 10px;
-    }
-
-    /* ── COURSE CARD ── */
-    .course-card {
-      position: relative;
-      border-radius: 6px;
-      padding: 9px 10px 8px;
-      cursor: default;
-      transition: transform .15s ease, box-shadow .15s ease;
-      border: 1px solid transparent;
-    }
-    .course-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-      border-color: rgba(0,0,0,0.08);
-      z-index: 20;
-    }
-
-    .course-name {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.35;
-      margin-bottom: 7px;
-    }
-
-    .course-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-    }
-
-    .grade-bar-wrap {
-      flex: 1;
-      height: 4px;
-      background: rgba(0,0,0,0.10);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .grade-bar {
-      height: 100%;
-      border-radius: 2px;
-      transition: width .6s ease;
-    }
-
-    .grade-num {
-      font-family: var(--serif);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink);
-      white-space: nowrap;
-      min-width: 24px;
-      text-align: right;
-    }
-    .grade-ap {
-      font-family: var(--sans);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-
-    .star-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      width: 16px;
-      height: 16px;
-      background: #E8C84A;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    }
-
-    /* ── TOOLTIP ── */
-    .tooltip {
-      position: fixed;
-      background: var(--ink);
-      color: #fff;
-      font-size: 12px;
-      padding: 8px 12px;
-      border-radius: 6px;
-      pointer-events: none;
-      z-index: 9999;
-      max-width: 220px;
-      line-height: 1.5;
-      opacity: 0;
-      transition: opacity .15s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    }
-    .tooltip.visible { opacity: 1; }
-    .tooltip-name { font-weight: 600; margin-bottom: 3px; }
-    .tooltip-grade { color: rgba(255,255,255,.7); font-size: 11px; }
-
-    /* ── FOOTER ── */
-    .page-footer {
-      border-top: 1px solid var(--line);
-      padding: 20px 32px;
-      font-family: var(--serif);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      text-align: center;
-    }
-
-    /* ── CATEGORY COLORS (background) ── */
-    .cat-math { background: rgba(110,157,197,0.13); }
-    .cat-comp { background: rgba(90,158,155,0.13); }
-    .cat-econ { background: rgba(119,168,122,0.13); }
-    .cat-mgmt { background: rgba(196,148,106,0.13); }
-    .cat-engr { background: rgba(184,124,94,0.13); }
-    .cat-lang { background: rgba(155,142,196,0.13); }
-    .cat-cape { background: rgba(143,168,160,0.13); }
-
-    .bar-math { background: var(--c-math); }
-    .bar-comp { background: var(--c-comp); }
-    .bar-econ { background: var(--c-econ); }
-    .bar-mgmt { background: var(--c-mgmt); }
-    .bar-engr { background: var(--c-engr); }
-    .bar-lang { background: var(--c-lang); }
-    .bar-cape { background: var(--c-cape); }
-
-    @media (max-width: 600px) {
-      .topbar { padding: 14px 16px; }
-      .topbar-stats { gap: 16px; }
-      .stat-val { font-size: 18px; }
-      .legend { padding: 12px 16px; }
-      .grade-scale { padding: 8px 16px; }
-      .timeline-wrap { padding: 20px 16px 40px; }
-      .semester-col { min-width: 140px; }
+    @media (max-width: 500px) {
+      :root { --card-w: 76vw; --card-h: 400px; }
+      .hdr { padding: 10px 14px; }
+      .back-btn, .arrow { display: none; }
+      .strip-track { padding: 16px calc(50vw - var(--card-w)/2); }
     }
   </style>
 </head>
 <body>
+<div class="page">
 
-<!-- TOP BAR -->
-<header class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-eyebrow">Universidad Diego Portales · 2020 – 2026</div>
-    <div class="topbar-title">Industrial Civil Engineering</div>
+<header class="hdr">
+  <div>
+    <div class="hdr-eye">Universidad Diego Portales · 2020–2026</div>
+    <div class="hdr-title">Industrial Civil Engineering</div>
   </div>
-  <div class="topbar-stats">
-    <div class="stat">
-      <span class="stat-val" id="totalCourses">—</span>
-      <span class="stat-lbl">Courses</span>
-    </div>
-    <div class="stat">
-      <span class="stat-val" id="avgGrade">—</span>
-      <span class="stat-lbl">Average</span>
-    </div>
-    <div class="stat">
-      <span class="stat-val" id="top6">—</span>
-      <span class="stat-lbl">≥ 6.0</span>
-    </div>
+  <div class="hdr-stats">
+    <div><span class="stat-v" id="sTot">—</span><span class="stat-l">Courses</span></div>
+    <div><span class="stat-v" id="sAvg">—</span><span class="stat-l">Average</span></div>
+    <div><span class="stat-v" id="sTop">—</span><span class="stat-l">≥ 6.0</span></div>
   </div>
-  <a href="index.html" class="back-link">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    Back to Profile
+  <a href="index.html" class="back-btn">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Profile
   </a>
 </header>
 
-<!-- LEGEND -->
-<div class="legend">
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-math)"></span>Mathematics &amp; Sciences</div>
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-comp)"></span>Computing &amp; Technology</div>
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-econ)"></span>Economics &amp; Finance</div>
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-mgmt)"></span>Management &amp; Strategy</div>
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-engr)"></span>Industrial Engineering</div>
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-lang)"></span>Language &amp; Communication</div>
-  <div class="legend-item"><span class="legend-dot" style="background:var(--c-cape)"></span>Capstone &amp; Internship</div>
-  <div class="legend-item"><span class="legend-dot" style="background:#E8C84A"></span>Grade ≥ 6.0</div>
+<nav class="nav-bar" id="navBar"></nav>
+
+<div class="strip-area">
+  <button class="arrow" id="aPrev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <div class="strip-track" id="track"></div>
+  <button class="arrow" id="aNext"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
 </div>
 
-<!-- GRADE SCALE -->
-<div class="grade-scale">
-  <span>4.0</span>
-  <div class="gs-bar">
-    <div class="gs-seg" style="background:rgba(110,157,197,0.25)"></div>
-    <div class="gs-seg" style="background:rgba(110,157,197,0.40)"></div>
-    <div class="gs-seg" style="background:rgba(110,157,197,0.60)"></div>
-    <div class="gs-seg" style="background:#E8C84A"></div>
-    <div class="gs-seg" style="background:#D4A730"></div>
-    <div class="gs-seg" style="background:#B8860B"></div>
-  </div>
-  <span>7.0</span>
-  <span style="margin-left:8px;color:var(--accent)">· Scale 1–7 · Min. pass: 4.0</span>
+<div class="film-wrap">
+  <div class="film-lbl">All courses — tap any block to jump</div>
+  <div class="film-scroll"><div class="film-track" id="filmTrack"></div></div>
 </div>
 
-<!-- TIMELINE -->
-<div class="timeline-wrap" id="timelineWrap">
-  <div class="timeline" id="timeline"></div>
+<div class="leg-row">
+  <div class="leg-i"><span class="leg-d" style="background:#5E8DB5"></span>Math &amp; Sciences</div>
+  <div class="leg-i"><span class="leg-d" style="background:#4A9491"></span>Computing &amp; Tech</div>
+  <div class="leg-i"><span class="leg-d" style="background:#5E9E6A"></span>Economics &amp; Finance</div>
+  <div class="leg-i"><span class="leg-d" style="background:#B8864A"></span>Management</div>
+  <div class="leg-i"><span class="leg-d" style="background:#A85E42"></span>Engineering</div>
+  <div class="leg-i"><span class="leg-d" style="background:#7A6AB8"></span>Language</div>
+  <div class="leg-i"><span class="leg-d" style="background:#6A8E8A"></span>Capstone</div>
 </div>
 
-<!-- TOOLTIP -->
-<div class="tooltip" id="tooltip">
-  <div class="tooltip-name" id="tt-name"></div>
-  <div class="tooltip-grade" id="tt-grade"></div>
 </div>
-
-<!-- FOOTER -->
-<footer class="page-footer">Raheel Ahmad Aguirre · Industrial Civil Engineer · UDP 2026</footer>
-
 <script>
-/* ─────────────────────────────────────────────
-   DATA
-───────────────────────────────────────────── */
-const COURSES = [
-  // period, name, grade (null=AP), category
-  ["Pre",     "Inglés General I",                               7.0,  "lang"],
-  ["2020-1",  "Álgebra y Geometría",                           4.1,  "math"],
-  ["2020-1",  "Cálculo I",                                     4.6,  "math"],
-  ["2020-1",  "Química",                                       5.2,  "math"],
-  ["2020-1",  "Programación",                                  5.8,  "comp"],
-  ["2020-2",  "Mecánica",                                      4.4,  "math"],
-  ["2020-2",  "Programación Avanzada",                         6.5,  "comp"],
-  ["2020-2",  "Comunicación para la Ingeniería",               4.2,  "lang"],
-  ["2021-1",  "Álgebra Lineal",                                4.9,  "math"],
-  ["2021-1",  "Cálculo II",                                    4.0,  "math"],
-  ["2021-1",  "Teoría Organizacional",                         5.7,  "mgmt"],
-  ["2021-1",  "Estática",                                      4.4,  "math"],
-  ["2021-1",  "Bases de Datos",                                4.1,  "comp"],
-  ["2021-2",  "Probabilidades y Estadística",                  4.0,  "math"],
-  ["2021-2",  "Ecuaciones Diferenciales",                      4.1,  "math"],
-  ["2021-2",  "Cálculo III",                                   4.7,  "math"],
-  ["2021-2",  "Contabilidad y Costos",                         4.1,  "mgmt"],
-  ["2022-1",  "Calor y Ondas",                                 5.5,  "math"],
-  ["2022-1",  "Ingeniería Económica",                          5.2,  "econ"],
-  ["2022-1",  "Introducción a la Economía",                    4.5,  "econ"],
-  ["2022-1",  "Optimización",                                  4.5,  "engr"],
-  ["2022-1",  "Inferencia Estadística",                        4.8,  "econ"],
-  ["2022-2",  "Electricidad y Magnetismo",                     4.7,  "math"],
-  ["2022-2",  "Inglés General II",                             4.1,  "lang"],
-  ["2022-2",  "Microeconomía",                                 4.5,  "econ"],
-  ["2022-2",  "Modelos Estocásticos",                          4.0,  "econ"],
-  ["2022-2",  "Fundamentos de Economía",                       4.5,  "econ"],
-  ["2023-1",  "Finanzas",                                      6.1,  "econ"],
-  ["2023-1",  "Producción",                                    4.8,  "engr"],
-  ["2023-1",  "Data Science",                                  4.3,  "comp"],
-  ["2023-1",  "Econometría",                                   4.8,  "econ"],
-  ["2023-1",  "Acondicionamiento Físico",                      4.8,  "lang"],
-  ["2023-1",  "Práctica Profesional I",                        null, "cape"],
-  ["2023-2",  "Evaluación de Proyectos",                       4.1,  "econ"],
-  ["2023-2",  "Marketing",                                     5.4,  "mgmt"],
-  ["2023-2",  "Logística",                                     4.2,  "mgmt"],
-  ["2023-2",  "Mecánica de Fluidos",                           5.2,  "engr"],
-  ["2023-2",  "Simulación",                                    6.3,  "engr"],
-  ["2023-2",  "Plan de Negocios",                              6.0,  "mgmt"],
-  ["2024-1",  "Fotografía y Memoria",                          4.6,  "lang"],
-  ["2024-1",  "Gestión Estratégica",                           6.2,  "mgmt"],
-  ["2024-1",  "Termodinámica",                                 4.3,  "engr"],
-  ["2024-1",  "Liderazgo y Emprendimiento",                    4.1,  "mgmt"],
-  ["2024-1",  "Microeconometría",                              4.8,  "econ"],
-  ["2024-1",  "Data Mining",                                   5.1,  "comp"],
-  ["2024-2",  "Proyectos Energéticos",                         5.5,  "engr"],
-  ["2024-2",  "Juego de Negocios (ERP)",                       6.3,  "comp"],
-  ["2024-2",  "Nanociencia y Nanotecnología",                  4.1,  "comp"],
-  ["2024-2",  "Innovación Tecnológica e Industria 4.0",        6.0,  "comp"],
-  ["2024-2",  "Gestión en la Industria Minera",               5.7,  "mgmt"],
-  ["2024-2",  "FinTech",                                       6.1,  "econ"],
-  ["2025-1",  "Inglés General III",                            5.7,  "lang"],
-  ["2025-1",  "Taller de Ingeniería Industrial",               6.2,  "engr"],
-  ["2025-1",  "Ética Empresarial",                             6.1,  "mgmt"],
-  ["2025-2",  "Examen de Título",                              4.3,  "cape"],
-  ["2025-2",  "Práctica Profesional II",                       null, "cape"],
+const CAT = {
+  math: { label:'Math & Sciences',     color:'#5E8DB5' },
+  comp: { label:'Computing & Tech',    color:'#4A9491' },
+  econ: { label:'Economics & Finance', color:'#5E9E6A' },
+  mgmt: { label:'Management',          color:'#B8864A' },
+  engr: { label:'Engineering',         color:'#A85E42' },
+  lang: { label:'Language',            color:'#7A6AB8' },
+  cape: { label:'Capstone',            color:'#6A8E8A' },
+};
+
+const C = [
+  ['Pre',    'Inglés General I',                        7.0,  'lang', 'Foundation English covering grammar, vocabulary, and core communication skills. Convalidated with prior certification — the entry point for all subsequent English modules in the program.'],
+  ['2020-1', 'Álgebra y Geometría',                    4.1,  'math', 'Introduction to algebraic structures, vector spaces, and Euclidean geometry. Covers sets, functions, matrices, and analytic geometry — essential groundwork for all subsequent mathematics and engineering courses.'],
+  ['2020-1', 'Cálculo I',                              4.6,  'math', 'Single-variable differential calculus: limits, continuity, derivatives, and their applications to optimization and curve sketching. Core foundation for all subsequent mathematics and engineering courses.'],
+  ['2020-1', 'Química',                                5.2,  'math', 'General chemistry covering atomic structure, chemical bonding, stoichiometry, and reaction equilibria. Provides the physicochemical foundation needed for thermodynamics, materials science, and industrial processes.'],
+  ['2020-1', 'Programación',                           5.8,  'comp', 'Introduction to programming logic using Python: algorithms, control structures, functions, and basic data structures. Develops systematic problem-solving and computational thinking applied to engineering problems.'],
+  ['2020-2', 'Mecánica',                               4.4,  'math', 'Classical mechanics: kinematics and dynamics of particles and rigid bodies, Newton\'s laws, work, energy, and momentum. Lays the physics foundation for all mechanics-related engineering courses.'],
+  ['2020-2', 'Programación Avanzada',                  6.5,  'comp', 'Object-oriented programming, data structures (lists, trees, graphs), sorting and search algorithms, and software design principles. Builds the computational skills applied later in data science and analytics.'],
+  ['2020-2', 'Comunicación para la Ingeniería',        4.2,  'lang', 'Technical communication for engineers: academic writing, oral presentations, report structure, and professional documentation. Prepares students to communicate complex ideas clearly to diverse audiences.'],
+  ['2021-1', 'Álgebra Lineal',                         4.9,  'math', 'Linear algebra: systems of equations, matrix operations, determinants, vector spaces, linear transformations, eigenvalues, and eigenvectors. Core tool for optimization, data science, and engineering modeling.'],
+  ['2021-1', 'Cálculo II',                             4.0,  'math', 'Multivariable calculus: partial derivatives, gradients, multiple integrals, and optimization in R². Essential for thermodynamics, fluid mechanics, and economic modeling across the degree program.'],
+  ['2021-1', 'Teoría Organizacional',                  5.7,  'mgmt', 'Foundations of organizations: formal and informal structure, culture, motivation theories, leadership models, and management approaches. Provides the organizational lens through which industrial engineers analyze firms.'],
+  ['2021-1', 'Estática',                               4.4,  'math', 'Mechanics of rigid bodies at rest: force systems, moments, equilibrium conditions, trusses, frames, and distributed loads. Provides the structural analysis foundation for civil and industrial engineering systems.'],
+  ['2021-1', 'Bases de Datos',                         4.1,  'comp', 'Relational database design: entity-relationship modeling, normalization, SQL queries, joins, and transaction management. Applied to real-world data management scenarios including inventory and production systems.'],
+  ['2021-2', 'Probabilidades y Estadística',           4.0,  'math', 'Probability theory and descriptive statistics: random variables, common distributions, expected value, variance, and introductory statistical inference. Foundation for stochastic models, simulation, and econometrics.'],
+  ['2021-2', 'Ecuaciones Diferenciales',               4.1,  'math', 'Ordinary differential equations: first and second-order equations, systems of ODEs, Laplace transforms, and engineering applications. Essential tool for modeling dynamic systems in engineering and economics.'],
+  ['2021-2', 'Cálculo III',                            4.7,  'math', 'Vector calculus: line and surface integrals, Green\'s, Stokes\', and Divergence theorems. Applied to fluid dynamics, electromagnetism, and three-dimensional engineering system analysis.'],
+  ['2021-2', 'Contabilidad y Costos',                  4.1,  'mgmt', 'Financial and cost accounting: balance sheets, income statements, cash flow analysis, cost allocation methods, and break-even analysis. Develops the financial literacy needed to evaluate business and engineering decisions.'],
+  ['2022-1', 'Calor y Ondas',                          5.5,  'math', 'Thermodynamic fundamentals, wave mechanics, optics, and heat transfer phenomena. Bridges classical physics with engineering applications in thermal systems, acoustics, and optical technologies.'],
+  ['2022-1', 'Ingeniería Económica',                   5.2,  'econ', 'Economic analysis of engineering investments: time value of money, cash flow modeling, NPV, IRR, payback period, and depreciation. Core tool for evaluating capital projects and comparing investment alternatives.'],
+  ['2022-1', 'Introducción a la Economía',             4.5,  'econ', 'Macro and microeconomic fundamentals: supply and demand, market equilibria, GDP, monetary and fiscal policy, inflation, and unemployment. Contextualizes engineering decisions within the national and global economy.'],
+  ['2022-1', 'Optimización',                           4.5,  'engr', 'Mathematical optimization: linear programming, the simplex method, duality theory, integer programming, and network flow models. Applied to resource allocation, scheduling, and operations research problems.'],
+  ['2022-1', 'Inferencia Estadística',                 4.8,  'econ', 'Hypothesis testing, confidence intervals, ANOVA, and simple linear regression. Develops the statistical toolkit used in econometrics, quality control, and data-driven management decision-making.'],
+  ['2022-2', 'Electricidad y Magnetismo',              4.7,  'math', 'Electrostatics, DC and AC circuits, magnetism, electromagnetic induction, and Maxwell\'s equations. Provides the electrical physics knowledge underlying industrial automation, power systems, and electronics.'],
+  ['2022-2', 'Inglés General II',                      4.1,  'lang', 'Intermediate academic English: reading comprehension, essay writing, presentation skills, and professional listening. Builds toward the advanced proficiency needed for international academic and business environments.'],
+  ['2022-2', 'Microeconomía',                          4.5,  'econ', 'Consumer theory, production and cost functions, market competition models, game theory, and welfare economics. Provides rigorous microeconomic tools for business strategy and industrial organization analysis.'],
+  ['2022-2', 'Modelos Estocásticos',                   4.0,  'econ', 'Stochastic processes: Markov chains, Poisson processes, queuing theory, and renewal processes. Applied to modeling uncertain systems in operations management, finance, and service systems design.'],
+  ['2022-2', 'Fundamentos de Economía',                4.5,  'econ', 'Comprehensive economics survey: growth theory, international trade, exchange rates, monetary systems, and development economics. Contextualizes engineering decisions within the broader global economic landscape.'],
+  ['2023-1', 'Finanzas',                               6.1,  'econ', 'Corporate finance and capital markets: portfolio theory, CAPM, cost of capital, capital structure, dividend policy, and firm valuation. Develops financial analysis skills for evaluating investment opportunities and business strategy.'],
+  ['2023-1', 'Producción',                             4.8,  'engr', 'Operations management: production planning, scheduling, inventory control, MRP, lean manufacturing, and quality management. Covers classical and modern approaches to designing and managing production systems.'],
+  ['2023-1', 'Data Science',                           4.3,  'comp', 'End-to-end data science pipeline using Python: data wrangling (pandas), exploratory analysis, visualization (matplotlib), and supervised machine learning basics. Applied to real-world business and engineering datasets.'],
+  ['2023-1', 'Econometría',                            4.8,  'econ', 'Applied econometrics: OLS regression, hypothesis testing, multicollinearity, heteroscedasticity, time series models, and panel data methods. Develops empirical tools for evidence-based economic and business analysis.'],
+  ['2023-1', 'Acondicionamiento Físico',               4.8,  'lang', 'Physical conditioning, exercise science, and wellness methodology. Complementary elective promoting physical and mental wellbeing alongside academic rigor.'],
+  ['2023-1', 'Práctica Profesional I',                 null, 'cape', 'First professional internship: applied engineering work within a real organization. Students develop technical and interpersonal skills in authentic workplace environments and submit a formal internship report.'],
+  ['2023-2', 'Evaluación de Proyectos',                4.1,  'econ', 'Social and private cost-benefit analysis, risk assessment, sensitivity analysis, and investment decision criteria. Framework for evaluating public infrastructure projects, energy investments, and private business ventures.'],
+  ['2023-2', 'Marketing',                              5.4,  'mgmt', 'Marketing fundamentals: market research, consumer behavior, segmentation, targeting, positioning, branding, pricing, and digital channels. Bridges engineering product development and go-to-market strategy.'],
+  ['2023-2', 'Logística',                              4.2,  'mgmt', 'Supply chain and logistics management: procurement, warehouse operations, transportation routing, inventory optimization, and demand forecasting. Applied to industrial distribution and e-commerce supply chain design.'],
+  ['2023-2', 'Mecánica de Fluidos',                    5.2,  'engr', 'Fluid mechanics: continuity and momentum equations, Bernoulli equation, viscous flow in pipes, boundary layers, and hydraulic systems. Applied to industrial processes, water distribution, and energy generation.'],
+  ['2023-2', 'Simulación',                             6.3,  'engr', 'Discrete-event simulation: system modeling, random number generation, Monte Carlo methods, and statistical output analysis. Used to optimize complex manufacturing and service systems where analytical solutions are intractable.'],
+  ['2023-2', 'Plan de Negocios',                       6.0,  'mgmt', 'Business plan development: market opportunity analysis, competitive positioning, financial projections, funding strategy, and pitch preparation. Integrates business, economics, and engineering into a complete entrepreneurial venture.'],
+  ['2024-1', 'Fotografía y Memoria',                   4.6,  'lang', 'Photography as a medium of cultural memory, identity, and social narrative. Humanistic elective exploring visual storytelling, archival photography, and the history embedded in images.'],
+  ['2024-1', 'Gestión Estratégica',                    6.2,  'mgmt', 'Strategic management: Porter\'s Five Forces, Value Chain, Blue Ocean Strategy, Resource-Based View, and dynamic capabilities. Applies competitive analysis and strategy formulation to real firms and industries.'],
+  ['2024-1', 'Termodinámica',                          4.3,  'engr', 'Engineering thermodynamics: first and second laws, entropy, thermodynamic cycles (Carnot, Rankine, Brayton), refrigeration, and energy system efficiency. Applied to power generation and industrial process design.'],
+  ['2024-1', 'Liderazgo y Emprendimiento',             4.1,  'mgmt', 'Leadership styles, team dynamics, entrepreneurship, innovation management, and design thinking. Develops the mindset and tools for leading organizations through change and building technology-driven ventures.'],
+  ['2024-1', 'Microeconometría',                       4.8,  'econ', 'Advanced econometrics for micro-level data: instrumental variables (IV), difference-in-differences (DiD), regression discontinuity (RDD), and treatment effect estimation. Rigorous causal inference tools for policy evaluation.'],
+  ['2024-1', 'Data Mining',                            5.1,  'comp', 'Pattern discovery in large datasets: clustering (k-means, hierarchical), classification (decision trees, random forests), association rules, and dimensionality reduction. Applied to business intelligence and industrial analytics.'],
+  ['2024-2', 'Proyectos Energéticos',                  5.5,  'engr', 'Energy project evaluation: renewable technologies (solar, wind, hydro), power market economics, regulatory frameworks, environmental impact, and sustainability in the Chilean and Latin American energy context.'],
+  ['2024-2', 'Juego de Negocios (ERP)',                6.3,  'comp', 'Business simulation using SAP ERP: integrated management across finance, procurement, logistics, production, and HR. Develops practical fluency with enterprise resource planning systems used by major corporations worldwide.'],
+  ['2024-2', 'Nanociencia y Nanotecnología',           4.1,  'comp', 'Introduction to nanoscale science and technology: quantum effects, nanomaterials, nanofabrication, and emerging industrial applications in energy, medicine, and advanced manufacturing.'],
+  ['2024-2', 'Innovación Tecnológica e Industria 4.0', 6.0,  'comp', 'Industry 4.0 technologies: IoT, artificial intelligence, digital twins, cyber-physical systems, and smart manufacturing. Examines how digital transformation is reshaping industrial operations and business models.'],
+  ['2024-2', 'Gestión en la Industria Minera',         5.7,  'mgmt', 'Mining industry management: extraction operations, environmental and safety regulations, project economics, ESG frameworks, and sustainability in Chile\'s world-leading copper and lithium mining sectors.'],
+  ['2024-2', 'FinTech',                                6.1,  'econ', 'Financial technology: digital payments, blockchain, open banking APIs, algorithmic trading, robo-advisors, and regulatory frameworks. Explores the intersection of finance, technology, and entrepreneurship.'],
+  ['2025-1', 'Inglés General III',                     5.7,  'lang', 'Advanced English: academic writing, critical reading of research papers, professional presentation skills, and business correspondence. Prepares for international graduate studies and global professional environments.'],
+  ['2025-1', 'Taller de Ingeniería Industrial',        6.2,  'engr', 'Integrative industrial engineering workshop: real-world case studies applying systems thinking, lean methodologies, and quantitative tools to complex organizational and engineering challenges.'],
+  ['2025-1', 'Ética Empresarial',                      6.1,  'mgmt', 'Business ethics and corporate responsibility: stakeholder theory, sustainability, corporate governance, ethical decision-making, and the social role of business. Applied through case studies and structured debates.'],
+  ['2025-2', 'Examen de Título',                       4.3,  'cape', 'Final degree examination: a comprehensive oral and written defense covering all major areas of Industrial Civil Engineering, assessed by a faculty committee. The formal conclusion of the 5-year program.'],
+  ['2025-2', 'Práctica Profesional II',                null, 'cape', 'Second professional internship with greater responsibility and scope. Students lead real engineering projects within an organization, demonstrating mastery of the discipline and readiness for professional practice.'],
 ];
 
-/* Semester display metadata */
-const SEMESTERS = [
-  { id: "Pre",    year: "Pre",  label: "Convalidado" },
-  { id: "2020-1", year: "2020", label: "Semester 1" },
-  { id: "2020-2", year: "2020", label: "Semester 2" },
-  { id: "2021-1", year: "2021", label: "Semester 1" },
-  { id: "2021-2", year: "2021", label: "Semester 2" },
-  { id: "2022-1", year: "2022", label: "Semester 1" },
-  { id: "2022-2", year: "2022", label: "Semester 2" },
-  { id: "2023-1", year: "2023", label: "Semester 1" },
-  { id: "2023-2", year: "2023", label: "Semester 2" },
-  { id: "2024-1", year: "2024", label: "Semester 1" },
-  { id: "2024-2", year: "2024", label: "Semester 2" },
-  { id: "2025-1", year: "2025", label: "Semester 1" },
-  { id: "2025-2", year: "2025", label: "Semester 2" },
-];
+// stats
+const graded = C.filter(c => c[2] !== null);
+document.getElementById('sTot').textContent = C.length;
+document.getElementById('sAvg').textContent = (graded.reduce((s,c) => s+c[2], 0) / graded.length).toFixed(1);
+document.getElementById('sTop').textContent = graded.filter(c => c[2] >= 6.0).length;
 
-/* ─────────────────────────────────────────────
-   STATS
-───────────────────────────────────────────── */
-const graded = COURSES.filter(c => c[2] !== null);
-const avg    = (graded.reduce((s,c) => s + c[2], 0) / graded.length).toFixed(1);
-const top6   = graded.filter(c => c[2] >= 6.0).length;
+// grade color (3 tiers, ponytail: inline rather than function)
+const gc = g => g === null ? '#6A8E8A' : g >= 6.5 ? '#B8860B' : g >= 6.0 ? '#C8A020' : g >= 5.0 ? CAT[C.find(x=>x[2]===g)?.cat||'math'].color : '#999';
 
-document.getElementById('totalCourses').textContent = COURSES.length;
-document.getElementById('avgGrade').textContent     = avg;
-document.getElementById('top6').textContent         = top6;
+const track    = document.getElementById('track');
+const filmTrack= document.getElementById('filmTrack');
+const navBar   = document.getElementById('navBar');
+const cards    = [], chips = [], navBtns = {};
+const R = 42, circ = +(2 * Math.PI * R).toFixed(2);
+let prevPeriod = '';
 
-/* ─────────────────────────────────────────────
-   BUILD TIMELINE
-───────────────────────────────────────────── */
-function gradeColor(g) {
-  if (g === null) return '#8FA8A0';
-  if (g >= 6.5) return '#B8860B';
-  if (g >= 6.0) return '#C8A020';
-  if (g >= 5.5) return '#5A7A5A';
-  if (g >= 5.0) return '#4A7A9B';
-  return '#999';
-}
+C.forEach((c, i) => {
+  const [period, name, grade, cat, desc] = c;
+  const col   = CAT[cat].color;
+  const semL  = period === 'Pre' ? 'Pre' : period.replace('-', ' · S');
+  const isAP  = grade === null;
+  const dash  = isAP ? 0 : +((grade - 4) / 3 * circ).toFixed(2);
+  const gCol  = isAP ? '#6A8E8A' : grade >= 6.5 ? '#B8860B' : grade >= 6.0 ? '#C8A020' : grade >= 5.0 ? col : '#999';
 
-const timeline = document.getElementById('timeline');
+  // filmstrip divider between semesters
+  if (period !== prevPeriod) {
+    if (prevPeriod) filmTrack.appendChild(Object.assign(document.createElement('div'), { className:'film-div' }));
+    prevPeriod = period;
+  }
 
-SEMESTERS.forEach(sem => {
-  const semCourses = COURSES.filter(c => c[0] === sem.id);
-  if (!semCourses.length) return;
+  // film chip
+  const chip = document.createElement('div');
+  chip.className = 'film-chip';
+  chip.style.background = col;
+  chip.title = name;
+  chip.onclick = () => scrollTo(i);
+  filmTrack.appendChild(chip);
+  chips.push(chip);
 
-  const col = document.createElement('div');
-  col.className = 'semester-col';
-
-  const hdr = document.createElement('div');
-  hdr.className = 'sem-header';
-  hdr.innerHTML = `
-    <div class="sem-year">${sem.year}</div>
-    <div class="sem-label">${sem.label}</div>
-    <div class="sem-count">${semCourses.length} course${semCourses.length > 1 ? 's' : ''}</div>
-  `;
-  col.appendChild(hdr);
-
-  const list = document.createElement('div');
-  list.className = 'courses-list';
-
-  semCourses.forEach(([period, name, grade, cat]) => {
-    const card = document.createElement('div');
-    card.className = `course-card cat-${cat}`;
-
-    const pct    = grade !== null ? ((grade - 4.0) / 3.0 * 100).toFixed(1) : 100;
-    const numStr = grade !== null ? grade.toFixed(1) : '';
-    const isTop  = grade !== null && grade >= 6.0;
-
-    card.innerHTML = `
-      ${isTop ? '<div class="star-badge">★</div>' : ''}
-      <div class="course-name">${name}</div>
-      <div class="course-footer">
-        <div class="grade-bar-wrap">
-          <div class="grade-bar bar-${cat}" style="width:${grade !== null ? pct : 100}%"></div>
+  // card
+  const card = document.createElement('div');
+  card.className = 's-card';
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-face card-front">
+        <div class="card-band" style="background:${col}"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-badge" style="background:${col}">${semL}</span>
+            <span class="card-cat">${CAT[cat].label}</span>
+          </div>
+          <div class="card-name">${name}</div>
+          <div class="ring-wrap">
+            <svg class="ring-svg" width="100" height="100" viewBox="0 0 100 100">
+              <circle class="ring-bg" cx="50" cy="50" r="${R}"/>
+              <circle class="ring-val" cx="50" cy="50" r="${R}" stroke="${gCol}"
+                stroke-dasharray="${circ}" stroke-dashoffset="${circ - dash}"/>
+            </svg>
+            <div class="ring-txt">
+              ${isAP
+                ? `<span class="ring-ap">AP</span>`
+                : `<span class="ring-num" style="color:${gCol}">${grade.toFixed(1)}</span><span class="ring-den">/ 7.0</span>`}
+            </div>
+          </div>
         </div>
-        ${grade !== null
-          ? `<div class="grade-num" style="color:${gradeColor(grade)}">${numStr}</div>`
-          : `<div class="grade-ap">AP</div>`
-        }
+        <div class="card-hint">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          Tap to learn more
+        </div>
       </div>
-    `;
+      <div class="card-face card-back">
+        <div class="back-close">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </div>
+        <span class="back-tag" style="background:${col}">${CAT[cat].label}</span>
+        <div class="back-name">${name}</div>
+        <div class="back-desc">${desc}</div>
+        <div class="back-meta">
+          <div><span class="bm-l">Period</span><span class="bm-v">${semL}</span></div>
+          <div><span class="bm-l">Grade</span><span class="bm-v" style="color:${gCol}">${isAP ? 'AP' : grade.toFixed(1)+' / 7'}</span></div>
+        </div>
+      </div>
+    </div>`;
 
-    /* tooltip */
-    card.addEventListener('mouseenter', e => showTip(e, name, grade));
-    card.addEventListener('mousemove',  e => moveTip(e));
-    card.addEventListener('mouseleave', hideTip);
-    list.appendChild(card);
+  // tap vs swipe detection
+  let down = null;
+  card.addEventListener('pointerdown', e => { down = { x: e.clientX, y: e.clientY }; });
+  card.addEventListener('pointerup', e => {
+    if (!down) return;
+    const moved = Math.abs(e.clientX - down.x) > 8 || Math.abs(e.clientY - down.y) > 8;
+    down = null;
+    if (moved) return;
+    if (!card.classList.contains('active')) { scrollTo(i); return; }
+    card.classList.toggle('flipped');
   });
+  card.querySelector('.back-close').addEventListener('pointerup', e => { e.stopPropagation(); card.classList.remove('flipped'); });
 
-  col.appendChild(list);
-  timeline.appendChild(col);
+  track.appendChild(card);
+  cards.push(card);
+
+  // nav btn (first course of each semester)
+  if (!navBtns[period]) {
+    const btn = document.createElement('button');
+    btn.className = 'nav-sem';
+    btn.textContent = semL;
+    btn.onclick = () => scrollTo(i);
+    navBar.appendChild(btn);
+    navBtns[period] = btn;
+  }
 });
 
-/* ─────────────────────────────────────────────
-   TOOLTIP
-───────────────────────────────────────────── */
-const tooltip  = document.getElementById('tooltip');
-const ttName   = document.getElementById('tt-name');
-const ttGrade  = document.getElementById('tt-grade');
-
-function showTip(e, name, grade) {
-  ttName.textContent  = name;
-  ttGrade.textContent = grade !== null ? `Grade: ${grade.toFixed(1)} / 7.0` : 'Status: Approved (AP)';
-  tooltip.classList.add('visible');
-  moveTip(e);
+// active tracking
+let active = -1;
+function setActive(i) {
+  if (i === active) return;
+  if (active >= 0) { cards[active].classList.remove('active', 'flipped'); chips[active].classList.remove('active'); }
+  active = i;
+  cards[i].classList.add('active');
+  chips[i].classList.add('active');
+  chips[i].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  Object.values(navBtns).forEach(b => b.classList.remove('active'));
+  const period = C[i][0];
+  if (navBtns[period]) navBtns[period].classList.add('active');
 }
-function moveTip(e) {
-  const x = e.clientX + 14, y = e.clientY - 36;
-  tooltip.style.left = Math.min(x, window.innerWidth - 230) + 'px';
-  tooltip.style.top  = Math.max(y, 8) + 'px';
-}
-function hideTip() { tooltip.classList.remove('visible'); }
 
-/* ─────────────────────────────────────────────
-   DRAG TO SCROLL
-───────────────────────────────────────────── */
-const wrap = document.getElementById('timelineWrap');
-let isDragging = false, startX, scrollLeft;
-wrap.addEventListener('mousedown', e => {
-  isDragging = true; startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft;
-  wrap.style.userSelect = 'none';
+let t;
+track.addEventListener('scroll', () => {
+  clearTimeout(t);
+  t = setTimeout(() => {
+    const cx = track.scrollLeft + track.clientWidth / 2;
+    setActive(cards.reduce((best, el, i) =>
+      Math.abs(el.offsetLeft + el.offsetWidth/2 - cx) < Math.abs(cards[best].offsetLeft + cards[best].offsetWidth/2 - cx) ? i : best, 0));
+  }, 50);
+}, { passive:true });
+
+function scrollTo(i) {
+  track.scrollTo({ left: cards[i].offsetLeft - (track.clientWidth - cards[i].offsetWidth)/2, behavior:'smooth' });
+  setTimeout(() => setActive(i), 380);
+}
+
+document.getElementById('aPrev').onclick = () => { if (active > 0) scrollTo(active-1); };
+document.getElementById('aNext').onclick = () => { if (active < cards.length-1) scrollTo(active+1); };
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowLeft' && active>0) scrollTo(active-1);
+  if (e.key==='ArrowRight' && active<cards.length-1) scrollTo(active+1);
+  if ((e.key===' '||e.key==='Enter') && active>=0) { e.preventDefault(); cards[active].classList.toggle('flipped'); }
+  if (e.key==='Escape' && active>=0) cards[active].classList.remove('flipped');
 });
-document.addEventListener('mouseup', () => { isDragging = false; wrap.style.userSelect = ''; });
-wrap.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  const x = e.pageX - wrap.offsetLeft;
-  wrap.scrollLeft = scrollLeft - (x - startX);
-});
+
+requestAnimationFrame(() => scrollTo(0));
 </script>
 </body>
 </html>
