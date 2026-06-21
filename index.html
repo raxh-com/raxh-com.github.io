@@ -675,6 +675,71 @@
       .cv-entry-header { flex-direction: column; gap: 2px; }
     }
 
+    /* ══════════════════════════════════════
+       COURSE SCROLL STRIP
+    ══════════════════════════════════════ */
+    .cstrip-hint { font-family:var(--sans); font-size:11px; color:var(--ink-soft); margin-top:4px; letter-spacing:.03em; }
+    .cstrip-area { position:relative; height:460px; overflow:hidden; margin-top:16px; }
+    .cstrip-area::before,.cstrip-area::after { content:''; position:absolute; top:0; bottom:0; width:60px; z-index:10; pointer-events:none; }
+    .cstrip-area::before { left:0; background:linear-gradient(to right, var(--bg), transparent); }
+    .cstrip-area::after  { right:0; background:linear-gradient(to left,  var(--bg), transparent); }
+    .cstrip-track { display:flex; align-items:center; gap:16px; overflow-x:scroll; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:16px calc(50% - 130px); height:100%; cursor:grab; }
+    .cstrip-track:active { cursor:grabbing; }
+    .cstrip-track::-webkit-scrollbar { display:none; }
+    .sc-card { flex:0 0 260px; height:390px; scroll-snap-align:center; perspective:1000px; transition:opacity .3s,transform .3s; opacity:.4; transform:scale(.88); user-select:none; -webkit-user-select:none; }
+    .sc-card.active { opacity:1; transform:scale(1); }
+    .sc-card.active .sc-front { cursor:pointer; }
+    .sc-card.flipped .sc-inner { transform:rotateY(180deg); }
+    .sc-inner { width:100%; height:100%; transform-style:preserve-3d; transition:transform .5s cubic-bezier(.4,0,.2,1); position:relative; }
+    .sc-face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; overflow:hidden; }
+    .sc-front { background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.07),0 8px 28px rgba(0,0,0,.1); display:flex; flex-direction:column; }
+    .sc-band { height:5px; flex-shrink:0; }
+    .sc-body { flex:1; display:flex; flex-direction:column; padding:16px 18px 0; }
+    .sc-top  { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .sc-badge { font-size:8px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#fff; padding:3px 7px; border-radius:20px; }
+    .sc-cat   { font-size:8px; font-weight:500; color:var(--ink-soft); text-align:right; max-width:100px; line-height:1.3; }
+    .sc-name  { font-family:var(--serif); font-size:18px; line-height:1.3; color:var(--ink); flex:1; display:flex; align-items:center; }
+    .sc-ring  { display:flex; align-items:center; justify-content:center; padding:10px 0 4px; position:relative; }
+    .sc-ring svg { transform:rotate(-90deg); }
+    .sc-rbg  { fill:none; stroke:var(--line); stroke-width:4.5; }
+    .sc-rval { fill:none; stroke-width:4.5; stroke-linecap:round; }
+    .sc-rtxt { position:absolute; text-align:center; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .sc-rnum { display:block; font-family:var(--serif); font-size:22px; font-weight:600; line-height:1; }
+    .sc-rden { display:block; font-size:8px; color:var(--ink-soft); letter-spacing:.08em; }
+    .sc-rap  { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
+    .sc-shint { border-top:1px solid var(--line); padding:9px 18px; display:flex; align-items:center; justify-content:center; gap:4px; color:var(--ink-soft); font-size:9px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+    .sc-back { background:var(--ink); transform:rotateY(180deg); display:flex; flex-direction:column; padding:18px 18px 14px; color:#fff; }
+    .sc-bclose { display:flex; align-items:center; gap:5px; font-size:9px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:14px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+    .sc-bclose:hover { color:rgba(255,255,255,.6); }
+    .sc-btag  { display:inline-block; font-size:8px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#fff; padding:3px 8px; border-radius:20px; margin-bottom:10px; }
+    .sc-bname { font-family:var(--serif); font-size:16px; line-height:1.25; color:#fff; margin-bottom:12px; }
+    .sc-bdesc { font-size:11.5px; line-height:1.7; color:rgba(255,255,255,.68); flex:1; overflow-y:auto; scrollbar-width:none; }
+    .sc-bdesc::-webkit-scrollbar { display:none; }
+    .sc-bmeta { display:flex; gap:14px; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,.1); flex-shrink:0; }
+    .sc-bml { font-size:7.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.28); display:block; margin-bottom:2px; }
+    .sc-bmv { font-family:var(--serif); font-size:14px; color:rgba(255,255,255,.88); }
+    .sc-arrow { position:absolute; top:50%; z-index:20; transform:translateY(-50%); width:36px; height:36px; background:rgba(255,255,255,.9); border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.1); transition:all .2s; -webkit-tap-highlight-color:transparent; }
+    .sc-arrow:hover { background:#fff; box-shadow:0 4px 16px rgba(0,0,0,.14); }
+    #scPrev { left:8px; } #scNext { right:8px; }
+    .sc-film { margin-top:10px; }
+    .sc-flbl { font-size:8px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; text-align:center; }
+    .sc-fscroll { overflow-x:auto; scrollbar-width:none; }
+    .sc-fscroll::-webkit-scrollbar { display:none; }
+    .sc-ftrack { display:flex; gap:2px; align-items:center; width:max-content; margin:0 auto; padding:3px 2px; }
+    .sc-chip { width:7px; height:20px; border-radius:2px; cursor:pointer; transition:all .2s; opacity:.42; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+    .sc-chip:hover { opacity:.72; transform:scaleY(1.1); }
+    .sc-chip.active { opacity:1; width:11px; height:26px; box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(0,0,0,.15); }
+    .sc-fdiv { width:1px; height:22px; background:var(--line); flex-shrink:0; margin:0 4px; }
+    .sc-legend { display:flex; flex-wrap:wrap; gap:5px 12px; margin-top:8px; justify-content:center; }
+    .sc-leg { display:flex; align-items:center; gap:4px; font-size:8.5px; font-weight:500; color:var(--ink-mid); }
+    .sc-leg-d { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    @media (max-width:520px) {
+      .cstrip-area { height:420px; }
+      .sc-card { flex:0 0 76vw; height:360px; }
+      .cstrip-track { padding:14px calc(50% - 38vw); }
+      .sc-arrow { display:none; }
+    }
+
   </style>
 </head>
 <body>
@@ -810,7 +875,7 @@
         </div>
         <div class="cv-entry-org">Universidad Diego Portales · Santiago, Chile</div>
         <ul class="cv-bullets">
-          <li>49 courses across engineering, economics, finance, data science, and management · Grade 4.8 / 7.0</li>
+          <li>49 courses across engineering, economics, finance, data science, and management</li>
           <li>Highest-scoring subjects: Simulation 6.3, Strategic Management 6.2, Finance 6.1, Business Plan 6.0</li>
           <li>Additional strengths: Mining Industry Management 5.7, Marketing 5.4, Data Mining 5.1</li>
           <li>Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
@@ -850,6 +915,30 @@
             <span class="ielts-lbl">CEFR</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ACADEMIC CURRICULUM STRIP -->
+    <section class="cv-block">
+      <div class="cv-label">Academic Curriculum</div>
+      <p class="cstrip-hint">55 courses across 5 years — swipe to explore · tap a card to learn more</p>
+      <div class="cstrip-area">
+        <button type="button" class="sc-arrow" id="scPrev" aria-label="Previous course"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="cstrip-track" id="scTrack"></div>
+        <button type="button" class="sc-arrow" id="scNext" aria-label="Next course"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="sc-film">
+        <div class="sc-flbl">All courses — tap any block to jump</div>
+        <div class="sc-fscroll"><div class="sc-ftrack" id="scFilmTrack"></div></div>
+      </div>
+      <div class="sc-legend">
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#5E8DB5"></span>Math &amp; Sciences</div>
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#4A9491"></span>Computing &amp; Tech</div>
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#5E9E6A"></span>Economics &amp; Finance</div>
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#B8864A"></span>Management</div>
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#A85E42"></span>Engineering</div>
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#7A6AB8"></span>Language</div>
+        <div class="sc-leg"><span class="sc-leg-d" style="background:#6A8E8A"></span>Capstone</div>
       </div>
     </section>
 
@@ -909,6 +998,37 @@
       </div>
     </section>
 
+    <!-- PROJECTS -->
+    <section class="cv-block">
+      <div class="cv-label">Projects</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">NAGARE — Restaurant Management SaaS Platform</div>
+          <div class="cv-entry-date">2024 – Present</div>
+        </div>
+        <div class="cv-entry-org">RTR · Chile</div>
+        <ul class="cv-bullets">
+          <li>Built a full-stack multi-tenant SaaS platform: QR digital menus, real-time ordering system, kitchen display (KDS), waiter app, and admin panel with KPI analytics dashboard</li>
+          <li>3 active paying clients (restaurants, Iquique – Chile) on a monthly subscription model</li>
+          <li>Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">MONBAN 門番 — Smart Condominium Access Control</div>
+          <div class="cv-entry-date">2026</div>
+        </div>
+        <div class="cv-entry-org">RTR · Chile</div>
+        <ul class="cv-bullets">
+          <li>Designed and deployed a vehicle access control system: visitor pre-registration, WhatsApp link-based entry flow, real-time concierge alert panel with response-time metrics per visit</li>
+          <li>Security-first architecture: Role-Level Security (RLS) via Supabase, token-based visitor auth, automated data-retention compliant with Chile's data privacy law (Ley 21.719)</li>
+          <li>Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Auth + Realtime + RLS), Netlify</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- SKILLS -->
     <section class="cv-block">
       <div class="cv-label">Technical Skills</div>
@@ -924,6 +1044,9 @@
         <span class="skill-chip">Mining Industry Operations</span>
         <span class="skill-chip">Business Planning</span>
         <span class="skill-chip">Digital Content Production</span>
+        <span class="skill-chip">Web Development &amp; SaaS</span>
+        <span class="skill-chip">Supabase (PostgreSQL + Realtime)</span>
+        <span class="skill-chip">Netlify Deployment</span>
       </div>
     </section>
 
@@ -1100,6 +1223,199 @@
       colorLight: '#FFFFFF',
       correctLevel: QRCode.CorrectLevel.M
     });
+
+    /* ══════════════════════════════════════
+       COURSE SCROLL STRIP
+    ══════════════════════════════════════ */
+    (function() {
+      const SCAT = {
+        math:{ label:'Math & Sciences',     color:'#5E8DB5' },
+        comp:{ label:'Computing & Tech',    color:'#4A9491' },
+        econ:{ label:'Economics & Finance', color:'#5E9E6A' },
+        mgmt:{ label:'Management',          color:'#B8864A' },
+        engr:{ label:'Engineering',         color:'#A85E42' },
+        lang:{ label:'Language',            color:'#7A6AB8' },
+        cape:{ label:'Capstone',            color:'#6A8E8A' },
+      };
+      const SC = [
+        ['Pre',    'Inglés General I',                        7.0,  'lang', 'Foundation English covering grammar, vocabulary, and core communication skills. Convalidated with prior certification — the entry point for all subsequent English modules in the program.'],
+        ['2020-1', 'Álgebra y Geometría',                    4.1,  'math', 'Introduction to algebraic structures, vector spaces, and Euclidean geometry. Covers sets, functions, matrices, and analytic geometry — essential groundwork for all subsequent mathematics and engineering courses.'],
+        ['2020-1', 'Cálculo I',                              4.6,  'math', 'Single-variable differential calculus: limits, continuity, derivatives, and their applications to optimization and curve sketching. Core foundation for all subsequent mathematics and engineering courses.'],
+        ['2020-1', 'Química',                                5.2,  'math', 'General chemistry covering atomic structure, chemical bonding, stoichiometry, and reaction equilibria. Foundation for thermodynamics, materials science, and industrial processes.'],
+        ['2020-1', 'Programación',                           5.8,  'comp', 'Introduction to programming logic using Python: algorithms, control structures, functions, and basic data structures. Develops systematic problem-solving and computational thinking for engineering.'],
+        ['2020-2', 'Mecánica',                               4.4,  'math', 'Classical mechanics: kinematics and dynamics of particles and rigid bodies, Newton\'s laws, work, energy, and momentum. Lays the physics foundation for all mechanics-related engineering courses.'],
+        ['2020-2', 'Programación Avanzada',                  6.5,  'comp', 'Object-oriented programming, data structures (lists, trees, graphs), sorting and search algorithms, and software design principles. Builds the computational skills applied in data science and analytics.'],
+        ['2020-2', 'Comunicación para la Ingeniería',        4.2,  'lang', 'Technical communication for engineers: academic writing, oral presentations, report structure, and professional documentation. Prepares students to communicate complex ideas to diverse audiences.'],
+        ['2021-1', 'Álgebra Lineal',                         4.9,  'math', 'Linear algebra: systems of equations, matrix operations, determinants, vector spaces, linear transformations, eigenvalues, and eigenvectors. Core tool for optimization, data science, and engineering modeling.'],
+        ['2021-1', 'Cálculo II',                             4.0,  'math', 'Multivariable calculus: partial derivatives, gradients, multiple integrals, and optimization in R². Essential for thermodynamics, fluid mechanics, and economic modeling across the degree.'],
+        ['2021-1', 'Teoría Organizacional',                  5.7,  'mgmt', 'Foundations of organizations: formal and informal structure, culture, motivation theories, leadership models, and management approaches. The organizational lens industrial engineers use to analyze firms.'],
+        ['2021-1', 'Estática',                               4.4,  'math', 'Mechanics of rigid bodies at rest: force systems, moments, equilibrium conditions, trusses, frames, and distributed loads. Structural analysis foundation for civil and industrial engineering systems.'],
+        ['2021-1', 'Bases de Datos',                         4.1,  'comp', 'Relational database design: entity-relationship modeling, normalization, SQL queries, joins, and transaction management. Applied to real-world data management scenarios including inventory and production.'],
+        ['2021-2', 'Probabilidades y Estadística',           4.0,  'math', 'Probability theory and statistics: random variables, common distributions, expected value, variance, and statistical inference. Foundation for stochastic models, simulation, and econometrics.'],
+        ['2021-2', 'Ecuaciones Diferenciales',               4.1,  'math', 'Ordinary differential equations: first and second-order equations, systems of ODEs, Laplace transforms, and engineering applications. Essential for modeling dynamic systems in engineering and economics.'],
+        ['2021-2', 'Cálculo III',                            4.7,  'math', 'Vector calculus: line and surface integrals, Green\'s, Stokes\', and Divergence theorems. Applied to fluid dynamics, electromagnetism, and three-dimensional engineering system analysis.'],
+        ['2021-2', 'Contabilidad y Costos',                  4.1,  'mgmt', 'Financial and cost accounting: balance sheets, income statements, cash flow analysis, cost allocation, and break-even analysis. Develops financial literacy for evaluating business and engineering decisions.'],
+        ['2022-1', 'Calor y Ondas',                          5.5,  'math', 'Thermodynamic fundamentals, wave mechanics, optics, and heat transfer phenomena. Bridges classical physics with engineering applications in thermal systems, acoustics, and optical technologies.'],
+        ['2022-1', 'Ingeniería Económica',                   5.2,  'econ', 'Economic analysis of engineering investments: time value of money, cash flow modeling, NPV, IRR, payback period, and depreciation. Core tool for evaluating capital projects and comparing alternatives.'],
+        ['2022-1', 'Introducción a la Economía',             4.5,  'econ', 'Macro and microeconomic fundamentals: supply and demand, market equilibria, GDP, monetary and fiscal policy, inflation, and unemployment. Contextualizes engineering decisions within the economy.'],
+        ['2022-1', 'Optimización',                           4.5,  'engr', 'Mathematical optimization: linear programming, the simplex method, duality theory, integer programming, and network flow models. Applied to resource allocation, scheduling, and operations research.'],
+        ['2022-1', 'Inferencia Estadística',                 4.8,  'econ', 'Hypothesis testing, confidence intervals, ANOVA, and simple linear regression. Develops the statistical toolkit used in econometrics, quality control, and data-driven management.'],
+        ['2022-2', 'Electricidad y Magnetismo',              4.7,  'math', 'Electrostatics, DC and AC circuits, magnetism, electromagnetic induction, and Maxwell\'s equations. Electrical physics knowledge underlying industrial automation, power systems, and electronics.'],
+        ['2022-2', 'Inglés General II',                      4.1,  'lang', 'Intermediate academic English: reading comprehension, essay writing, presentation skills, and professional listening. Builds toward the advanced proficiency needed for international academic and business environments.'],
+        ['2022-2', 'Microeconomía',                          4.5,  'econ', 'Consumer theory, production and cost functions, market competition models, game theory, and welfare economics. Rigorous microeconomic tools for business strategy and industrial organization analysis.'],
+        ['2022-2', 'Modelos Estocásticos',                   4.0,  'econ', 'Stochastic processes: Markov chains, Poisson processes, queuing theory, and renewal processes. Applied to modeling uncertain systems in operations management, finance, and service design.'],
+        ['2022-2', 'Fundamentos de Economía',                4.5,  'econ', 'Comprehensive economics survey: growth theory, international trade, exchange rates, monetary systems, and development economics. Contextualizes engineering decisions within the broader global economy.'],
+        ['2023-1', 'Finanzas',                               6.1,  'econ', 'Corporate finance and capital markets: portfolio theory, CAPM, cost of capital, capital structure, and firm valuation. Develops financial analysis skills for evaluating investment opportunities and strategy.'],
+        ['2023-1', 'Producción',                             4.8,  'engr', 'Operations management: production planning, scheduling, inventory control, MRP, lean manufacturing, and quality management. Classical and modern approaches to designing and managing production systems.'],
+        ['2023-1', 'Data Science',                           4.3,  'comp', 'End-to-end data science pipeline using Python: data wrangling (pandas), exploratory analysis, visualization (matplotlib), and supervised machine learning basics applied to real-world datasets.'],
+        ['2023-1', 'Econometría',                            4.8,  'econ', 'Applied econometrics: OLS regression, hypothesis testing, multicollinearity, heteroscedasticity, time series models, and panel data methods. Empirical tools for evidence-based economic analysis.'],
+        ['2023-1', 'Acondicionamiento Físico',               4.8,  'lang', 'Physical conditioning, exercise science, and wellness methodology. Complementary elective promoting physical and mental wellbeing alongside academic rigor.'],
+        ['2023-1', 'Práctica Profesional I',                 null, 'cape', 'First professional internship: applied engineering work within a real organization. Students develop technical and interpersonal skills in authentic workplace environments and submit a formal report.'],
+        ['2023-2', 'Evaluación de Proyectos',                4.1,  'econ', 'Social and private cost-benefit analysis, risk assessment, sensitivity analysis, and investment decision criteria. Framework for evaluating public infrastructure, energy, and private business ventures.'],
+        ['2023-2', 'Marketing',                              5.4,  'mgmt', 'Marketing fundamentals: market research, consumer behavior, segmentation, targeting, positioning, branding, pricing, and digital channels. Bridges engineering product development and go-to-market strategy.'],
+        ['2023-2', 'Logística',                              4.2,  'mgmt', 'Supply chain and logistics management: procurement, warehouse operations, transportation routing, inventory optimization, and demand forecasting. Applied to industrial and e-commerce supply chain design.'],
+        ['2023-2', 'Mecánica de Fluidos',                    5.2,  'engr', 'Fluid mechanics: continuity and momentum equations, Bernoulli equation, viscous flow in pipes, boundary layers, and hydraulic systems. Applied to industrial processes and energy generation.'],
+        ['2023-2', 'Simulación',                             6.3,  'engr', 'Discrete-event simulation: system modeling, random number generation, Monte Carlo methods, and statistical output analysis. Used to optimize complex manufacturing and service systems.'],
+        ['2023-2', 'Plan de Negocios',                       6.0,  'mgmt', 'Business plan development: market opportunity analysis, competitive positioning, financial projections, and funding strategy. Integrates business, economics, and engineering into a complete entrepreneurial venture.'],
+        ['2024-1', 'Fotografía y Memoria',                   4.6,  'lang', 'Photography as a medium of cultural memory, identity, and social narrative. Humanistic elective exploring visual storytelling, archival photography, and the history embedded in images.'],
+        ['2024-1', 'Gestión Estratégica',                    6.2,  'mgmt', 'Strategic management: Porter\'s Five Forces, Value Chain, Blue Ocean Strategy, Resource-Based View, and dynamic capabilities. Applies competitive analysis and strategy to real firms and industries.'],
+        ['2024-1', 'Termodinámica',                          4.3,  'engr', 'Engineering thermodynamics: first and second laws, entropy, thermodynamic cycles (Carnot, Rankine, Brayton), and energy system efficiency. Applied to power generation and industrial process design.'],
+        ['2024-1', 'Liderazgo y Emprendimiento',             4.1,  'mgmt', 'Leadership styles, team dynamics, entrepreneurship, innovation management, and design thinking. Develops the mindset and tools for leading organizations and building technology-driven ventures.'],
+        ['2024-1', 'Microeconometría',                       4.8,  'econ', 'Advanced econometrics for micro-level data: instrumental variables (IV), difference-in-differences (DiD), regression discontinuity (RDD), and treatment effect estimation for policy evaluation.'],
+        ['2024-1', 'Data Mining',                            5.1,  'comp', 'Pattern discovery in large datasets: clustering (k-means, hierarchical), classification (decision trees, random forests), association rules, and dimensionality reduction for business intelligence.'],
+        ['2024-2', 'Proyectos Energéticos',                  5.5,  'engr', 'Energy project evaluation: renewable technologies (solar, wind, hydro), power market economics, regulatory frameworks, environmental impact, and sustainability in the Chilean energy context.'],
+        ['2024-2', 'Juego de Negocios (ERP)',                6.3,  'comp', 'Business simulation using SAP ERP: integrated management across finance, procurement, logistics, production, and HR. Practical fluency with enterprise resource planning systems used by major corporations.'],
+        ['2024-2', 'Nanociencia y Nanotecnología',           4.1,  'comp', 'Introduction to nanoscale science: quantum effects, nanomaterials, nanofabrication, and emerging applications in energy, medicine, and advanced manufacturing.'],
+        ['2024-2', 'Innovación Tecnológica e Industria 4.0', 6.0,  'comp', 'Industry 4.0 technologies: IoT, artificial intelligence, digital twins, cyber-physical systems, and smart manufacturing. How digital transformation is reshaping industrial operations and business models.'],
+        ['2024-2', 'Gestión en la Industria Minera',         5.7,  'mgmt', 'Mining industry management: extraction operations, environmental and safety regulations, project economics, and ESG frameworks in Chile\'s world-leading copper and lithium mining sectors.'],
+        ['2024-2', 'FinTech',                                6.1,  'econ', 'Financial technology: digital payments, blockchain, open banking APIs, algorithmic trading, robo-advisors, and regulatory frameworks. The intersection of finance, technology, and entrepreneurship.'],
+        ['2025-1', 'Inglés General III',                     5.7,  'lang', 'Advanced English: academic writing, critical reading of research papers, professional presentation skills, and business correspondence. Prepares for international graduate studies and global environments.'],
+        ['2025-1', 'Taller de Ingeniería Industrial',        6.2,  'engr', 'Integrative industrial engineering workshop: real-world case studies applying systems thinking, lean methodologies, and quantitative tools to complex organizational and engineering challenges.'],
+        ['2025-1', 'Ética Empresarial',                      6.1,  'mgmt', 'Business ethics and corporate responsibility: stakeholder theory, sustainability, corporate governance, ethical decision-making, and the social role of business. Applied through case studies and debates.'],
+        ['2025-2', 'Examen de Título',                       4.3,  'cape', 'Final degree examination: a comprehensive oral and written defense covering all major areas of Industrial Civil Engineering, assessed by a faculty committee. The formal conclusion of the 5-year program.'],
+        ['2025-2', 'Práctica Profesional II',                null, 'cape', 'Second professional internship with greater responsibility. Students lead real engineering projects within an organization, demonstrating mastery of the discipline and readiness for professional practice.'],
+      ];
+
+      const scTrack    = document.getElementById('scTrack');
+      const scFilmTrack= document.getElementById('scFilmTrack');
+      const scCards    = [], scChips = [];
+      const R = 38, circ = +(2 * Math.PI * R).toFixed(2);
+      let prevP = '', scActive = -1;
+
+      SC.forEach(function(c, i) {
+        const period = c[0], name = c[1], grade = c[2], cat = c[3], desc = c[4];
+        const col  = SCAT[cat].color;
+        const semL = period === 'Pre' ? 'Pre' : period.replace('-', ' · S');
+        const isAP = grade === null;
+        const dash = isAP ? 0 : +((grade - 4) / 3 * circ).toFixed(2);
+        const gc   = isAP ? '#6A8E8A' : grade >= 6.5 ? '#B8860B' : grade >= 6.0 ? '#C8A020' : grade >= 5.0 ? col : '#999';
+
+        if (period !== prevP) {
+          if (prevP) scFilmTrack.appendChild(Object.assign(document.createElement('div'), {className:'sc-fdiv'}));
+          prevP = period;
+        }
+
+        const chip = document.createElement('div');
+        chip.className = 'sc-chip';
+        chip.style.background = col;
+        chip.title = name;
+        chip.onclick = function() { scScrollTo(i); };
+        scFilmTrack.appendChild(chip);
+        scChips.push(chip);
+
+        const card = document.createElement('div');
+        card.className = 'sc-card';
+        card.innerHTML =
+          '<div class="sc-inner">' +
+            '<div class="sc-face sc-front">' +
+              '<div class="sc-band" style="background:' + col + '"></div>' +
+              '<div class="sc-body">' +
+                '<div class="sc-top">' +
+                  '<span class="sc-badge" style="background:' + col + '">' + semL + '</span>' +
+                  '<span class="sc-cat">' + SCAT[cat].label + '</span>' +
+                '</div>' +
+                '<div class="sc-name">' + name + '</div>' +
+                '<div class="sc-ring">' +
+                  '<svg width="88" height="88" viewBox="0 0 88 88">' +
+                    '<circle class="sc-rbg" cx="44" cy="44" r="' + R + '"/>' +
+                    '<circle class="sc-rval" cx="44" cy="44" r="' + R + '" stroke="' + gc + '" stroke-dasharray="' + circ + '" stroke-dashoffset="' + (circ - dash) + '"/>' +
+                  '</svg>' +
+                  '<div class="sc-rtxt">' +
+                    (isAP
+                      ? '<span class="sc-rap">AP</span>'
+                      : '<span class="sc-rnum" style="color:' + gc + '">' + grade.toFixed(1) + '</span><span class="sc-rden">/ 7.0</span>') +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="sc-shint">' +
+                '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>' +
+                'Tap to learn more' +
+              '</div>' +
+            '</div>' +
+            '<div class="sc-face sc-back">' +
+              '<div class="sc-bclose">' +
+                '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>' +
+                'Back' +
+              '</div>' +
+              '<span class="sc-btag" style="background:' + col + '">' + SCAT[cat].label + '</span>' +
+              '<div class="sc-bname">' + name + '</div>' +
+              '<div class="sc-bdesc">' + desc + '</div>' +
+              '<div class="sc-bmeta">' +
+                '<div><span class="sc-bml">Period</span><span class="sc-bmv">' + semL + '</span></div>' +
+                '<div><span class="sc-bml">Grade</span><span class="sc-bmv" style="color:' + gc + '">' + (isAP ? 'AP' : grade.toFixed(1) + ' / 7') + '</span></div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+
+        var down = null;
+        card.addEventListener('pointerdown', function(e) { down = {x:e.clientX, y:e.clientY}; });
+        card.addEventListener('pointerup', function(e) {
+          if (!down) return;
+          var moved = Math.abs(e.clientX-down.x)>8 || Math.abs(e.clientY-down.y)>8;
+          down = null;
+          if (moved) return;
+          if (!card.classList.contains('active')) { scScrollTo(i); return; }
+          card.classList.toggle('flipped');
+        });
+        card.querySelector('.sc-bclose').addEventListener('pointerup', function(e) {
+          e.stopPropagation();
+          card.classList.remove('flipped');
+        });
+
+        scTrack.appendChild(card);
+        scCards.push(card);
+      });
+
+      function scSetActive(i) {
+        if (i === scActive) return;
+        if (scActive >= 0) { scCards[scActive].classList.remove('active','flipped'); scChips[scActive].classList.remove('active'); }
+        scActive = i;
+        scCards[i].classList.add('active');
+        scChips[i].classList.add('active');
+        scChips[i].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+      }
+
+      var scTimer;
+      scTrack.addEventListener('scroll', function() {
+        clearTimeout(scTimer);
+        scTimer = setTimeout(function() {
+          var cx = scTrack.scrollLeft + scTrack.clientWidth / 2;
+          scSetActive(scCards.reduce(function(best,el,i) {
+            return Math.abs(el.offsetLeft+el.offsetWidth/2-cx) < Math.abs(scCards[best].offsetLeft+scCards[best].offsetWidth/2-cx) ? i : best;
+          }, 0));
+        }, 50);
+      }, {passive:true});
+
+      function scScrollTo(i) {
+        scTrack.scrollTo({left: scCards[i].offsetLeft-(scTrack.clientWidth-scCards[i].offsetWidth)/2, behavior:'smooth'});
+        setTimeout(function() { scSetActive(i); }, 380);
+      }
+
+      document.getElementById('scPrev').onclick = function() { if (scActive>0) scScrollTo(scActive-1); };
+      document.getElementById('scNext').onclick = function() { if (scActive<scCards.length-1) scScrollTo(scActive+1); };
+
+      requestAnimationFrame(function() { scScrollTo(0); });
+    })();
 
     /* ── vCard download (adds contact to phone) ── */
     function downloadVCard() {
