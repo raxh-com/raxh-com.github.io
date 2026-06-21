@@ -3,376 +3,1132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Curriculum · Raheel Ahmad Aguirre</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0F0F0F">
+  <title>Raheel Ahmad Aguirre</title>
+  <meta property="og:title" content="Raheel Ahmad Aguirre">
+  <meta property="og:description" content="Industrial Civil Engineer · Director Ejecutivo · RTR · Santiago, Chile">
+  <meta property="og:type" content="profile">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+
+    /* ══════════════════════════════════════
+       RESET & VARIABLES
+    ══════════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --bg: #F8F6F1; --cream: #F0EDE4; --ink: #0F0F0F;
-      --mid: #4A4A4A; --soft: #888; --line: #E0DDD5;
-      --serif: 'EB Garamond', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
-      --card-w: 300px; --card-h: 420px;
+      --bg:          #F8F6F1;
+      --cream:       #F4F1EA;
+      --ink:         #0F0F0F;
+      --ink-mid:     #4A4A4A;
+      --ink-soft:    #888888;
+      --line:        #DDD9D0;
+      --accent:      #B8A898;
+      --chip-bg:     #EDEAE4;
+      --back-dark:   #0F0F0F;
+      --serif:       'EB Garamond', Georgia, 'Times New Roman', serif;
+      --sans:        'Inter', -apple-system, system-ui, sans-serif;
     }
-    html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow: hidden; }
-    .page { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
 
-    /* HEADER */
-    .hdr { flex-shrink: 0; background: var(--ink); color: #fff; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .hdr-eye { font-size: 9px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 2px; }
-    .hdr-title { font-family: var(--serif); font-size: 17px; color: #fff; }
-    .hdr-stats { display: flex; gap: 20px; flex-shrink: 0; }
-    .stat-v { display: block; font-family: var(--serif); font-size: 20px; font-weight: 600; color: #fff; line-height: 1; }
-    .stat-l { display: block; font-size: 8.5px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.38); margin-top: 2px; }
-    .back-btn { display: flex; align-items: center; gap: 5px; color: rgba(255,255,255,.4); font-size: 11px; text-decoration: none; padding: 6px 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 6px; transition: all .2s; flex-shrink: 0; }
-    .back-btn:hover { color: #fff; border-color: rgba(255,255,255,.3); }
+    html { scroll-behavior: smooth; }
 
-    /* NAV */
-    .nav-bar { flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 9px 24px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
-    .nav-bar::-webkit-scrollbar { display: none; }
-    .nav-sem { font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: all .2s; white-space: nowrap; border: 1px solid transparent; background: none; }
-    .nav-sem.active { color: var(--ink); border-color: var(--line); background: var(--cream); }
-
-    /* STRIP */
-    .strip-area { flex: 1; display: flex; align-items: center; position: relative; overflow: hidden; min-height: 0; }
-    .strip-area::before, .strip-area::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 10; pointer-events: none; }
-    .strip-area::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-    .strip-area::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
-    .strip-track { display: flex; align-items: center; gap: 20px; overflow-x: scroll; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 20px calc(50vw - var(--card-w)/2); width: 100%; height: 100%; cursor: grab; }
-    .strip-track:active { cursor: grabbing; }
-    .strip-track::-webkit-scrollbar { display: none; }
-
-    /* CARDS */
-    .s-card { flex: 0 0 var(--card-w); height: var(--card-h); scroll-snap-align: center; perspective: 1000px; transition: opacity .3s, transform .3s; opacity: .42; transform: scale(.88); user-select: none; -webkit-user-select: none; }
-    .s-card.active { opacity: 1; transform: scale(1); }
-    .s-card.active .card-front { cursor: pointer; }
-    .s-card.flipped .card-inner { transform: rotateY(180deg); }
-    .card-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.4,0,.2,1); position: relative; }
-    .card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; overflow: hidden; }
-
-    /* FRONT */
-    .card-front { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.09); display: flex; flex-direction: column; }
-    .card-band { height: 6px; flex-shrink: 0; }
-    .card-body { flex: 1; display: flex; flex-direction: column; padding: 20px 22px 0; }
-    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-    .card-badge { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #fff; padding: 3px 8px; border-radius: 20px; }
-    .card-cat { font-size: 9px; font-weight: 500; color: var(--soft); text-align: right; max-width: 120px; line-height: 1.3; }
-    .card-name { font-family: var(--serif); font-size: 21px; line-height: 1.3; color: var(--ink); flex: 1; display: flex; align-items: center; }
-    .ring-wrap { display: flex; align-items: center; justify-content: center; padding: 14px 0 6px; position: relative; }
-    .ring-svg { transform: rotate(-90deg); }
-    .ring-bg  { fill: none; stroke: var(--line); stroke-width: 5; }
-    .ring-val { fill: none; stroke-width: 5; stroke-linecap: round; }
-    .ring-txt { position: absolute; text-align: center; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-    .ring-num { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1; }
-    .ring-den { display: block; font-size: 9px; color: var(--soft); letter-spacing: .08em; }
-    .ring-ap  { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
-    .card-hint { border-top: 1px solid var(--line); padding: 12px 22px; display: flex; align-items: center; justify-content: center; gap: 5px; color: var(--soft); font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-
-    /* BACK */
-    .card-back { background: var(--ink); transform: rotateY(180deg); display: flex; flex-direction: column; padding: 22px 22px 18px; color: #fff; }
-    .back-close { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-    .back-close:hover { color: rgba(255,255,255,.6); }
-    .back-tag  { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #fff; padding: 3px 9px; border-radius: 20px; margin-bottom: 12px; }
-    .back-name { font-family: var(--serif); font-size: 18px; line-height: 1.25; color: #fff; margin-bottom: 14px; }
-    .back-desc { font-size: 12.5px; line-height: 1.72; color: rgba(255,255,255,.68); flex: 1; overflow-y: auto; scrollbar-width: none; }
-    .back-desc::-webkit-scrollbar { display: none; }
-    .back-meta { display: flex; gap: 18px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.1); flex-shrink: 0; }
-    .bm-l { font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.28); display: block; margin-bottom: 3px; }
-    .bm-v { font-family: var(--serif); font-size: 15px; color: rgba(255,255,255,.88); }
-
-    /* ARROWS */
-    .arrow { position: absolute; top: 50%; z-index: 20; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(255,255,255,.92); border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,.1); transition: all .2s; -webkit-tap-highlight-color: transparent; }
-    .arrow:hover { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,.15); }
-    #aPrev { left: 16px; } #aNext { right: 16px; }
-
-    /* FILMSTRIP */
-    .film-wrap { flex-shrink: 0; padding: 10px 24px 14px; border-top: 1px solid var(--line); background: var(--cream); }
-    .film-lbl { font-size: 8.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--soft); margin-bottom: 8px; text-align: center; }
-    .film-scroll { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-    .film-scroll::-webkit-scrollbar { display: none; }
-    .film-track { display: flex; gap: 3px; align-items: center; width: max-content; margin: 0 auto; padding: 4px 2px; }
-    .film-chip { width: 8px; height: 24px; border-radius: 3px; cursor: pointer; transition: all .22s; opacity: .45; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
-    .film-chip:hover { opacity: .75; transform: scaleY(1.1); }
-    .film-chip.active { opacity: 1; width: 13px; height: 30px; box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px rgba(0,0,0,.18); }
-    .film-div { width: 1px; height: 26px; background: var(--line); flex-shrink: 0; margin: 0 5px; }
-
-    /* LEGEND */
-    .leg-row { flex-shrink: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; padding: 7px 24px 10px; border-top: 1px solid var(--line); }
-    .leg-i { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 500; color: var(--mid); }
-    .leg-d { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-
-    @media (max-width: 500px) {
-      :root { --card-w: 76vw; --card-h: 400px; }
-      .hdr { padding: 10px 14px; }
-      .back-btn, .arrow { display: none; }
-      .strip-track { padding: 16px calc(50vw - var(--card-w)/2); }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
+
+    /* ══════════════════════════════════════
+       PAGE HEADER
+    ══════════════════════════════════════ */
+    .page-header {
+      text-align: center;
+      padding: 64px 24px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ph-eyebrow {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .ph-name {
+      font-family: var(--serif);
+      font-size: clamp(30px, 8vw, 52px);
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .ph-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(15px, 3.5vw, 20px);
+      color: var(--ink-mid);
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .ph-location {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--ink-soft);
+      margin-top: 16px;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════
+       3D BUSINESS CARD
+    ══════════════════════════════════════ */
+    .card-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 24px 36px;
+      gap: 18px;
+    }
+
+    .card-hint {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-hint::before,
+    .card-hint::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* Standard business card ratio: 3.5 × 2 in */
+    .card-scene {
+      width: min(378px, 90vw);
+      height: min(216px, 51.4vw);
+      perspective: 1000px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .card-tilt {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+    }
+
+    .card-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 5px;
+    }
+
+    .card-3d.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: 5px;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%);
+      opacity: 0;
+      mix-blend-mode: soft-light;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    /* ── Card Front ── */
+    .card-face--front {
+      background: var(--cream);
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.10),
+        0 8px 32px rgba(0,0,0,0.12),
+        inset 0 0 0 0.5px rgba(0,0,0,0.06);
+    }
+
+    /* All card-front positions are % to be fully responsive */
+    .cf-phone {
+      position: absolute;
+      top: 12%;
+      left: 5%;
+      font-family: var(--serif);
+      font-size: clamp(7px, 2vw, 10.5px);
+      letter-spacing: 0.03em;
+      color: var(--ink);
+    }
+
+    .cf-company {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      text-align: right;
+    }
+
+    .cf-company-name {
+      display: flex;
+      justify-content: flex-end;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(10px, 2.9vw, 15px);
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .cf-company-name span {
+      display: inline-block;
+      width: 1.05em;
+      text-align: center;
+    }
+
+    .cf-company-name .r-mirror {
+      transform: scaleX(-1);
+    }
+
+    .cf-company-tag {
+      font-family: var(--serif);
+      font-size: clamp(5.5px, 1.5vw, 8.5px);
+      letter-spacing: 0.07em;
+      color: var(--ink);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .cf-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .cf-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(9px, 2.6vw, 14px);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .cf-role {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(7px, 1.9vw, 10.5px);
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-top: 5px;
+    }
+
+    .cf-rule {
+      width: 32px;
+      height: 0.5px;
+      background: var(--accent);
+      margin: 6px auto 0;
+    }
+
+    .cf-address {
+      position: absolute;
+      bottom: 11%;
+      left: 0;
+      right: 0;
+      font-family: var(--serif);
+      font-size: clamp(5.5px, 1.5vw, 8.5px);
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    /* ── Card Back ── */
+    .card-face--back {
+      background: var(--back-dark);
+      transform: rotateY(180deg);
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.25),
+        0 8px 40px rgba(0,0,0,0.30);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10%;
+      gap: 0;
+    }
+
+    .cb-brand {
+      display: flex;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(18px, 5vw, 28px);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .cb-brand span {
+      display: inline-block;
+      width: 1.12em;
+      text-align: center;
+    }
+
+    .cb-brand .r-mirror {
+      transform: scaleX(-1);
+    }
+
+    .cb-rule {
+      width: 36%;
+      height: 0.5px;
+      background: rgba(255,255,255,0.18);
+      margin: 10% 0;
+    }
+
+    .cb-contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5%;
+      width: 100%;
+    }
+
+    .cb-contact {
+      font-family: var(--sans);
+      font-size: clamp(6.5px, 1.7vw, 9.5px);
+      color: rgba(255,255,255,0.60);
+      letter-spacing: 0.04em;
+    }
+
+    .cb-tag {
+      margin-top: 10%;
+      font-family: var(--sans);
+      font-size: clamp(5px, 1.3vw, 8px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ══════════════════════════════════════
+       QUICK ACTIONS
+    ══════════════════════════════════════ */
+    .quick-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px 52px;
+      flex-wrap: wrap;
+    }
+
+    .qa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      border: none;
+    }
+
+    .qa-btn--dark {
+      background: var(--ink);
+      color: #fff;
+    }
+    .qa-btn--dark:hover { background: #333; }
+
+    .qa-btn--light {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .qa-btn--light:hover { border-color: var(--accent); background: var(--cream); }
+
+    /* ══════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════ */
+    .divider { height: 1px; background: var(--line); }
+
+    /* ══════════════════════════════════════
+       CV SECTION
+    ══════════════════════════════════════ */
+    .cv-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 72px 36px 80px;
+    }
+
+    /* ── Section label ── */
+    .cv-label {
+      font-family: var(--sans);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+
+    .cv-block { margin-bottom: 56px; }
+    .cv-block:last-child { margin-bottom: 0; }
+
+    /* ── Profile text ── */
+    .cv-profile {
+      font-family: var(--serif);
+      font-size: clamp(15px, 2.8vw, 18px);
+      line-height: 1.75;
+      color: var(--ink-mid);
+    }
+
+    /* ── Entry (education / experience) ── */
+    .cv-entry {
+      padding-left: 20px;
+      border-left: 1.5px solid var(--line);
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .cv-entry::before {
+      content: '';
+      position: absolute;
+      left: -4.5px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    .cv-entry:last-child { margin-bottom: 0; }
+
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cv-entry-role {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(14px, 2.6vw, 17px);
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+    }
+
+    .cv-entry-date {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      color: var(--ink-soft);
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+
+    .cv-entry-org {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      margin-top: 3px;
+    }
+
+    .cv-bullets {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .cv-bullets li {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 7px;
+    }
+
+    .cv-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 300;
+    }
+
+    /* ── Education highlight box ── */
+    .edu-box {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+
+    .edu-box .cv-entry-role { color: var(--ink); }
+    .edu-box .cv-entry-date { font-size: 12px; }
+
+    /* ── IELTS scores ── */
+    .ielts-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ielts-cell {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 7px 12px;
+      text-align: center;
+      min-width: 58px;
+    }
+
+    .ielts-val {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .ielts-lbl {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* ── Skills ── */
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-chip {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink-mid);
+      background: var(--chip-bg);
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── Languages ── */
+    .lang-table { width: 100%; border-collapse: collapse; }
+
+    .lang-row td {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .lang-row:first-child td { border-top: 1px solid var(--line); }
+
+    .lang-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .lang-level {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════════
+       QR SHARE SECTION
+    ══════════════════════════════════════ */
+    .qr-section {
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 64px 24px;
+    }
+
+    .qr-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+
+    #qrcode {
+      display: inline-block;
+      padding: 18px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .qr-caption {
+      margin-top: 18px;
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+
+    .qr-url {
+      margin-top: 6px;
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .page-footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 28px 24px;
+    }
+
+    .footer-text {
+      font-family: var(--serif);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════
+       PRINT MODE — solo el CV
+    ══════════════════════════════════════ */
+    @media print {
+      .card-section, .quick-actions, .qr-section, .page-footer,
+      .divider:first-of-type { display: none; }
+      .page-header { border: none; padding: 0 0 24px; }
+      .cv-wrap { padding: 0; max-width: 100%; }
+      body { background: white; font-size: 12px; }
+      .cv-entry::before { display: none; }
+    }
+
+    /* ══════════════════════════════════════
+       MOBILE
+    ══════════════════════════════════════ */
+    @media (max-width: 520px) {
+      .page-header { padding: 48px 20px 36px; }
+      .cv-wrap { padding: 48px 20px 60px; }
+      .cv-entry-header { flex-direction: column; gap: 2px; }
+    }
+
   </style>
 </head>
 <body>
-<div class="page">
 
-<header class="hdr">
-  <div>
-    <div class="hdr-eye">Universidad Diego Portales · 2020–2026</div>
-    <div class="hdr-title">Industrial Civil Engineering</div>
-  </div>
-  <div class="hdr-stats">
-    <div><span class="stat-v" id="sTot">—</span><span class="stat-l">Courses</span></div>
-    <div><span class="stat-v" id="sAvg">—</span><span class="stat-l">Average</span></div>
-    <div><span class="stat-v" id="sTop">—</span><span class="stat-l">≥ 6.0</span></div>
-  </div>
-  <a href="index.html" class="back-btn">
-    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    Profile
-  </a>
-</header>
+  <!-- ═══════════════════════════════════
+       PAGE HEADER
+  ═══════════════════════════════════ -->
+  <header class="page-header">
+    <div class="ph-eyebrow">RTR · Santiago, Chile</div>
+    <h1 class="ph-name">Raheel Ahmad Aguirre</h1>
+    <div class="ph-title">Industrial Civil Engineer &amp; Director Ejecutivo</div>
+    <div class="ph-location">Las Condes · Santiago · Chile</div>
+  </header>
 
-<nav class="nav-bar" id="navBar"></nav>
 
-<div class="strip-area">
-  <button class="arrow" id="aPrev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-  <div class="strip-track" id="track"></div>
-  <button class="arrow" id="aNext"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
-</div>
+  <!-- ═══════════════════════════════════
+       3D BUSINESS CARD
+  ═══════════════════════════════════ -->
+  <section class="card-section">
+    <div class="card-hint">Toca para ver el reverso</div>
 
-<div class="film-wrap">
-  <div class="film-lbl">All courses — tap any block to jump</div>
-  <div class="film-scroll"><div class="film-track" id="filmTrack"></div></div>
-</div>
+    <div class="card-scene" id="cardScene">
+      <div class="card-tilt" id="cardTilt">
+      <div class="card-3d" id="card3d">
 
-<div class="leg-row">
-  <div class="leg-i"><span class="leg-d" style="background:#5E8DB5"></span>Math &amp; Sciences</div>
-  <div class="leg-i"><span class="leg-d" style="background:#4A9491"></span>Computing &amp; Tech</div>
-  <div class="leg-i"><span class="leg-d" style="background:#5E9E6A"></span>Economics &amp; Finance</div>
-  <div class="leg-i"><span class="leg-d" style="background:#B8864A"></span>Management</div>
-  <div class="leg-i"><span class="leg-d" style="background:#A85E42"></span>Engineering</div>
-  <div class="leg-i"><span class="leg-d" style="background:#7A6AB8"></span>Language</div>
-  <div class="leg-i"><span class="leg-d" style="background:#6A8E8A"></span>Capstone</div>
-</div>
-
-</div>
-<script>
-const CAT = {
-  math: { label:'Math & Sciences',     color:'#5E8DB5' },
-  comp: { label:'Computing & Tech',    color:'#4A9491' },
-  econ: { label:'Economics & Finance', color:'#5E9E6A' },
-  mgmt: { label:'Management',          color:'#B8864A' },
-  engr: { label:'Engineering',         color:'#A85E42' },
-  lang: { label:'Language',            color:'#7A6AB8' },
-  cape: { label:'Capstone',            color:'#6A8E8A' },
-};
-
-const C = [
-  ['Pre',    'Inglés General I',                        7.0,  'lang', 'Foundation English covering grammar, vocabulary, and core communication skills. Convalidated with prior certification — the entry point for all subsequent English modules in the program.'],
-  ['2020-1', 'Álgebra y Geometría',                    4.1,  'math', 'Introduction to algebraic structures, vector spaces, and Euclidean geometry. Covers sets, functions, matrices, and analytic geometry — essential groundwork for all subsequent mathematics and engineering courses.'],
-  ['2020-1', 'Cálculo I',                              4.6,  'math', 'Single-variable differential calculus: limits, continuity, derivatives, and their applications to optimization and curve sketching. Core foundation for all subsequent mathematics and engineering courses.'],
-  ['2020-1', 'Química',                                5.2,  'math', 'General chemistry covering atomic structure, chemical bonding, stoichiometry, and reaction equilibria. Provides the physicochemical foundation needed for thermodynamics, materials science, and industrial processes.'],
-  ['2020-1', 'Programación',                           5.8,  'comp', 'Introduction to programming logic using Python: algorithms, control structures, functions, and basic data structures. Develops systematic problem-solving and computational thinking applied to engineering problems.'],
-  ['2020-2', 'Mecánica',                               4.4,  'math', 'Classical mechanics: kinematics and dynamics of particles and rigid bodies, Newton\'s laws, work, energy, and momentum. Lays the physics foundation for all mechanics-related engineering courses.'],
-  ['2020-2', 'Programación Avanzada',                  6.5,  'comp', 'Object-oriented programming, data structures (lists, trees, graphs), sorting and search algorithms, and software design principles. Builds the computational skills applied later in data science and analytics.'],
-  ['2020-2', 'Comunicación para la Ingeniería',        4.2,  'lang', 'Technical communication for engineers: academic writing, oral presentations, report structure, and professional documentation. Prepares students to communicate complex ideas clearly to diverse audiences.'],
-  ['2021-1', 'Álgebra Lineal',                         4.9,  'math', 'Linear algebra: systems of equations, matrix operations, determinants, vector spaces, linear transformations, eigenvalues, and eigenvectors. Core tool for optimization, data science, and engineering modeling.'],
-  ['2021-1', 'Cálculo II',                             4.0,  'math', 'Multivariable calculus: partial derivatives, gradients, multiple integrals, and optimization in R². Essential for thermodynamics, fluid mechanics, and economic modeling across the degree program.'],
-  ['2021-1', 'Teoría Organizacional',                  5.7,  'mgmt', 'Foundations of organizations: formal and informal structure, culture, motivation theories, leadership models, and management approaches. Provides the organizational lens through which industrial engineers analyze firms.'],
-  ['2021-1', 'Estática',                               4.4,  'math', 'Mechanics of rigid bodies at rest: force systems, moments, equilibrium conditions, trusses, frames, and distributed loads. Provides the structural analysis foundation for civil and industrial engineering systems.'],
-  ['2021-1', 'Bases de Datos',                         4.1,  'comp', 'Relational database design: entity-relationship modeling, normalization, SQL queries, joins, and transaction management. Applied to real-world data management scenarios including inventory and production systems.'],
-  ['2021-2', 'Probabilidades y Estadística',           4.0,  'math', 'Probability theory and descriptive statistics: random variables, common distributions, expected value, variance, and introductory statistical inference. Foundation for stochastic models, simulation, and econometrics.'],
-  ['2021-2', 'Ecuaciones Diferenciales',               4.1,  'math', 'Ordinary differential equations: first and second-order equations, systems of ODEs, Laplace transforms, and engineering applications. Essential tool for modeling dynamic systems in engineering and economics.'],
-  ['2021-2', 'Cálculo III',                            4.7,  'math', 'Vector calculus: line and surface integrals, Green\'s, Stokes\', and Divergence theorems. Applied to fluid dynamics, electromagnetism, and three-dimensional engineering system analysis.'],
-  ['2021-2', 'Contabilidad y Costos',                  4.1,  'mgmt', 'Financial and cost accounting: balance sheets, income statements, cash flow analysis, cost allocation methods, and break-even analysis. Develops the financial literacy needed to evaluate business and engineering decisions.'],
-  ['2022-1', 'Calor y Ondas',                          5.5,  'math', 'Thermodynamic fundamentals, wave mechanics, optics, and heat transfer phenomena. Bridges classical physics with engineering applications in thermal systems, acoustics, and optical technologies.'],
-  ['2022-1', 'Ingeniería Económica',                   5.2,  'econ', 'Economic analysis of engineering investments: time value of money, cash flow modeling, NPV, IRR, payback period, and depreciation. Core tool for evaluating capital projects and comparing investment alternatives.'],
-  ['2022-1', 'Introducción a la Economía',             4.5,  'econ', 'Macro and microeconomic fundamentals: supply and demand, market equilibria, GDP, monetary and fiscal policy, inflation, and unemployment. Contextualizes engineering decisions within the national and global economy.'],
-  ['2022-1', 'Optimización',                           4.5,  'engr', 'Mathematical optimization: linear programming, the simplex method, duality theory, integer programming, and network flow models. Applied to resource allocation, scheduling, and operations research problems.'],
-  ['2022-1', 'Inferencia Estadística',                 4.8,  'econ', 'Hypothesis testing, confidence intervals, ANOVA, and simple linear regression. Develops the statistical toolkit used in econometrics, quality control, and data-driven management decision-making.'],
-  ['2022-2', 'Electricidad y Magnetismo',              4.7,  'math', 'Electrostatics, DC and AC circuits, magnetism, electromagnetic induction, and Maxwell\'s equations. Provides the electrical physics knowledge underlying industrial automation, power systems, and electronics.'],
-  ['2022-2', 'Inglés General II',                      4.1,  'lang', 'Intermediate academic English: reading comprehension, essay writing, presentation skills, and professional listening. Builds toward the advanced proficiency needed for international academic and business environments.'],
-  ['2022-2', 'Microeconomía',                          4.5,  'econ', 'Consumer theory, production and cost functions, market competition models, game theory, and welfare economics. Provides rigorous microeconomic tools for business strategy and industrial organization analysis.'],
-  ['2022-2', 'Modelos Estocásticos',                   4.0,  'econ', 'Stochastic processes: Markov chains, Poisson processes, queuing theory, and renewal processes. Applied to modeling uncertain systems in operations management, finance, and service systems design.'],
-  ['2022-2', 'Fundamentos de Economía',                4.5,  'econ', 'Comprehensive economics survey: growth theory, international trade, exchange rates, monetary systems, and development economics. Contextualizes engineering decisions within the broader global economic landscape.'],
-  ['2023-1', 'Finanzas',                               6.1,  'econ', 'Corporate finance and capital markets: portfolio theory, CAPM, cost of capital, capital structure, dividend policy, and firm valuation. Develops financial analysis skills for evaluating investment opportunities and business strategy.'],
-  ['2023-1', 'Producción',                             4.8,  'engr', 'Operations management: production planning, scheduling, inventory control, MRP, lean manufacturing, and quality management. Covers classical and modern approaches to designing and managing production systems.'],
-  ['2023-1', 'Data Science',                           4.3,  'comp', 'End-to-end data science pipeline using Python: data wrangling (pandas), exploratory analysis, visualization (matplotlib), and supervised machine learning basics. Applied to real-world business and engineering datasets.'],
-  ['2023-1', 'Econometría',                            4.8,  'econ', 'Applied econometrics: OLS regression, hypothesis testing, multicollinearity, heteroscedasticity, time series models, and panel data methods. Develops empirical tools for evidence-based economic and business analysis.'],
-  ['2023-1', 'Acondicionamiento Físico',               4.8,  'lang', 'Physical conditioning, exercise science, and wellness methodology. Complementary elective promoting physical and mental wellbeing alongside academic rigor.'],
-  ['2023-1', 'Práctica Profesional I',                 null, 'cape', 'First professional internship: applied engineering work within a real organization. Students develop technical and interpersonal skills in authentic workplace environments and submit a formal internship report.'],
-  ['2023-2', 'Evaluación de Proyectos',                4.1,  'econ', 'Social and private cost-benefit analysis, risk assessment, sensitivity analysis, and investment decision criteria. Framework for evaluating public infrastructure projects, energy investments, and private business ventures.'],
-  ['2023-2', 'Marketing',                              5.4,  'mgmt', 'Marketing fundamentals: market research, consumer behavior, segmentation, targeting, positioning, branding, pricing, and digital channels. Bridges engineering product development and go-to-market strategy.'],
-  ['2023-2', 'Logística',                              4.2,  'mgmt', 'Supply chain and logistics management: procurement, warehouse operations, transportation routing, inventory optimization, and demand forecasting. Applied to industrial distribution and e-commerce supply chain design.'],
-  ['2023-2', 'Mecánica de Fluidos',                    5.2,  'engr', 'Fluid mechanics: continuity and momentum equations, Bernoulli equation, viscous flow in pipes, boundary layers, and hydraulic systems. Applied to industrial processes, water distribution, and energy generation.'],
-  ['2023-2', 'Simulación',                             6.3,  'engr', 'Discrete-event simulation: system modeling, random number generation, Monte Carlo methods, and statistical output analysis. Used to optimize complex manufacturing and service systems where analytical solutions are intractable.'],
-  ['2023-2', 'Plan de Negocios',                       6.0,  'mgmt', 'Business plan development: market opportunity analysis, competitive positioning, financial projections, funding strategy, and pitch preparation. Integrates business, economics, and engineering into a complete entrepreneurial venture.'],
-  ['2024-1', 'Fotografía y Memoria',                   4.6,  'lang', 'Photography as a medium of cultural memory, identity, and social narrative. Humanistic elective exploring visual storytelling, archival photography, and the history embedded in images.'],
-  ['2024-1', 'Gestión Estratégica',                    6.2,  'mgmt', 'Strategic management: Porter\'s Five Forces, Value Chain, Blue Ocean Strategy, Resource-Based View, and dynamic capabilities. Applies competitive analysis and strategy formulation to real firms and industries.'],
-  ['2024-1', 'Termodinámica',                          4.3,  'engr', 'Engineering thermodynamics: first and second laws, entropy, thermodynamic cycles (Carnot, Rankine, Brayton), refrigeration, and energy system efficiency. Applied to power generation and industrial process design.'],
-  ['2024-1', 'Liderazgo y Emprendimiento',             4.1,  'mgmt', 'Leadership styles, team dynamics, entrepreneurship, innovation management, and design thinking. Develops the mindset and tools for leading organizations through change and building technology-driven ventures.'],
-  ['2024-1', 'Microeconometría',                       4.8,  'econ', 'Advanced econometrics for micro-level data: instrumental variables (IV), difference-in-differences (DiD), regression discontinuity (RDD), and treatment effect estimation. Rigorous causal inference tools for policy evaluation.'],
-  ['2024-1', 'Data Mining',                            5.1,  'comp', 'Pattern discovery in large datasets: clustering (k-means, hierarchical), classification (decision trees, random forests), association rules, and dimensionality reduction. Applied to business intelligence and industrial analytics.'],
-  ['2024-2', 'Proyectos Energéticos',                  5.5,  'engr', 'Energy project evaluation: renewable technologies (solar, wind, hydro), power market economics, regulatory frameworks, environmental impact, and sustainability in the Chilean and Latin American energy context.'],
-  ['2024-2', 'Juego de Negocios (ERP)',                6.3,  'comp', 'Business simulation using SAP ERP: integrated management across finance, procurement, logistics, production, and HR. Develops practical fluency with enterprise resource planning systems used by major corporations worldwide.'],
-  ['2024-2', 'Nanociencia y Nanotecnología',           4.1,  'comp', 'Introduction to nanoscale science and technology: quantum effects, nanomaterials, nanofabrication, and emerging industrial applications in energy, medicine, and advanced manufacturing.'],
-  ['2024-2', 'Innovación Tecnológica e Industria 4.0', 6.0,  'comp', 'Industry 4.0 technologies: IoT, artificial intelligence, digital twins, cyber-physical systems, and smart manufacturing. Examines how digital transformation is reshaping industrial operations and business models.'],
-  ['2024-2', 'Gestión en la Industria Minera',         5.7,  'mgmt', 'Mining industry management: extraction operations, environmental and safety regulations, project economics, ESG frameworks, and sustainability in Chile\'s world-leading copper and lithium mining sectors.'],
-  ['2024-2', 'FinTech',                                6.1,  'econ', 'Financial technology: digital payments, blockchain, open banking APIs, algorithmic trading, robo-advisors, and regulatory frameworks. Explores the intersection of finance, technology, and entrepreneurship.'],
-  ['2025-1', 'Inglés General III',                     5.7,  'lang', 'Advanced English: academic writing, critical reading of research papers, professional presentation skills, and business correspondence. Prepares for international graduate studies and global professional environments.'],
-  ['2025-1', 'Taller de Ingeniería Industrial',        6.2,  'engr', 'Integrative industrial engineering workshop: real-world case studies applying systems thinking, lean methodologies, and quantitative tools to complex organizational and engineering challenges.'],
-  ['2025-1', 'Ética Empresarial',                      6.1,  'mgmt', 'Business ethics and corporate responsibility: stakeholder theory, sustainability, corporate governance, ethical decision-making, and the social role of business. Applied through case studies and structured debates.'],
-  ['2025-2', 'Examen de Título',                       4.3,  'cape', 'Final degree examination: a comprehensive oral and written defense covering all major areas of Industrial Civil Engineering, assessed by a faculty committee. The formal conclusion of the 5-year program.'],
-  ['2025-2', 'Práctica Profesional II',                null, 'cape', 'Second professional internship with greater responsibility and scope. Students lead real engineering projects within an organization, demonstrating mastery of the discipline and readiness for professional practice.'],
-];
-
-// stats
-const graded = C.filter(c => c[2] !== null);
-document.getElementById('sTot').textContent = C.length;
-document.getElementById('sAvg').textContent = (graded.reduce((s,c) => s+c[2], 0) / graded.length).toFixed(1);
-document.getElementById('sTop').textContent = graded.filter(c => c[2] >= 6.0).length;
-
-// grade color (3 tiers, ponytail: inline rather than function)
-const gc = g => g === null ? '#6A8E8A' : g >= 6.5 ? '#B8860B' : g >= 6.0 ? '#C8A020' : g >= 5.0 ? CAT[C.find(x=>x[2]===g)?.cat||'math'].color : '#999';
-
-const track    = document.getElementById('track');
-const filmTrack= document.getElementById('filmTrack');
-const navBar   = document.getElementById('navBar');
-const cards    = [], chips = [], navBtns = {};
-const R = 42, circ = +(2 * Math.PI * R).toFixed(2);
-let prevPeriod = '';
-
-C.forEach((c, i) => {
-  const [period, name, grade, cat, desc] = c;
-  const col   = CAT[cat].color;
-  const semL  = period === 'Pre' ? 'Pre' : period.replace('-', ' · S');
-  const isAP  = grade === null;
-  const dash  = isAP ? 0 : +((grade - 4) / 3 * circ).toFixed(2);
-  const gCol  = isAP ? '#6A8E8A' : grade >= 6.5 ? '#B8860B' : grade >= 6.0 ? '#C8A020' : grade >= 5.0 ? col : '#999';
-
-  // filmstrip divider between semesters
-  if (period !== prevPeriod) {
-    if (prevPeriod) filmTrack.appendChild(Object.assign(document.createElement('div'), { className:'film-div' }));
-    prevPeriod = period;
-  }
-
-  // film chip
-  const chip = document.createElement('div');
-  chip.className = 'film-chip';
-  chip.style.background = col;
-  chip.title = name;
-  chip.onclick = () => scrollTo(i);
-  filmTrack.appendChild(chip);
-  chips.push(chip);
-
-  // card
-  const card = document.createElement('div');
-  card.className = 's-card';
-  card.innerHTML = `
-    <div class="card-inner">
-      <div class="card-face card-front">
-        <div class="card-band" style="background:${col}"></div>
-        <div class="card-body">
-          <div class="card-top">
-            <span class="card-badge" style="background:${col}">${semL}</span>
-            <span class="card-cat">${CAT[cat].label}</span>
+        <!-- FRENTE -->
+        <div class="card-face card-face--front">
+          <div class="cf-phone">+56 9 6320 0075</div>
+          <div class="cf-company">
+            <div class="cf-company-name"><span>R</span><span>T</span><span class="r-mirror">R</span></div>
+            <div class="cf-company-tag">rtr.raheel@gmail.com</div>
           </div>
-          <div class="card-name">${name}</div>
-          <div class="ring-wrap">
-            <svg class="ring-svg" width="100" height="100" viewBox="0 0 100 100">
-              <circle class="ring-bg" cx="50" cy="50" r="${R}"/>
-              <circle class="ring-val" cx="50" cy="50" r="${R}" stroke="${gCol}"
-                stroke-dasharray="${circ}" stroke-dashoffset="${circ - dash}"/>
-            </svg>
-            <div class="ring-txt">
-              ${isAP
-                ? `<span class="ring-ap">AP</span>`
-                : `<span class="ring-num" style="color:${gCol}">${grade.toFixed(1)}</span><span class="ring-den">/ 7.0</span>`}
-            </div>
+          <div class="cf-center">
+            <div class="cf-name">Raheel Ahmad Aguirre</div>
+            <div class="cf-rule"></div>
+            <div class="cf-role">Director Ejecutivo</div>
+          </div>
+          <div class="cf-address">Gredos 7700, Las Condes, Santiago, Chile</div>
+          <div class="card-glare"></div>
+        </div>
+
+        <!-- REVERSO -->
+        <div class="card-face card-face--back">
+          <div class="cb-brand"><span>R</span><span>T</span><span class="r-mirror">R</span></div>
+          <div class="cb-rule"></div>
+          <div class="cb-contacts">
+            <div class="cb-contact">+56 9 6320 0075</div>
+            <div class="cb-contact">raheelahmad2019@gmail.com</div>
+            <div class="cb-contact">rtr.raheel@gmail.com</div>
+            <div class="cb-contact">Las Condes · Santiago · Chile</div>
+          </div>
+          <div class="cb-tag">Director Ejecutivo</div>
+          <div class="card-glare"></div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       QUICK ACTIONS
+  ═══════════════════════════════════ -->
+  <div class="quick-actions">
+    <a href="tel:+56963200075" class="qa-btn qa-btn--dark">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.99 1.18 2 2 0 012.98 0h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      Llamar
+    </a>
+    <a href="mailto:raheelahmad2019@gmail.com" class="qa-btn qa-btn--light">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      Email
+    </a>
+    <a href="https://wa.me/56963200075" class="qa-btn qa-btn--light">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      WhatsApp
+    </a>
+    <button onclick="downloadVCard()" class="qa-btn qa-btn--light">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Guardar Contacto
+    </button>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════
+       CURRICULUM VITAE
+  ═══════════════════════════════════ -->
+  <main class="cv-wrap">
+
+    <!-- PROFILE -->
+    <section class="cv-block">
+      <div class="cv-label">Professional Profile</div>
+      <p class="cv-profile">
+        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector and the founding of a digital content venture. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
+      </p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="cv-block">
+      <div class="cv-label">Education</div>
+
+      <!-- UWA highlight box -->
+      <div class="edu-box">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Master of Commerce</div>
+          <div class="cv-entry-date">Jul 2026 – Jun 2028</div>
+        </div>
+        <div class="cv-entry-org">The University of Western Australia · Perth, Australia</div>
+        <ul class="cv-bullets" style="margin-top:10px;">
+          <li>Commencing July 2026 · CRICOS Provider 00126G · CoE No. 113FD0694</li>
+          <li>Focus: global commercial strategy, business management, and leadership in international markets</li>
+        </ul>
+      </div>
+
+      <!-- UDP -->
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Industrial Civil Engineer</div>
+          <div class="cv-entry-date">2020 – 2026</div>
+        </div>
+        <div class="cv-entry-org">Universidad Diego Portales · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>49 courses across engineering, economics, finance, data science, and management · Grade 4.8 / 7.0</li>
+          <li>Highest-scoring subjects: Simulation 6.3, Strategic Management 6.2, Finance 6.1, Business Plan 6.0</li>
+          <li>Additional strengths: Mining Industry Management 5.7, Marketing 5.4, Data Mining 5.1</li>
+          <li>Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
+        </ul>
+      </div>
+
+      <!-- IELTS -->
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">IELTS Academic · English Proficiency</div>
+          <div class="cv-entry-date">May 28, 2026</div>
+        </div>
+        <div class="cv-entry-org">British Council / IDP · CEFR Level C1 · TRF No. 26CL500665AHMR035A</div>
+        <div class="ielts-row">
+          <div class="ielts-cell">
+            <span class="ielts-val">7.0</span>
+            <span class="ielts-lbl">Listening</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">8.0</span>
+            <span class="ielts-lbl">Reading</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">7.5</span>
+            <span class="ielts-lbl">Writing</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">8.0</span>
+            <span class="ielts-lbl">Speaking</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val" style="color:var(--ink);">7.5</span>
+            <span class="ielts-lbl">Overall</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">C1</span>
+            <span class="ielts-lbl">CEFR</span>
           </div>
         </div>
-        <div class="card-hint">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-          Tap to learn more
-        </div>
       </div>
-      <div class="card-face card-back">
-        <div class="back-close">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-          Back
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="cv-block">
+      <div class="cv-label">Professional Experience</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">CORFO — Innovation Department Intern</div>
+          <div class="cv-entry-date">Apr – Jul 2025</div>
         </div>
-        <span class="back-tag" style="background:${col}">${CAT[cat].label}</span>
-        <div class="back-name">${name}</div>
-        <div class="back-desc">${desc}</div>
-        <div class="back-meta">
-          <div><span class="bm-l">Period</span><span class="bm-v">${semL}</span></div>
-          <div><span class="bm-l">Grade</span><span class="bm-v" style="color:${gCol}">${isAP ? 'AP' : grade.toFixed(1)+' / 7'}</span></div>
-        </div>
+        <div class="cv-entry-org">Chilean Economic Development Agency · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Designed and deployed a Power BI dashboard tracking national innovation KPIs across CORFO's portfolio, adopted by senior management for strategic planning and performance review</li>
+          <li>Resolved a systemic operational bottleneck through data-driven root-cause analysis, improving departmental throughput and workflow efficiency</li>
+          <li>Authored formal issue reports that standardised incident documentation and escalation protocols across the innovation department</li>
+          <li>Led continuous improvement initiatives contributing to the national public-sector innovation pipeline</li>
+        </ul>
       </div>
-    </div>`;
 
-  // tap vs swipe detection
-  let down = null;
-  card.addEventListener('pointerdown', e => { down = { x: e.clientX, y: e.clientY }; });
-  card.addEventListener('pointerup', e => {
-    if (!down) return;
-    const moved = Math.abs(e.clientX - down.x) > 8 || Math.abs(e.clientY - down.y) > 8;
-    down = null;
-    if (moved) return;
-    if (!card.classList.contains('active')) { scrollTo(i); return; }
-    card.classList.toggle('flipped');
-  });
-  card.querySelector('.back-close').addEventListener('pointerup', e => { e.stopPropagation(); card.classList.remove('flipped'); });
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">RTR Marketing Digital — Co-Founder</div>
+          <div class="cv-entry-date">Nov 2024 – Apr 2025</div>
+        </div>
+        <div class="cv-entry-org">Digital Content Agency · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Founded and scaled a multi-platform digital content agency operating across Instagram, TikTok, and YouTube</li>
+          <li>Directed the full production pipeline: concept development, scriptwriting, filming, post-production, and publication scheduling</li>
+          <li>Managed brand governance and client delivery logistics across concurrent client mandates</li>
+        </ul>
+      </div>
 
-  track.appendChild(card);
-  cards.push(card);
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Servicios Naxos SPA — Engineering Assistant</div>
+          <div class="cv-entry-date">Dec 2024 – Mar 2025</div>
+        </div>
+        <div class="cv-entry-org">Mining Machinery &amp; Metal Workshop · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Prepared technical bids and cost quotations for heavy mining equipment repair and fabrication (hoppers, buckets), supporting contract acquisition in Chile's mining sector</li>
+          <li>Evaluated client technical specifications against workshop capacity and tolerances for industrial metalworking tenders</li>
+        </ul>
+      </div>
 
-  // nav btn (first course of each semester)
-  if (!navBtns[period]) {
-    const btn = document.createElement('button');
-    btn.className = 'nav-sem';
-    btn.textContent = semL;
-    btn.onclick = () => scrollTo(i);
-    navBar.appendChild(btn);
-    navBtns[period] = btn;
-  }
-});
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role">Servicios MOR — Engineering Intern  <span style="font-weight:400;font-size:12px;">(Internship I)</span></div>
+          <div class="cv-entry-date">Jan – Mar 2023</div>
+        </div>
+        <div class="cv-entry-org">Metalworking Company · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li>Executed structural steel profile calculations for project cost-submission packages</li>
+          <li>Developed hands-on knowledge of manufacturing processes, production workflows, and quality control protocols</li>
+        </ul>
+      </div>
+    </section>
 
-// active tracking
-let active = -1;
-function setActive(i) {
-  if (i === active) return;
-  if (active >= 0) { cards[active].classList.remove('active', 'flipped'); chips[active].classList.remove('active'); }
-  active = i;
-  cards[i].classList.add('active');
-  chips[i].classList.add('active');
-  chips[i].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-  Object.values(navBtns).forEach(b => b.classList.remove('active'));
-  const period = C[i][0];
-  if (navBtns[period]) navBtns[period].classList.add('active');
-}
+    <!-- SKILLS -->
+    <section class="cv-block">
+      <div class="cv-label">Technical Skills</div>
+      <div class="skills-wrap">
+        <span class="skill-chip">Power BI &amp; Dashboards</span>
+        <span class="skill-chip">Data Science (R / RStudio)</span>
+        <span class="skill-chip">Statistical Modelling</span>
+        <span class="skill-chip">Econometrics &amp; Simulation</span>
+        <span class="skill-chip">ADempiere ERP</span>
+        <span class="skill-chip">KPI Design</span>
+        <span class="skill-chip">Microsoft Excel (Advanced)</span>
+        <span class="skill-chip">Process Optimisation</span>
+        <span class="skill-chip">Mining Industry Operations</span>
+        <span class="skill-chip">Business Planning</span>
+        <span class="skill-chip">Digital Content Production</span>
+      </div>
+    </section>
 
-let t;
-track.addEventListener('scroll', () => {
-  clearTimeout(t);
-  t = setTimeout(() => {
-    const cx = track.scrollLeft + track.clientWidth / 2;
-    setActive(cards.reduce((best, el, i) =>
-      Math.abs(el.offsetLeft + el.offsetWidth/2 - cx) < Math.abs(cards[best].offsetLeft + cards[best].offsetWidth/2 - cx) ? i : best, 0));
-  }, 50);
-}, { passive:true });
+    <!-- LANGUAGES -->
+    <section class="cv-block">
+      <div class="cv-label">Languages</div>
+      <table class="lang-table">
+        <tr class="lang-row">
+          <td class="lang-name">Spanish</td>
+          <td class="lang-level">Native</td>
+        </tr>
+        <tr class="lang-row">
+          <td class="lang-name">English</td>
+          <td class="lang-level">Advanced — IELTS 7.5 Overall · CEFR C1 · May 2026</td>
+        </tr>
+      </table>
+    </section>
 
-function scrollTo(i) {
-  track.scrollTo({ left: cards[i].offsetLeft - (track.clientWidth - cards[i].offsetWidth)/2, behavior:'smooth' });
-  setTimeout(() => setActive(i), 380);
-}
+  </main>
 
-document.getElementById('aPrev').onclick = () => { if (active > 0) scrollTo(active-1); };
-document.getElementById('aNext').onclick = () => { if (active < cards.length-1) scrollTo(active+1); };
-document.addEventListener('keydown', e => {
-  if (e.key==='ArrowLeft' && active>0) scrollTo(active-1);
-  if (e.key==='ArrowRight' && active<cards.length-1) scrollTo(active+1);
-  if ((e.key===' '||e.key==='Enter') && active>=0) { e.preventDefault(); cards[active].classList.toggle('flipped'); }
-  if (e.key==='Escape' && active>=0) cards[active].classList.remove('flipped');
-});
 
-requestAnimationFrame(() => scrollTo(0));
-</script>
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════
+       QR — SHARE THIS PAGE
+  ═══════════════════════════════════ -->
+  <section class="qr-section">
+    <div class="qr-label">Compartir este perfil</div>
+    <div id="qrcode"></div>
+    <div class="qr-caption">Escanea para abrir este perfil</div>
+    <div class="qr-url" id="qrUrlText"></div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════ -->
+  <footer class="page-footer">
+    <div class="footer-text">Raheel Ahmad Aguirre · RTR · Santiago, Chile</div>
+  </footer>
+
+
+  <!-- QR Code library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    /* ════════════════════════════════════
+       TARJETA 3D — flip + inclinación espacial + brillo
+    ════════════════════════════════════ */
+    const scene  = document.getElementById('cardScene');
+    const tilt   = document.getElementById('cardTilt');
+    const card   = document.getElementById('card3d');
+    const glares = document.querySelectorAll('.card-glare');
+
+    const MAX_TILT = 16;          // grados máximos de inclinación
+    let gyroActive = false;       // ¿el giroscopio tomó el control?
+    let downX, downY;             // posición inicial del toque (para distinguir tap de arrastre)
+
+    function flipCard() {
+      card.classList.toggle('flipped');
+    }
+
+    function applyTilt(rotX, rotY) {
+      tilt.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    }
+
+    /* El brillo se mueve siguiendo el punto de contacto, como luz reflejada */
+    function moveGlare(px, py) {
+      glares.forEach(g => {
+        g.style.background =
+          `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%)`;
+        g.style.opacity = '1';
+      });
+    }
+
+    function resetTilt() {
+      tilt.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      applyTilt(0, 0);
+      glares.forEach(g => g.style.opacity = '0');
+    }
+
+    /* ── Inclinación según el cursor (escritorio) o el dedo (táctil) ── */
+    function pointerTilt(e) {
+      if (gyroActive) return;
+      const rect = scene.getBoundingClientRect();
+      const px = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const py = Math.max(0, Math.min(1, (e.clientY - rect.top)  / rect.height));
+      tilt.style.transition = 'transform 0.1s ease-out';   // seguimiento inmediato
+      applyTilt((0.5 - py) * MAX_TILT * 2, (px - 0.5) * MAX_TILT * 2);
+      moveGlare(px, py);
+    }
+
+    scene.addEventListener('pointermove', pointerTilt);
+
+    scene.addEventListener('pointerdown', e => {
+      downX = e.clientX;
+      downY = e.clientY;
+    });
+
+    scene.addEventListener('pointerup', e => {
+      const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
+      if (dist < 8) {            // fue un toque, no un arrastre → voltea la tarjeta
+        flipCard();
+        enableGyroOnce();        // el primer toque pide permiso de giroscopio en iPhone
+      }
+      if (e.pointerType !== 'mouse') resetTilt();   // en táctil, vuelve a neutro al soltar
+    });
+
+    scene.addEventListener('pointerleave', () => {
+      if (!gyroActive) resetTilt();
+    });
+
+    /* ── Giroscopio: mover físicamente el teléfono inclina la tarjeta ── */
+    function handleOrientation(e) {
+      // En escritorio el evento puede llegar sin datos reales → ignorar y NO bloquear el ratón
+      if (e.beta === null && e.gamma === null) return;
+      gyroActive = true;   // solo ahora (con datos reales) el giroscopio toma el control
+      const gamma = e.gamma || 0;   // izquierda/derecha  (-90 a 90)
+      const beta  = e.beta  || 0;   // adelante/atrás      (-180 a 180)
+      const rotY = Math.max(-MAX_TILT, Math.min(MAX_TILT, gamma * 0.8));
+      const rotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, (beta - 45) * -0.5));
+      tilt.style.transition = 'transform 0.15s ease-out';
+      applyTilt(rotX, rotY);
+    }
+
+    let gyroAsked = false;
+    function enableGyroOnce() {
+      if (gyroAsked) return;
+      gyroAsked = true;
+      // Candado 1: solo dispositivos táctiles. El escritorio no tiene giroscopio.
+      const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+      if (!isTouch) return;
+      // iOS 13+ exige pedir permiso desde un gesto del usuario (el toque)
+      if (typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+          .then(state => {
+            if (state === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+            }
+          })
+          .catch(() => {});
+      } else if (typeof DeviceOrientationEvent !== 'undefined') {
+        // Android y otros: no requiere permiso explícito.
+        // gyroActive se activa dentro de handleOrientation solo si llegan datos reales (Candado 2).
+        window.addEventListener('deviceorientation', handleOrientation);
+      }
+    }
+
+    /* ── Hint inicial: un giro 3D + brillo + flip para invitar a interactuar ── */
+    setTimeout(() => {
+      tilt.style.transition = 'transform 0.9s cubic-bezier(0.23, 1, 0.32, 1)';
+      applyTilt(-7, 13);
+      moveGlare(0.8, 0.2);
+      setTimeout(() => {
+        card.classList.add('flipped');
+        setTimeout(() => {
+          card.classList.remove('flipped');
+          resetTilt();
+        }, 2000);
+      }, 800);
+    }, 900);
+
+    /* ── QR Code (auto-uses current page URL) ── */
+    const pageURL = window.location.href;
+    document.getElementById('qrUrlText').textContent = pageURL;
+
+    new QRCode(document.getElementById('qrcode'), {
+      text: pageURL,
+      width: 168,
+      height: 168,
+      colorDark: '#0F0F0F',
+      colorLight: '#FFFFFF',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    /* ── vCard download (adds contact to phone) ── */
+    function downloadVCard() {
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Raheel Ahmad Aguirre',
+        'N:Ahmad Aguirre;Raheel;;;',
+        'TEL;TYPE=CELL:+56963200075',
+        'EMAIL;TYPE=WORK:rtr.raheel@gmail.com',
+        'EMAIL;TYPE=HOME:raheelahmad2019@gmail.com',
+        'ORG:RTR',
+        'TITLE:Director Ejecutivo',
+        'ADR;TYPE=WORK:;;Gredos 7700;Las Condes;Santiago;;Chile',
+        'URL:' + pageURL,
+        'END:VCARD'
+      ].join('\n');
+
+      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'Raheel_Ahmad_Aguirre.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
 </body>
 </html>
