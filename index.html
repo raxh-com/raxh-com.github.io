@@ -679,9 +679,57 @@
       .reveal, .reveal-item { opacity: 1; transform: none; transition: none; }
     }
 
+    /* ══════════════════════════════════════
+       LANGUAGE TOGGLE
+    ══════════════════════════════════════ */
+    .lang-toggle {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 100;
+      display: flex;
+      gap: 2px;
+      background: rgba(248, 246, 241, 0.82);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 3px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .lang-toggle button {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      border: none;
+      background: transparent;
+      color: var(--ink-soft);
+      padding: 5px 12px;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- ═══════════════════════════════════
+       LANGUAGE TOGGLE
+  ═══════════════════════════════════ -->
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button type="button" id="langEs" onclick="setLang('es')">ES</button>
+    <button type="button" id="langEn" onclick="setLang('en')">EN</button>
+  </div>
+
 
   <!-- ═══════════════════════════════════
        PAGE HEADER
@@ -689,7 +737,7 @@
   <header class="page-header">
     <div class="ph-eyebrow">RTR · Santiago, Chile</div>
     <h1 class="ph-name">Raheel Ahmad Aguirre</h1>
-    <div class="ph-title">Industrial Civil Engineer &amp; Director Ejecutivo</div>
+    <div class="ph-title" data-i18n="title">Industrial Civil Engineer &amp; Executive Director</div>
     <div class="ph-location">Santiago, Chile</div>
   </header>
 
@@ -698,7 +746,7 @@
        3D BUSINESS CARD
   ═══════════════════════════════════ -->
   <section class="card-section">
-    <div class="card-hint">Toca para ver el reverso</div>
+    <div class="card-hint" data-i18n="cardHint">Tap to flip</div>
 
     <div class="card-scene" id="cardScene">
       <div class="card-tilt" id="cardTilt">
@@ -714,7 +762,7 @@
           <div class="cf-center">
             <div class="cf-name">Raheel Ahmad Aguirre</div>
             <div class="cf-rule"></div>
-            <div class="cf-role">Director Ejecutivo</div>
+            <div class="cf-role" data-i18n="role">Executive Director</div>
           </div>
           <div class="card-glare"></div>
         </div>
@@ -729,7 +777,7 @@
             <div class="cb-contact">rtr.raheel@gmail.com</div>
             <div class="cb-contact">Santiago, Chile</div>
           </div>
-          <div class="cb-tag">Director Ejecutivo</div>
+          <div class="cb-tag" data-i18n="role">Executive Director</div>
           <div class="card-glare"></div>
         </div>
 
@@ -747,7 +795,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.99 1.18 2 2 0 012.98 0h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/>
       </svg>
-      Llamar
+      <span data-i18n="qaCall">Call</span>
     </a>
     <a href="mailto:raheelahmad2019@gmail.com" class="qa-btn qa-btn--light">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -767,7 +815,7 @@
         <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
         <circle cx="12" cy="7" r="4"/>
       </svg>
-      Guardar Contacto
+      <span data-i18n="qaSave">Save Contact</span>
     </button>
   </div>
 
@@ -782,167 +830,167 @@
 
     <!-- PROFILE -->
     <section class="cv-block">
-      <div class="cv-label">Professional Profile</div>
-      <p class="cv-profile">
+      <div class="cv-label" data-i18n="lblProfile">Professional Profile</div>
+      <p class="cv-profile" data-i18n="profileText">
         Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector and the founding of a digital content venture. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
       </p>
     </section>
 
     <!-- EXPERIENCE -->
     <section class="cv-block">
-      <div class="cv-label">Professional Experience</div>
+      <div class="cv-label" data-i18n="lblExperience">Professional Experience</div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">CORFO — Innovation Department Intern</div>
-          <div class="cv-entry-date">Apr – Jul 2025</div>
+          <div class="cv-entry-role" data-i18n="expCorfoRole">CORFO — Innovation Department Intern</div>
+          <div class="cv-entry-date" data-i18n="expCorfoDate">Apr – Jul 2025</div>
         </div>
-        <div class="cv-entry-org">Chilean Economic Development Agency · Santiago, Chile</div>
+        <div class="cv-entry-org" data-i18n="expCorfoOrg">Chilean Economic Development Agency · Santiago, Chile</div>
         <ul class="cv-bullets">
-          <li>Designed and deployed a Power BI dashboard tracking national innovation KPIs across CORFO's portfolio, adopted by senior management for strategic planning and performance review</li>
-          <li>Resolved a systemic operational bottleneck through data-driven root-cause analysis, improving departmental throughput and workflow efficiency</li>
-          <li>Authored formal issue reports that standardised incident documentation and escalation protocols across the innovation department</li>
-          <li>Led continuous improvement initiatives contributing to the national public-sector innovation pipeline</li>
+          <li data-i18n="expCorfoB1">Designed and deployed a Power BI dashboard tracking national innovation KPIs across CORFO's portfolio, adopted by senior management for strategic planning and performance review</li>
+          <li data-i18n="expCorfoB2">Resolved a systemic operational bottleneck through data-driven root-cause analysis, improving departmental throughput and workflow efficiency</li>
+          <li data-i18n="expCorfoB3">Authored formal issue reports that standardised incident documentation and escalation protocols across the innovation department</li>
+          <li data-i18n="expCorfoB4">Led continuous improvement initiatives contributing to the national public-sector innovation pipeline</li>
         </ul>
       </div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">RTR Marketing Digital — Co-Founder</div>
-          <div class="cv-entry-date">Nov 2024 – Apr 2025</div>
+          <div class="cv-entry-role" data-i18n="expRtrRole">RTR Marketing Digital — Co-Founder</div>
+          <div class="cv-entry-date" data-i18n="expRtrDate">Nov 2024 – Apr 2025</div>
         </div>
-        <div class="cv-entry-org">Digital Content Agency · Santiago, Chile</div>
+        <div class="cv-entry-org" data-i18n="expRtrOrg">Digital Content Agency · Santiago, Chile</div>
         <ul class="cv-bullets">
-          <li>Founded and scaled a multi-platform digital content agency operating across Instagram, TikTok, and YouTube</li>
-          <li>Directed the full production pipeline: concept development, scriptwriting, filming, post-production, and publication scheduling</li>
-          <li>Managed brand governance and client delivery logistics across concurrent client mandates</li>
+          <li data-i18n="expRtrB1">Founded and scaled a multi-platform digital content agency operating across Instagram, TikTok, and YouTube</li>
+          <li data-i18n="expRtrB2">Directed the full production pipeline: concept development, scriptwriting, filming, post-production, and publication scheduling</li>
+          <li data-i18n="expRtrB3">Managed brand governance and client delivery logistics across concurrent client mandates</li>
         </ul>
       </div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">Servicios Naxos SPA — Engineering Assistant</div>
-          <div class="cv-entry-date">Dec 2024 – Mar 2025</div>
+          <div class="cv-entry-role" data-i18n="expNaxosRole">Servicios Naxos SPA — Engineering Assistant</div>
+          <div class="cv-entry-date" data-i18n="expNaxosDate">Dec 2024 – Mar 2025</div>
         </div>
-        <div class="cv-entry-org">Mining Machinery &amp; Metal Workshop · Santiago, Chile</div>
+        <div class="cv-entry-org" data-i18n="expNaxosOrg">Mining Machinery &amp; Metal Workshop · Santiago, Chile</div>
         <ul class="cv-bullets">
-          <li>Prepared technical bids and cost quotations for heavy mining equipment repair and fabrication (hoppers, buckets), supporting contract acquisition in Chile's mining sector</li>
-          <li>Evaluated client technical specifications against workshop capacity and tolerances for industrial metalworking tenders</li>
+          <li data-i18n="expNaxosB1">Prepared technical bids and cost quotations for heavy mining equipment repair and fabrication (hoppers, buckets), supporting contract acquisition in Chile's mining sector</li>
+          <li data-i18n="expNaxosB2">Evaluated client technical specifications against workshop capacity and tolerances for industrial metalworking tenders</li>
         </ul>
       </div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">Servicios MOR — Engineering Intern  <span style="font-weight:400;font-size:12px;">(Internship I)</span></div>
-          <div class="cv-entry-date">Jan – Mar 2023</div>
+          <div class="cv-entry-role" data-i18n="expMorRole">Servicios MOR — Engineering Intern  <span style="font-weight:400;font-size:12px;">(Internship I)</span></div>
+          <div class="cv-entry-date" data-i18n="expMorDate">Jan – Mar 2023</div>
         </div>
-        <div class="cv-entry-org">Metalworking Company · Santiago, Chile</div>
+        <div class="cv-entry-org" data-i18n="expMorOrg">Metalworking Company · Santiago, Chile</div>
         <ul class="cv-bullets">
-          <li>Executed structural steel profile calculations for project cost-submission packages</li>
-          <li>Developed hands-on knowledge of manufacturing processes, production workflows, and quality control protocols</li>
+          <li data-i18n="expMorB1">Executed structural steel profile calculations for project cost-submission packages</li>
+          <li data-i18n="expMorB2">Developed hands-on knowledge of manufacturing processes, production workflows, and quality control protocols</li>
         </ul>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section class="cv-block">
-      <div class="cv-label">Technical Skills</div>
+      <div class="cv-label" data-i18n="lblSkills">Technical Skills</div>
       <div class="skills-wrap">
-        <span class="skill-chip">Power BI &amp; Dashboards</span>
-        <span class="skill-chip">Data Science (R / RStudio)</span>
-        <span class="skill-chip">Statistical Modelling</span>
-        <span class="skill-chip">Econometrics &amp; Simulation</span>
+        <span class="skill-chip" data-i18n="skPowerBi">Power BI &amp; Dashboards</span>
+        <span class="skill-chip" data-i18n="skDataScience">Data Science (R / RStudio)</span>
+        <span class="skill-chip" data-i18n="skStats">Statistical Modelling</span>
+        <span class="skill-chip" data-i18n="skEcon">Econometrics &amp; Simulation</span>
         <span class="skill-chip">ADempiere ERP</span>
-        <span class="skill-chip">KPI Design</span>
-        <span class="skill-chip">Microsoft Excel (Advanced)</span>
-        <span class="skill-chip">Process Optimisation</span>
-        <span class="skill-chip">Mining Industry Operations</span>
-        <span class="skill-chip">Business Planning</span>
-        <span class="skill-chip">Digital Content Production</span>
-        <span class="skill-chip">Web Development &amp; SaaS</span>
+        <span class="skill-chip" data-i18n="skKpi">KPI Design</span>
+        <span class="skill-chip" data-i18n="skExcel">Microsoft Excel (Advanced)</span>
+        <span class="skill-chip" data-i18n="skProcess">Process Optimisation</span>
+        <span class="skill-chip" data-i18n="skMining">Mining Industry Operations</span>
+        <span class="skill-chip" data-i18n="skBiz">Business Planning</span>
+        <span class="skill-chip" data-i18n="skContent">Digital Content Production</span>
+        <span class="skill-chip" data-i18n="skWeb">Web Development &amp; SaaS</span>
         <span class="skill-chip">Supabase (PostgreSQL + Realtime)</span>
-        <span class="skill-chip">Netlify Deployment</span>
+        <span class="skill-chip" data-i18n="skNetlify">Netlify Deployment</span>
       </div>
     </section>
 
     <!-- LANGUAGES -->
     <section class="cv-block">
-      <div class="cv-label">Languages</div>
+      <div class="cv-label" data-i18n="lblLanguages">Languages</div>
       <table class="lang-table">
         <tr class="lang-row">
-          <td class="lang-name">Spanish</td>
-          <td class="lang-level">Native</td>
+          <td class="lang-name" data-i18n="langSpanish">Spanish</td>
+          <td class="lang-level" data-i18n="langSpanishLvl">Native</td>
         </tr>
         <tr class="lang-row">
-          <td class="lang-name">English</td>
-          <td class="lang-level">Advanced — IELTS 7.5 Overall · CEFR C1 · May 2026</td>
+          <td class="lang-name" data-i18n="langEnglish">English</td>
+          <td class="lang-level" data-i18n="langEnglishLvl">Advanced — IELTS 7.5 Overall · CEFR C1 · May 2026</td>
         </tr>
       </table>
     </section>
 
     <!-- EDUCATION -->
     <section class="cv-block">
-      <div class="cv-label">Education</div>
+      <div class="cv-label" data-i18n="lblEducation">Education</div>
 
       <!-- UWA highlight box -->
       <div class="edu-box">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">Master of Commerce</div>
+          <div class="cv-entry-role" data-i18n="eduUwaRole">Master of Commerce</div>
           <div class="cv-entry-date">Jul 2026 – Jun 2028</div>
         </div>
         <div class="cv-entry-org">The University of Western Australia · Perth, Australia</div>
         <ul class="cv-bullets" style="margin-top:10px;">
-          <li>Commencing July 2026 · CRICOS Provider 00126G · CoE No. 113FD0694</li>
-          <li>Focus: global commercial strategy, business management, and leadership in international markets</li>
+          <li data-i18n="eduUwaB1">Commencing July 2026 · CRICOS Provider 00126G · CoE No. 113FD0694</li>
+          <li data-i18n="eduUwaB2">Focus: global commercial strategy, business management, and leadership in international markets</li>
         </ul>
       </div>
 
       <!-- UDP -->
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">Industrial Civil Engineer</div>
+          <div class="cv-entry-role" data-i18n="eduUdpRole">Industrial Civil Engineer</div>
           <div class="cv-entry-date">2020 – 2026</div>
         </div>
         <div class="cv-entry-org">Universidad Diego Portales · Santiago, Chile</div>
         <ul class="cv-bullets">
-          <li>49 courses across engineering, economics, finance, data science, and management</li>
-          <li>Core strengths: Simulation, Strategic Management, Finance, and Business Plan development</li>
-          <li>Additional focus areas: Mining Industry Management, Marketing, and Data Mining</li>
-          <li>Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
+          <li data-i18n="eduUdpB1">49 courses across engineering, economics, finance, data science, and management</li>
+          <li data-i18n="eduUdpB2">Core strengths: Simulation, Strategic Management, Finance, and Business Plan development</li>
+          <li data-i18n="eduUdpB3">Additional focus areas: Mining Industry Management, Marketing, and Data Mining</li>
+          <li data-i18n="eduUdpB4">Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
         </ul>
       </div>
 
       <!-- IELTS -->
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">IELTS Academic · English Proficiency</div>
+          <div class="cv-entry-role" data-i18n="eduIeltsRole">IELTS Academic · English Proficiency</div>
           <div class="cv-entry-date">May 28, 2026</div>
         </div>
-        <div class="cv-entry-org">British Council / IDP · CEFR Level C1 · TRF No. 26CL500665AHMR035A</div>
+        <div class="cv-entry-org" data-i18n="eduIeltsOrg">British Council / IDP · CEFR Level C1 · TRF No. 26CL500665AHMR035A</div>
         <div class="ielts-row">
           <div class="ielts-cell">
             <span class="ielts-val">7.0</span>
-            <span class="ielts-lbl">Listening</span>
+            <span class="ielts-lbl" data-i18n="ieltsListening">Listening</span>
           </div>
           <div class="ielts-cell">
             <span class="ielts-val">8.0</span>
-            <span class="ielts-lbl">Reading</span>
+            <span class="ielts-lbl" data-i18n="ieltsReading">Reading</span>
           </div>
           <div class="ielts-cell">
             <span class="ielts-val">7.5</span>
-            <span class="ielts-lbl">Writing</span>
+            <span class="ielts-lbl" data-i18n="ieltsWriting">Writing</span>
           </div>
           <div class="ielts-cell">
             <span class="ielts-val">8.0</span>
-            <span class="ielts-lbl">Speaking</span>
+            <span class="ielts-lbl" data-i18n="ieltsSpeaking">Speaking</span>
           </div>
           <div class="ielts-cell">
             <span class="ielts-val" style="color:var(--ink);">7.5</span>
-            <span class="ielts-lbl">Overall</span>
+            <span class="ielts-lbl" data-i18n="ieltsOverall">Overall</span>
           </div>
           <div class="ielts-cell">
             <span class="ielts-val">C1</span>
-            <span class="ielts-lbl">CEFR</span>
+            <span class="ielts-lbl" data-i18n="ieltsCefr">CEFR</span>
           </div>
         </div>
       </div>
@@ -950,44 +998,44 @@
 
     <!-- PROJECTS -->
     <section class="cv-block">
-      <div class="cv-label">Projects</div>
+      <div class="cv-label" data-i18n="lblProjects">Projects</div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">NAGARE — Restaurant Management SaaS Platform</div>
-          <div class="cv-entry-date">2024 – Present</div>
+          <div class="cv-entry-role" data-i18n="projNagareRole">NAGARE — Restaurant Management SaaS Platform</div>
+          <div class="cv-entry-date" data-i18n="projNagareDate">2024 – Present</div>
         </div>
         <div class="cv-entry-org">RTR · Chile</div>
         <ul class="cv-bullets">
-          <li>Built a full-stack multi-tenant SaaS platform: QR digital menus, real-time ordering system, kitchen display (KDS), waiter app, and admin panel with KPI analytics dashboard</li>
-          <li>3 active paying clients (restaurants, Iquique – Chile) on a monthly subscription model</li>
-          <li>Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify</li>
+          <li data-i18n="projNagareB1">Built a full-stack multi-tenant SaaS platform: QR digital menus, real-time ordering system, kitchen display (KDS), waiter app, and admin panel with KPI analytics dashboard</li>
+          <li data-i18n="projNagareB2">3 active paying clients (restaurants, Iquique – Chile) on a monthly subscription model</li>
+          <li data-i18n="projNagareB3">Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify</li>
         </ul>
       </div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">MONBAN 門番 — Smart Condominium Access Control</div>
+          <div class="cv-entry-role" data-i18n="projMonbanRole">MONBAN 門番 — Smart Condominium Access Control</div>
           <div class="cv-entry-date">2026</div>
         </div>
         <div class="cv-entry-org">RTR · Chile</div>
         <ul class="cv-bullets">
-          <li>Designed and deployed a vehicle access control system: visitor pre-registration, WhatsApp link-based entry flow, real-time concierge alert panel with response-time metrics per visit</li>
-          <li>Security-first architecture: Role-Level Security (RLS) via Supabase, token-based visitor auth, automated data-retention compliant with Chile's data privacy law (Ley 21.719)</li>
-          <li>Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Auth + Realtime + RLS), Netlify</li>
+          <li data-i18n="projMonbanB1">Designed and deployed a vehicle access control system: visitor pre-registration, WhatsApp link-based entry flow, real-time concierge alert panel with response-time metrics per visit</li>
+          <li data-i18n="projMonbanB2">Security-first architecture: Role-Level Security (RLS) via Supabase, token-based visitor auth, automated data-retention compliant with Chile's data privacy law (Ley 21.719)</li>
+          <li data-i18n="projMonbanB3">Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Auth + Realtime + RLS), Netlify</li>
         </ul>
       </div>
 
       <div class="cv-entry">
         <div class="cv-entry-header">
-          <div class="cv-entry-role">KARUTE カルテ — QR Medical Records Platform</div>
+          <div class="cv-entry-role" data-i18n="projKaruteRole">KARUTE カルテ — QR Medical Records Platform</div>
           <div class="cv-entry-date">2026</div>
         </div>
         <div class="cv-entry-org">RTR · Chile</div>
         <ul class="cv-bullets">
-          <li>Built a QR-accessible personal medical records platform: organized exam history (lab results, cardiology, imaging) with PDF viewer, segmented video clips per study, and findings panel — no login required</li>
-          <li>Processed 56 video clips from raw cardiology recordings (coronariography, angioplasty, echocardiograms, CT scan) using custom Python + ffmpeg pipeline: auto-segmentation, square crop, compression, and poster generation</li>
-          <li>Stack: JavaScript, HTML/CSS, Python (ffmpeg, Pillow, NumPy), GitHub Pages</li>
+          <li data-i18n="projKaruteB1">Built a QR-accessible personal medical records platform: organized exam history (lab results, cardiology, imaging) with PDF viewer, segmented video clips per study, and findings panel — no login required</li>
+          <li data-i18n="projKaruteB2">Processed 56 video clips from raw cardiology recordings (coronariography, angioplasty, echocardiograms, CT scan) using custom Python + ffmpeg pipeline: auto-segmentation, square crop, compression, and poster generation</li>
+          <li data-i18n="projKaruteB3">Stack: JavaScript, HTML/CSS, Python (ffmpeg, Pillow, NumPy), GitHub Pages</li>
         </ul>
       </div>
     </section>
@@ -1002,9 +1050,9 @@
        QR — SHARE THIS PAGE
   ═══════════════════════════════════ -->
   <section class="qr-section">
-    <div class="qr-label">Compartir este perfil</div>
+    <div class="qr-label" data-i18n="qrLabel">Share this profile</div>
     <div id="qrcode"></div>
-    <div class="qr-caption">Escanea para abrir este perfil</div>
+    <div class="qr-caption" data-i18n="qrCaption">Scan to open this profile</div>
     <div class="qr-url" id="qrUrlText"></div>
   </section>
 
@@ -1021,6 +1069,135 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <script>
+    /* ════════════════════════════════════
+       IDIOMA — ES / EN (contenido bilingüe, sin librerías)
+       El HTML viene en inglés por defecto; el diccionario aporta el español.
+    ════════════════════════════════════ */
+    const I18N = {
+      es: {
+        title: 'Ingeniero Civil Industrial &amp; Director Ejecutivo',
+        cardHint: 'Toca para ver el reverso',
+        role: 'Director Ejecutivo',
+        qaCall: 'Llamar',
+        qaSave: 'Guardar Contacto',
+
+        lblProfile: 'Perfil Profesional',
+        profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros y la fundación de un emprendimiento de contenido digital. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
+
+        lblExperience: 'Experiencia Profesional',
+        expCorfoRole: 'CORFO — Practicante Departamento de Innovación',
+        expCorfoDate: 'Abr – Jul 2025',
+        expCorfoOrg: 'Agencia Chilena de Desarrollo Económico · Santiago, Chile',
+        expCorfoB1: 'Diseñé y desplegué un dashboard en Power BI que monitorea los KPIs de innovación nacional del portafolio de CORFO, adoptado por la alta dirección para la planificación estratégica y la revisión de desempeño',
+        expCorfoB2: 'Resolví un cuello de botella operacional sistémico mediante análisis de causa raíz basado en datos, mejorando el rendimiento y la eficiencia del flujo de trabajo del departamento',
+        expCorfoB3: 'Elaboré informes formales de incidencias que estandarizaron la documentación de incidentes y los protocolos de escalamiento en el departamento de innovación',
+        expCorfoB4: 'Lideré iniciativas de mejora continua que contribuyeron al pipeline nacional de innovación del sector público',
+
+        expRtrRole: 'RTR Marketing Digital — Cofundador',
+        expRtrDate: 'Nov 2024 – Abr 2025',
+        expRtrOrg: 'Agencia de Contenido Digital · Santiago, Chile',
+        expRtrB1: 'Fundé y escalé una agencia de contenido digital multiplataforma operando en Instagram, TikTok y YouTube',
+        expRtrB2: 'Dirigí todo el pipeline de producción: desarrollo de concepto, guion, grabación, postproducción y calendarización de publicaciones',
+        expRtrB3: 'Gestioné la identidad de marca y la logística de entrega a clientes en mandatos simultáneos',
+
+        expNaxosRole: 'Servicios Naxos SPA — Asistente de Ingeniería',
+        expNaxosDate: 'Dic 2024 – Mar 2025',
+        expNaxosOrg: 'Maestranza de Maquinaria Minera y Metalúrgica · Santiago, Chile',
+        expNaxosB1: 'Preparé licitaciones técnicas y cotizaciones para la reparación y fabricación de maquinaria minera pesada (tolvas, baldes), apoyando la adquisición de contratos en el sector minero de Chile',
+        expNaxosB2: 'Evalué especificaciones técnicas de clientes frente a la capacidad y tolerancias del taller para licitaciones de metalurgia industrial',
+
+        expMorRole: 'Servicios MOR — Practicante de Ingeniería  <span style="font-weight:400;font-size:12px;">(Práctica I)</span>',
+        expMorDate: 'Ene – Mar 2023',
+        expMorOrg: 'Empresa Metalúrgica · Santiago, Chile',
+        expMorB1: 'Ejecuté cálculos de perfiles de acero estructural para paquetes de cotización de proyectos',
+        expMorB2: 'Desarrollé conocimiento práctico de procesos de fabricación, flujos de producción y protocolos de control de calidad',
+
+        lblSkills: 'Habilidades Técnicas',
+        skPowerBi: 'Power BI y Dashboards',
+        skDataScience: 'Ciencia de Datos (R / RStudio)',
+        skStats: 'Modelamiento Estadístico',
+        skEcon: 'Econometría y Simulación',
+        skKpi: 'Diseño de KPIs',
+        skExcel: 'Microsoft Excel (Avanzado)',
+        skProcess: 'Optimización de Procesos',
+        skMining: 'Operaciones Industria Minera',
+        skBiz: 'Planificación de Negocios',
+        skContent: 'Producción de Contenido Digital',
+        skWeb: 'Desarrollo Web y SaaS',
+        skNetlify: 'Despliegue en Netlify',
+
+        lblLanguages: 'Idiomas',
+        langSpanish: 'Español',
+        langSpanishLvl: 'Nativo',
+        langEnglish: 'Inglés',
+        langEnglishLvl: 'Avanzado — IELTS 7.5 Global · MCER C1 · May 2026',
+
+        lblEducation: 'Educación',
+        eduUwaRole: 'Máster en Comercio (Master of Commerce)',
+        eduUwaB1: 'Inicio julio 2026 · CRICOS Provider 00126G · CoE No. 113FD0694',
+        eduUwaB2: 'Enfoque: estrategia comercial global, gestión de negocios y liderazgo en mercados internacionales',
+        eduUdpRole: 'Ingeniero Civil Industrial',
+        eduUdpB1: '49 asignaturas en ingeniería, economía, finanzas, ciencia de datos y gestión',
+        eduUdpB2: 'Fortalezas principales: Simulación, Gestión Estratégica, Finanzas y desarrollo de Plan de Negocios',
+        eduUdpB3: 'Áreas adicionales: Gestión en Industria Minera, Marketing y Data Mining',
+        eduUdpB4: 'Dos prácticas profesionales completadas (2023 y 2025) · Título conferido el 17 de abril de 2026',
+        eduIeltsRole: 'IELTS Academic · Competencia en Inglés',
+        eduIeltsOrg: 'British Council / IDP · Nivel MCER C1 · TRF No. 26CL500665AHMR035A',
+        ieltsListening: 'Escucha',
+        ieltsReading: 'Lectura',
+        ieltsWriting: 'Escritura',
+        ieltsSpeaking: 'Habla',
+        ieltsOverall: 'Global',
+        ieltsCefr: 'MCER',
+
+        lblProjects: 'Proyectos',
+        projNagareRole: 'NAGARE — Plataforma SaaS de Gestión para Restaurantes',
+        projNagareDate: '2024 – Presente',
+        projNagareB1: 'Construí una plataforma SaaS multi-tenant full-stack: menús digitales QR, sistema de pedidos en tiempo real, pantalla de cocina (KDS), app de garzón y panel de administración con dashboard de KPIs',
+        projNagareB2: '3 clientes activos de pago (restaurantes, Iquique – Chile) bajo modelo de suscripción mensual',
+        projNagareB3: 'Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify',
+        projMonbanRole: 'MONBAN 門番 — Control de Acceso Inteligente para Condominios',
+        projMonbanB1: 'Diseñé y desplegué un sistema de control de acceso vehicular: pre-registro de visitas, flujo de ingreso por enlace de WhatsApp, panel de alertas al conserje en tiempo real con métricas de tiempo de respuesta por visita',
+        projMonbanB2: 'Arquitectura con seguridad como prioridad: Role-Level Security (RLS) vía Supabase, autenticación de visitas por token, retención de datos automatizada conforme a la Ley de privacidad de Chile (Ley 21.719)',
+        projMonbanB3: 'Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Auth + Realtime + RLS), Netlify',
+        projKaruteRole: 'KARUTE カルテ — Plataforma de Fichas Médicas QR',
+        projKaruteB1: 'Construí una plataforma de fichas médicas personales accesible por QR: historial de exámenes organizado (laboratorio, cardiología, imágenes) con visor PDF, clips de video segmentados por estudio y panel de hallazgos — sin necesidad de iniciar sesión',
+        projKaruteB2: 'Procesé 56 clips de video a partir de grabaciones cardiológicas en bruto (coronariografía, angioplastía, ecocardiogramas, TAC) con un pipeline propio en Python + ffmpeg: auto-segmentación, recorte cuadrado, compresión y generación de póster',
+        projKaruteB3: 'Stack: JavaScript, HTML/CSS, Python (ffmpeg, Pillow, NumPy), GitHub Pages',
+
+        qrLabel: 'Compartir este perfil',
+        qrCaption: 'Escanea para abrir este perfil'
+      }
+    };
+
+    function setLang(lang) {
+      const dict = I18N[lang];
+      // Guardar los textos originales (inglés) la primera vez, para poder volver a EN.
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+        const key = el.getAttribute('data-i18n');
+        if (lang === 'es' && dict && dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        } else {
+          el.innerHTML = el.dataset.en;
+        }
+      });
+      document.documentElement.lang = lang;
+      const be = document.getElementById('langEn'), bs = document.getElementById('langEs');
+      if (be && bs) {
+        be.classList.toggle('active', lang === 'en');
+        bs.classList.toggle('active', lang === 'es');
+      }
+      try { localStorage.setItem('portfolioLang', lang); } catch (e) {}
+    }
+
+    (function initLang() {
+      let saved = null;
+      try { saved = localStorage.getItem('portfolioLang'); } catch (e) {}
+      const browser = (navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en';
+      setLang(saved || browser);
+    })();
+
     /* ════════════════════════════════════
        TARJETA 3D — flip + inclinación espacial + brillo
     ════════════════════════════════════ */
