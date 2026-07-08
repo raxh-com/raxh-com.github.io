@@ -718,164 +718,6 @@
       color: #fff;
     }
 
-    /* ══════════════════════════════════════
-       RESUME SHEET — CV clásico en hoja de dos columnas
-    ══════════════════════════════════════ */
-    .resume-sheet {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      box-shadow: 0 4px 28px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.05);
-      padding: 46px 44px;
-      max-width: 880px;
-      margin: 0 auto;
-    }
-
-    .rs-head {
-      text-align: center;
-      padding-bottom: 22px;
-      margin-bottom: 26px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .rs-name {
-      font-family: var(--sans);
-      font-weight: 600;
-      font-size: clamp(21px, 5vw, 31px);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink);
-      line-height: 1.15;
-    }
-
-    .rs-title {
-      font-family: var(--sans);
-      font-size: clamp(9.5px, 2.4vw, 12.5px);
-      font-weight: 400;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--ink-mid);
-      margin-top: 11px;
-    }
-
-    .rs-body {
-      display: grid;
-      grid-template-columns: 1fr 1.72fr;
-    }
-
-    .rs-left  { padding-right: 30px; }
-    .rs-right { padding-left: 30px; border-left: 1px solid var(--line); }
-
-    .rs-block { margin-bottom: 24px; }
-    .rs-block:last-child { margin-bottom: 0; }
-
-    .rs-h {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink);
-      padding-bottom: 7px;
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .rs-contact div {
-      font-size: 12.5px;
-      color: var(--ink-mid);
-      line-height: 1.45;
-      margin-bottom: 7px;
-      word-break: break-word;
-    }
-
-    .rs-list { list-style: none; }
-    .rs-list li {
-      position: relative;
-      padding-left: 15px;
-      font-size: 12.5px;
-      color: var(--ink-mid);
-      line-height: 1.45;
-      margin-bottom: 7px;
-    }
-    .rs-list li::before {
-      content: '◆';
-      position: absolute;
-      left: 0;
-      top: 1px;
-      font-size: 7px;
-      color: var(--accent);
-    }
-
-    .rs-lang div { margin-bottom: 9px; }
-    .rs-lang .l-name {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .rs-lang .l-lvl {
-      display: block;
-      font-size: 11.5px;
-      color: var(--ink-soft);
-      line-height: 1.4;
-      margin-top: 1px;
-    }
-
-    .rs-entry { margin-bottom: 16px; }
-    .rs-entry:last-child { margin-bottom: 0; }
-    .rs-entry-role {
-      font-family: var(--sans);
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--ink);
-      line-height: 1.3;
-    }
-    .rs-entry-meta {
-      font-size: 11px;
-      color: var(--ink-soft);
-      letter-spacing: 0.02em;
-      margin: 2px 0 6px;
-    }
-    .rs-profile {
-      font-size: 12.5px;
-      color: var(--ink-mid);
-      line-height: 1.6;
-    }
-
-    .rs-bullets { list-style: none; }
-    .rs-bullets li {
-      position: relative;
-      padding-left: 14px;
-      font-size: 12px;
-      color: var(--ink-mid);
-      line-height: 1.5;
-      margin-bottom: 4px;
-    }
-    .rs-bullets li::before {
-      content: '◆';
-      position: absolute;
-      left: 0;
-      top: 1px;
-      font-size: 6.5px;
-      color: var(--accent);
-    }
-
-    .rs-ielts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px 16px;
-      margin-top: 8px;
-    }
-    .rs-ielts .pair { font-size: 11.5px; color: var(--ink-mid); }
-    .rs-ielts .pair b { color: var(--ink); font-weight: 600; }
-
-    @media (max-width: 640px) {
-      .resume-sheet { padding: 30px 22px; }
-      .rs-body { grid-template-columns: 1fr; }
-      .rs-left  { padding-right: 0; }
-      .rs-right { padding-left: 0; border-left: none; border-top: 1px solid var(--line); padding-top: 24px; margin-top: 8px; }
-    }
-
   </style>
 </head>
 <body>
@@ -985,170 +827,176 @@
        CURRICULUM VITAE
   ═══════════════════════════════════ -->
   <main class="cv-wrap">
-    <div class="resume-sheet reveal">
 
-      <!-- HOJA · Encabezado -->
-      <div class="rs-head">
-        <div class="rs-name">Raheel Ahmad Aguirre</div>
-        <div class="rs-title" data-i18n="title">Industrial Civil Engineer &amp; Executive Director</div>
+    <!-- PROFILE -->
+    <section class="cv-block">
+      <div class="cv-label" data-i18n="lblProfile">Professional Profile</div>
+      <p class="cv-profile" data-i18n="profileText">
+        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector and the founding of a digital content venture. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="cv-block">
+      <div class="cv-label" data-i18n="lblExperience">Professional Experience</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="expCorfoRole">CORFO — Innovation Department Intern</div>
+          <div class="cv-entry-date" data-i18n="expCorfoDate">Apr – Jul 2025</div>
+        </div>
+        <div class="cv-entry-org" data-i18n="expCorfoOrg">Chilean Economic Development Agency · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li data-i18n="expCorfoB1">Designed and deployed a Power BI dashboard tracking national innovation KPIs across CORFO's portfolio, adopted by senior management for strategic planning and performance review</li>
+          <li data-i18n="expCorfoB2">Resolved a systemic operational bottleneck through data-driven root-cause analysis, improving departmental throughput and workflow efficiency</li>
+          <li data-i18n="expCorfoB3">Authored formal issue reports that standardised incident documentation and escalation protocols across the innovation department</li>
+          <li data-i18n="expCorfoB4">Led continuous improvement initiatives contributing to the national public-sector innovation pipeline</li>
+        </ul>
       </div>
 
-      <!-- HOJA · Dos columnas -->
-      <div class="rs-body">
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="expRtrRole">RTR Marketing Digital — Co-Founder</div>
+          <div class="cv-entry-date" data-i18n="expRtrDate">Nov 2024 – Apr 2025</div>
+        </div>
+        <div class="cv-entry-org" data-i18n="expRtrOrg">Digital Content Agency · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li data-i18n="expRtrB1">Founded and scaled a multi-platform digital content agency operating across Instagram, TikTok, and YouTube</li>
+          <li data-i18n="expRtrB2">Directed the full production pipeline: concept development, scriptwriting, filming, post-production, and publication scheduling</li>
+          <li data-i18n="expRtrB3">Managed brand governance and client delivery logistics across concurrent client mandates</li>
+        </ul>
+      </div>
 
-        <!-- ── Columna izquierda ── -->
-        <aside class="rs-left">
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="expNaxosRole">Servicios Naxos SPA — Engineering Assistant</div>
+          <div class="cv-entry-date" data-i18n="expNaxosDate">Dec 2024 – Mar 2025</div>
+        </div>
+        <div class="cv-entry-org" data-i18n="expNaxosOrg">Mining Machinery &amp; Metal Workshop · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li data-i18n="expNaxosB1">Prepared technical bids and cost quotations for heavy mining equipment repair and fabrication (hoppers, buckets), supporting contract acquisition in Chile's mining sector</li>
+          <li data-i18n="expNaxosB2">Evaluated client technical specifications against workshop capacity and tolerances for industrial metalworking tenders</li>
+        </ul>
+      </div>
 
-          <section class="rs-block">
-            <h3 class="rs-h" data-i18n="lblContact">Contact</h3>
-            <div class="rs-contact">
-              <div>+56 9 6320 0075</div>
-              <div>raheelahmad2019@gmail.com</div>
-              <div>rtr.raheel@gmail.com</div>
-              <div>raxh-com.github.io</div>
-              <div>Santiago, Chile</div>
-            </div>
-          </section>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="expMorRole">Servicios MOR — Engineering Intern  <span style="font-weight:400;font-size:12px;">(Internship I)</span></div>
+          <div class="cv-entry-date" data-i18n="expMorDate">Jan – Mar 2023</div>
+        </div>
+        <div class="cv-entry-org" data-i18n="expMorOrg">Metalworking Company · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li data-i18n="expMorB1">Executed structural steel profile calculations for project cost-submission packages</li>
+          <li data-i18n="expMorB2">Developed hands-on knowledge of manufacturing processes, production workflows, and quality control protocols</li>
+        </ul>
+      </div>
+    </section>
 
-          <section class="rs-block">
-            <h3 class="rs-h" data-i18n="lblLanguages">Languages</h3>
-            <div class="rs-lang">
-              <div>
-                <span class="l-name" data-i18n="langSpanish">Spanish</span>
-                <span class="l-lvl" data-i18n="langSpanishLvl">Native</span>
-              </div>
-              <div>
-                <span class="l-name" data-i18n="langEnglish">English</span>
-                <span class="l-lvl" data-i18n="langEnglishLvl">Advanced — IELTS 7.5 Overall · CEFR C1 · May 2026</span>
-              </div>
-            </div>
-          </section>
+    <!-- SKILLS -->
+    <section class="cv-block">
+      <div class="cv-label" data-i18n="lblSkills">Technical Skills</div>
+      <div class="skills-wrap">
+        <span class="skill-chip" data-i18n="skPowerBi">Power BI &amp; Dashboards</span>
+        <span class="skill-chip" data-i18n="skDataScience">Data Science (R / RStudio)</span>
+        <span class="skill-chip" data-i18n="skStats">Statistical Modelling</span>
+        <span class="skill-chip" data-i18n="skEcon">Econometrics &amp; Simulation</span>
+        <span class="skill-chip">ADempiere ERP</span>
+        <span class="skill-chip" data-i18n="skKpi">KPI Design</span>
+        <span class="skill-chip" data-i18n="skExcel">Microsoft Excel (Advanced)</span>
+        <span class="skill-chip" data-i18n="skProcess">Process Optimisation</span>
+        <span class="skill-chip" data-i18n="skMining">Mining Industry Operations</span>
+        <span class="skill-chip" data-i18n="skBiz">Business Planning</span>
+        <span class="skill-chip" data-i18n="skContent">Digital Content Production</span>
+        <span class="skill-chip" data-i18n="skWeb">Web Development &amp; SaaS</span>
+        <span class="skill-chip">Supabase (PostgreSQL + Realtime)</span>
+        <span class="skill-chip" data-i18n="skNetlify">Netlify Deployment</span>
+      </div>
+    </section>
 
-          <section class="rs-block">
-            <h3 class="rs-h" data-i18n="lblSkills">Technical Skills</h3>
-            <ul class="rs-list">
-              <li data-i18n="skPowerBi">Power BI &amp; Dashboards</li>
-              <li data-i18n="skDataScience">Data Science (R / RStudio)</li>
-              <li data-i18n="skStats">Statistical Modelling</li>
-              <li data-i18n="skEcon">Econometrics &amp; Simulation</li>
-              <li>ADempiere ERP</li>
-              <li data-i18n="skKpi">KPI Design</li>
-              <li data-i18n="skExcel">Microsoft Excel (Advanced)</li>
-              <li data-i18n="skProcess">Process Optimisation</li>
-              <li data-i18n="skMining">Mining Industry Operations</li>
-              <li data-i18n="skBiz">Business Planning</li>
-              <li data-i18n="skContent">Digital Content Production</li>
-              <li data-i18n="skWeb">Web Development &amp; SaaS</li>
-              <li>Supabase (PostgreSQL + Realtime)</li>
-              <li data-i18n="skNetlify">Netlify Deployment</li>
-            </ul>
-          </section>
+    <!-- LANGUAGES -->
+    <section class="cv-block">
+      <div class="cv-label" data-i18n="lblLanguages">Languages</div>
+      <table class="lang-table">
+        <tr class="lang-row">
+          <td class="lang-name" data-i18n="langSpanish">Spanish</td>
+          <td class="lang-level" data-i18n="langSpanishLvl">Native</td>
+        </tr>
+        <tr class="lang-row">
+          <td class="lang-name" data-i18n="langEnglish">English</td>
+          <td class="lang-level" data-i18n="langEnglishLvl">Advanced — IELTS 7.5 Overall · CEFR C1 · May 2026</td>
+        </tr>
+      </table>
+    </section>
 
-        </aside>
+    <!-- EDUCATION -->
+    <section class="cv-block">
+      <div class="cv-label" data-i18n="lblEducation">Education</div>
 
-        <!-- ── Columna derecha ── -->
-        <div class="rs-right">
+      <!-- UWA highlight box -->
+      <div class="edu-box">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="eduUwaRole">Master of Commerce</div>
+          <div class="cv-entry-date">Jul 2026 – Jun 2028</div>
+        </div>
+        <div class="cv-entry-org">The University of Western Australia · Perth, Australia</div>
+        <ul class="cv-bullets" style="margin-top:10px;">
+          <li data-i18n="eduUwaB1">Commencing July 2026 · CRICOS Provider 00126G · CoE No. 113FD0694</li>
+          <li data-i18n="eduUwaB2">Focus: global commercial strategy, business management, and leadership in international markets</li>
+        </ul>
+      </div>
 
-          <section class="rs-block">
-            <h3 class="rs-h" data-i18n="lblProfile">Professional Profile</h3>
-            <p class="rs-profile" data-i18n="profileText">
-              Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector and the founding of a digital content venture. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
-            </p>
-          </section>
+      <!-- UDP -->
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="eduUdpRole">Industrial Civil Engineer</div>
+          <div class="cv-entry-date">2020 – 2026</div>
+        </div>
+        <div class="cv-entry-org">Universidad Diego Portales · Santiago, Chile</div>
+        <ul class="cv-bullets">
+          <li data-i18n="eduUdpB1">49 courses across engineering, economics, finance, data science, and management</li>
+          <li data-i18n="eduUdpB2">Core strengths: Simulation, Strategic Management, Finance, and Business Plan development</li>
+          <li data-i18n="eduUdpB3">Additional focus areas: Mining Industry Management, Marketing, and Data Mining</li>
+          <li data-i18n="eduUdpB4">Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
+        </ul>
+      </div>
 
-          <section class="rs-block">
-            <h3 class="rs-h" data-i18n="lblExperience">Professional Experience</h3>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="expCorfoRole">CORFO — Innovation Department Intern</div>
-              <div class="rs-entry-meta"><span data-i18n="expCorfoDate">Apr – Jul 2025</span> · <span data-i18n="expCorfoOrg">Chilean Economic Development Agency · Santiago, Chile</span></div>
-              <ul class="rs-bullets">
-                <li data-i18n="expCorfoB1">Designed and deployed a Power BI dashboard tracking national innovation KPIs across CORFO's portfolio, adopted by senior management for strategic planning and performance review</li>
-                <li data-i18n="expCorfoB2">Resolved a systemic operational bottleneck through data-driven root-cause analysis, improving departmental throughput and workflow efficiency</li>
-                <li data-i18n="expCorfoB3">Authored formal issue reports that standardised incident documentation and escalation protocols across the innovation department</li>
-                <li data-i18n="expCorfoB4">Led continuous improvement initiatives contributing to the national public-sector innovation pipeline</li>
-              </ul>
-            </div>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="expRtrRole">RTR Marketing Digital — Co-Founder</div>
-              <div class="rs-entry-meta"><span data-i18n="expRtrDate">Nov 2024 – Apr 2025</span> · <span data-i18n="expRtrOrg">Digital Content Agency · Santiago, Chile</span></div>
-              <ul class="rs-bullets">
-                <li data-i18n="expRtrB1">Founded and scaled a multi-platform digital content agency operating across Instagram, TikTok, and YouTube</li>
-                <li data-i18n="expRtrB2">Directed the full production pipeline: concept development, scriptwriting, filming, post-production, and publication scheduling</li>
-                <li data-i18n="expRtrB3">Managed brand governance and client delivery logistics across concurrent client mandates</li>
-              </ul>
-            </div>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="expNaxosRole">Servicios Naxos SPA — Engineering Assistant</div>
-              <div class="rs-entry-meta"><span data-i18n="expNaxosDate">Dec 2024 – Mar 2025</span> · <span data-i18n="expNaxosOrg">Mining Machinery &amp; Metal Workshop · Santiago, Chile</span></div>
-              <ul class="rs-bullets">
-                <li data-i18n="expNaxosB1">Prepared technical bids and cost quotations for heavy mining equipment repair and fabrication (hoppers, buckets), supporting contract acquisition in Chile's mining sector</li>
-                <li data-i18n="expNaxosB2">Evaluated client technical specifications against workshop capacity and tolerances for industrial metalworking tenders</li>
-              </ul>
-            </div>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="expMorRole">Servicios MOR — Engineering Intern  <span style="font-weight:400;font-size:11px;">(Internship I)</span></div>
-              <div class="rs-entry-meta"><span data-i18n="expMorDate">Jan – Mar 2023</span> · <span data-i18n="expMorOrg">Metalworking Company · Santiago, Chile</span></div>
-              <ul class="rs-bullets">
-                <li data-i18n="expMorB1">Executed structural steel profile calculations for project cost-submission packages</li>
-                <li data-i18n="expMorB2">Developed hands-on knowledge of manufacturing processes, production workflows, and quality control protocols</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="rs-block">
-            <h3 class="rs-h" data-i18n="lblEducation">Education</h3>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="eduUwaRole">Master of Commerce</div>
-              <div class="rs-entry-meta">Jul 2026 – Jun 2028 · The University of Western Australia · Perth, Australia</div>
-              <ul class="rs-bullets">
-                <li data-i18n="eduUwaB1">Commencing July 2026 · CRICOS Provider 00126G · CoE No. 113FD0694</li>
-                <li data-i18n="eduUwaB2">Focus: global commercial strategy, business management, and leadership in international markets</li>
-              </ul>
-            </div>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="eduUdpRole">Industrial Civil Engineer</div>
-              <div class="rs-entry-meta">2020 – 2026 · Universidad Diego Portales · Santiago, Chile</div>
-              <ul class="rs-bullets">
-                <li data-i18n="eduUdpB1">49 courses across engineering, economics, finance, data science, and management</li>
-                <li data-i18n="eduUdpB2">Core strengths: Simulation, Strategic Management, Finance, and Business Plan development</li>
-                <li data-i18n="eduUdpB3">Additional focus areas: Mining Industry Management, Marketing, and Data Mining</li>
-                <li data-i18n="eduUdpB4">Two professional internships completed (2023 &amp; 2025) · Degree conferred April 17, 2026</li>
-              </ul>
-            </div>
-
-            <div class="rs-entry">
-              <div class="rs-entry-role" data-i18n="eduIeltsRole">IELTS Academic · English Proficiency</div>
-              <div class="rs-entry-meta" data-i18n="eduIeltsOrg">British Council / IDP · CEFR Level C1 · TRF No. 26CL500665AHMR035A</div>
-              <div class="rs-ielts">
-                <span class="pair"><b>7.0</b> <span data-i18n="ieltsListening">Listening</span></span>
-                <span class="pair"><b>8.0</b> <span data-i18n="ieltsReading">Reading</span></span>
-                <span class="pair"><b>7.5</b> <span data-i18n="ieltsWriting">Writing</span></span>
-                <span class="pair"><b>8.0</b> <span data-i18n="ieltsSpeaking">Speaking</span></span>
-                <span class="pair"><b>7.5</b> <span data-i18n="ieltsOverall">Overall</span></span>
-                <span class="pair"><b>C1</b> <span data-i18n="ieltsCefr">CEFR</span></span>
-              </div>
-            </div>
-          </section>
-
+      <!-- IELTS -->
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="eduIeltsRole">IELTS Academic · English Proficiency</div>
+          <div class="cv-entry-date">May 28, 2026</div>
+        </div>
+        <div class="cv-entry-org" data-i18n="eduIeltsOrg">British Council / IDP · CEFR Level C1 · TRF No. 26CL500665AHMR035A</div>
+        <div class="ielts-row">
+          <div class="ielts-cell">
+            <span class="ielts-val">7.0</span>
+            <span class="ielts-lbl" data-i18n="ieltsListening">Listening</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">8.0</span>
+            <span class="ielts-lbl" data-i18n="ieltsReading">Reading</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">7.5</span>
+            <span class="ielts-lbl" data-i18n="ieltsWriting">Writing</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">8.0</span>
+            <span class="ielts-lbl" data-i18n="ieltsSpeaking">Speaking</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val" style="color:var(--ink);">7.5</span>
+            <span class="ielts-lbl" data-i18n="ieltsOverall">Overall</span>
+          </div>
+          <div class="ielts-cell">
+            <span class="ielts-val">C1</span>
+            <span class="ielts-lbl" data-i18n="ieltsCefr">CEFR</span>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </section>
 
-
-  <div class="divider"></div>
-
-
-  <!-- ═══════════════════════════════════
-       PROJECTS (portafolio, sección aparte)
-  ═══════════════════════════════════ -->
-  <div class="cv-wrap">
+    <!-- PROJECTS -->
     <section class="cv-block">
       <div class="cv-label" data-i18n="lblProjects">Projects</div>
 
@@ -1204,7 +1052,8 @@
         </ul>
       </div>
     </section>
-  </div>
+
+  </main>
 
 
   <div class="divider"></div>
@@ -1248,7 +1097,6 @@
         lblProfile: 'Perfil Profesional',
         profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros y la fundación de un emprendimiento de contenido digital. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
 
-        lblContact: 'Contacto',
         lblExperience: 'Experiencia Profesional',
         expCorfoRole: 'CORFO — Practicante Departamento de Innovación',
         expCorfoDate: 'Abr – Jul 2025',
@@ -1531,7 +1379,7 @@
     (function() {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      document.querySelectorAll('.resume-sheet, .cv-block, .qr-section, .page-footer').forEach(function(el) {
+      document.querySelectorAll('.cv-block, .qr-section, .page-footer').forEach(function(el) {
         el.classList.add('reveal');
       });
 
