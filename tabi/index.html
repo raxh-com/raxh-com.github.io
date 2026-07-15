@@ -120,9 +120,11 @@ section { margin-top: clamp(60px, 9vh, 96px); }
   background: var(--border); border-radius:2px;
 }
 .rail-fill {
-  position:absolute; left:0; top:0; width:100%; height:0;
+  position:absolute; left:0; top:0; width:100%; height:100%;
   background: linear-gradient(to bottom, var(--azul), var(--primary));
-  border-radius:2px; transition: height 0.15s linear;
+  border-radius:2px;
+  transform: scaleY(0); transform-origin: top center;
+  will-change: transform;
 }
 .stage { position:relative; padding-left:44px; }
 .stage + .stage { margin-top:22px; }
@@ -332,7 +334,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage reveal" id="prologo">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="false" aria-controls="body-0">
+        <button type="button" class="stage-head" aria-expanded="false" aria-controls="body-0">
           <span class="stage-meta">
             <span class="stage-date">2020 — 2025</span>
             <span class="rank">PRÓLOGO</span>
@@ -360,7 +362,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage open reveal" id="etapa-e">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="true" aria-controls="body-1">
+        <button type="button" class="stage-head" aria-expanded="true" aria-controls="body-1">
           <span class="stage-meta">
             <span class="stage-date">3 may 2026</span>
             <span class="rank rank-e">RANGO E</span>
@@ -389,7 +391,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage reveal" id="etapa-d">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="false" aria-controls="body-2">
+        <button type="button" class="stage-head" aria-expanded="false" aria-controls="body-2">
           <span class="stage-meta">
             <span class="stage-date">19 — 31 may 2026</span>
             <span class="rank rank-d">RANGO D</span>
@@ -418,7 +420,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage reveal" id="etapa-c">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="false" aria-controls="body-3">
+        <button type="button" class="stage-head" aria-expanded="false" aria-controls="body-3">
           <span class="stage-meta">
             <span class="stage-date">10 — 23 jun 2026</span>
             <span class="rank rank-c">RANGO C</span>
@@ -447,7 +449,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage reveal" id="etapa-b">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="false" aria-controls="body-4">
+        <button type="button" class="stage-head" aria-expanded="false" aria-controls="body-4">
           <span class="stage-meta">
             <span class="stage-date">24 jun — 6 jul 2026</span>
             <span class="rank rank-b">RANGO B</span>
@@ -477,7 +479,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage reveal" id="etapa-a">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="false" aria-controls="body-5">
+        <button type="button" class="stage-head" aria-expanded="false" aria-controls="body-5">
           <span class="stage-meta">
             <span class="stage-date">29 jun — 7 jul 2026</span>
             <span class="rank rank-a">RANGO A</span>
@@ -507,7 +509,7 @@ html.js .reveal.in { opacity:1; transform:none; }
     <article class="stage reveal" id="etapa-s">
       <div class="node" aria-hidden="true"></div>
       <div class="card">
-        <button class="stage-head" aria-expanded="false" aria-controls="body-6">
+        <button type="button" class="stage-head" aria-expanded="false" aria-controls="body-6">
           <span class="stage-meta">
             <span class="stage-date">11 — 15 jul 2026</span>
             <span class="rank rank-s">RANGO S</span>
@@ -612,18 +614,34 @@ document.querySelectorAll('.stage-head').forEach(function (btn) {
   });
 });
 
-// Riel que se llena con el scroll + nodos que se activan
+// Riel que se llena con el scroll + nodos que se activan.
+// El objetivo se calcula en cada scroll, pero el dibujo corre en un loop de
+// requestAnimationFrame con interpolación (lerp) sobre transform: scaleY —
+// solo compositor, sin relayout — para que el avance sea fluido.
 var track = document.querySelector('.tl-track');
 var fill = document.querySelector('.rail-fill');
 var stages = Array.prototype.slice.call(document.querySelectorAll('.stage'));
+var railTarget = 0, railCurrent = 0, railRaf = null;
+var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function updateRail() {
   var r = track.getBoundingClientRect();
   var mid = window.innerHeight * 0.55;
-  var done = Math.min(Math.max(mid - r.top, 0), r.height);
-  fill.style.height = done + 'px';
+  railTarget = r.height > 0 ? Math.min(Math.max(mid - r.top, 0), r.height) / r.height : 0;
   stages.forEach(function (s) {
     s.classList.toggle('passed', s.getBoundingClientRect().top < mid);
   });
+  if (railRaf === null) railRaf = requestAnimationFrame(drawRail);
+}
+function drawRail() {
+  railCurrent += (railTarget - railCurrent) * (reducedMotion ? 1 : 0.14);
+  if (Math.abs(railTarget - railCurrent) < 0.0005) {
+    railCurrent = railTarget;
+    railRaf = null;
+  } else {
+    railRaf = requestAnimationFrame(drawRail);
+  }
+  fill.style.transform = 'scaleY(' + railCurrent + ')';
 }
 window.addEventListener('scroll', updateRail, { passive: true });
 window.addEventListener('resize', updateRail);
