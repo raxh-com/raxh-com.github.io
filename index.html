@@ -8,7 +8,7 @@
   <meta property="og:title" content="Raheel Ahmad Aguirre">
   <meta property="og:description" content="Industrial Civil Engineer · Director Ejecutivo · RTR · Santiago, Chile">
   <meta property="og:type" content="profile">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
 
     /* ══════════════════════════════════════
@@ -415,6 +415,80 @@
     .qa-btn--whatsapp:hover { background: #1DB457; }
     .qa-btn--save     { background: #B8860B; color: #fff; }
     .qa-btn--save:hover     { background: #9C7009; }
+    /* Instagram — gradiente diagonal de marca (más equilibrado que el radial) */
+    .qa-btn--instagram {
+      color: #fff;
+      background: linear-gradient(45deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4);
+    }
+    .qa-btn--instagram:hover { filter: brightness(0.94); }
+
+    /* ══════════════════════════════════════
+       CV DOWNLOAD — título "Ver CV aquí" con efecto jitter en loop
+    ══════════════════════════════════════ */
+    .cv-download {
+      display: flex;
+      justify-content: center;
+      padding: 4px 20px 48px;
+    }
+    .cv-dl-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      color: var(--ink);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cv-dl-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .cv-dl-arrow { animation: cvArrow 1.4s ease-in-out infinite; }
+    @keyframes cvArrow {
+      0%, 100% { transform: translate(0, 0); }
+      50%      { transform: translate(2px, -2px); }
+    }
+    .cv-dl-link:hover .cv-dl-text {
+      text-decoration: underline;
+      text-decoration-color: #EC4899;
+      text-underline-offset: 8px;
+      text-decoration-thickness: 2px;
+    }
+    .cv-dl-link:hover .cv-dl-hint { color: var(--ink); }
+    .cv-dl-text {
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: clamp(26px, 6.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: inline-block;
+      /* gradiente animado sobre el texto (bg-clip-text), colores amarillo → rosa */
+      background-image: linear-gradient(to right, #EAB308 30%, #A16207 50%, #EC4899 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: cvGradient 3s ease-in-out infinite alternate;
+    }
+    .cv-dl-link:hover .cv-dl-text { transform: scale(1.03); }
+
+    @keyframes cvGradient {
+      from { background-position: 0% center; }
+      to   { background-position: 100% center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cv-dl-text, .cv-dl-arrow { animation: none; }
+    }
 
     .qa-btn--linkedin { background: #0A66C2; color: #fff; }
     .qa-btn--linkedin:hover { background: #0954A5; }
@@ -863,6 +937,12 @@
       </svg>
       LinkedIn
     </a>
+    <a href="https://www.instagram.com/mr.jerry.big/" target="_blank" rel="noopener noreferrer" class="qa-btn qa-btn--instagram">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Instagram
+    </a>
     <button type="button" data-action="vcard" class="qa-btn qa-btn--save">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
@@ -870,6 +950,20 @@
       </svg>
       <span data-i18n="qaSave">Save Contact</span>
     </button>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+       CV DOWNLOAD
+  ═══════════════════════════════════ -->
+  <div class="cv-download">
+    <a href="Raheel_Ahmad_Aguirre_CV.pdf" target="_blank" rel="noopener noreferrer" class="cv-dl-link">
+      <span class="cv-dl-text" data-i18n="cvDownload">View my CV here</span>
+      <span class="cv-dl-hint">
+        <svg class="cv-dl-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        <span data-i18n="cvDownloadHint">Tap to open the PDF</span>
+      </span>
+    </a>
   </div>
 
 
@@ -1068,6 +1162,19 @@
 
       <div class="cv-entry">
         <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="projShokuRole">SHOKU 食 — Calorie-Controlled Diet App</div>
+          <div class="cv-entry-date">2026</div>
+        </div>
+        <div class="cv-entry-org">RTR · Chile</div>
+        <ul class="cv-bullets">
+          <li data-i18n="projShokuB1">Built a diet-tracking app with meal scheduling every 3–4 hours, a food-equivalence catalogue (swap between equivalent portions), macro tracking, and manual or barcode-based logging</li>
+          <li data-i18n="projShokuB2">Live barcode scanner (camera → Open Food Facts) and realtime multi-device sync; shipped as two regional instances sharing one codebase but with separate backends — Perth (live, AUD) and Chile (in progress, CLP)</li>
+          <li data-i18n="projShokuB3">Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, Supabase (Auth + PostgreSQL + Realtime), Recharts, Vercel</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <div class="cv-entry-role" data-i18n="projMonbanRole">MONBAN 門番 — Smart Condominium Access Control</div>
           <div class="cv-entry-date">2026</div>
         </div>
@@ -1099,7 +1206,7 @@
         </div>
         <div class="cv-entry-org">RTR · Chile</div>
         <ul class="cv-bullets">
-          <li data-i18n="projKakeiB1">Built a full-stack personal-finance platform with real open-banking automation: connects to Chilean banks through Fintoc, imports and auto-categorises transactions via webhook and a daily Vercel Cron job, and emails a daily financial digest</li>
+          <li data-i18n="projKakeiB1">Built a full-stack personal-finance platform with real open-banking automation: connects to Chilean banks through Fintoc, imports and auto-categorises transactions via webhook and a daily Vercel Cron job, and emails a daily financial digest — currently in development toward a commercial release</li>
           <li data-i18n="projKakeiB2">Analytics dashboard with cash-flow charts, category breakdowns, budgets, and gamified savings goals; multi-currency (CLP/USD/AUD) with live FX conversion, plus an n8n + LLM (Groq) pipeline that turns free-text bank alerts into structured transactions</li>
           <li data-i18n="projKakeiB3">Stack: Next.js 16 (App Router), React 19, TypeScript, Supabase (PostgreSQL + Auth + RLS), Tailwind CSS v4, Recharts, Resend, Vercel</li>
         </ul>
@@ -1146,6 +1253,8 @@
         role: 'Director Ejecutivo',
         qaCall: 'Llamar',
         qaSave: 'Guardar Contacto',
+        cvDownload: 'Ver mi CV aquí',
+        cvDownloadHint: 'Toca para abrir el PDF',
 
         lblProfile: 'Perfil Profesional',
         profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros y la fundación de un emprendimiento de contenido digital. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
@@ -1222,6 +1331,10 @@
         projNagareB1: 'Construí una plataforma SaaS multi-tenant full-stack: menús digitales QR, sistema de pedidos en tiempo real, pantalla de cocina (KDS), app de garzón y panel de administración con dashboard de KPIs',
         projNagareB2: '3 clientes activos de pago (restaurantes, Iquique – Chile) bajo modelo de suscripción mensual',
         projNagareB3: 'Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify',
+        projShokuRole: 'SHOKU 食 — App de Dieta Hipocalórica',
+        projShokuB1: 'Construí una app de seguimiento de dieta con horarios de comida cada 3–4 horas, catálogo de equivalencias (intercambio entre porciones equivalentes), seguimiento de macros y registro manual o por código de barras',
+        projShokuB2: 'Escáner de código de barras en vivo (cámara → Open Food Facts) y sincronización realtime multi-dispositivo; desplegada como dos instancias regionales que comparten el mismo código base pero con backends separados — Perth (en vivo, AUD) y Chile (en curso, CLP)',
+        projShokuB3: 'Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, Supabase (Auth + PostgreSQL + Realtime), Recharts, Vercel',
         projMonbanRole: 'MONBAN 門番 — Control de Acceso Inteligente para Condominios',
         projMonbanB1: 'Diseñé y desplegué un sistema de control de acceso vehicular: pre-registro de visitas, flujo de ingreso por enlace de WhatsApp, panel de alertas al conserje en tiempo real con métricas de tiempo de respuesta por visita',
         projMonbanB2: 'Arquitectura con seguridad como prioridad: Role-Level Security (RLS) vía Supabase, autenticación de visitas por token, retención de datos automatizada conforme a la Ley de privacidad de Chile (Ley 21.719)',
@@ -1232,7 +1345,7 @@
         projKaruteB3: 'Stack: JavaScript, HTML/CSS, Python (ffmpeg, Pillow, NumPy), GitHub Pages',
         projKakeiRole: 'KAKEI 家計 — Gestor de Finanzas Personales',
         projKakeiDate: '2026 – Presente',
-        projKakeiB1: 'Construí una plataforma de finanzas personales full-stack con automatización real de open banking: se conecta a bancos chilenos mediante Fintoc, importa y categoriza transacciones automáticamente vía webhook y un cron diario en Vercel, y envía un resumen financiero diario por correo',
+        projKakeiB1: 'Construí una plataforma de finanzas personales full-stack con automatización real de open banking: se conecta a bancos chilenos mediante Fintoc, importa y categoriza transacciones automáticamente vía webhook y un cron diario en Vercel, y envía un resumen financiero diario por correo — actualmente en desarrollo hacia una versión comercial',
         projKakeiB2: 'Dashboard analítico con gráficos de flujo de caja, desglose por categorías, presupuestos y metas de ahorro gamificadas; multi-moneda (CLP/USD/AUD) con conversión en vivo, más un pipeline n8n + LLM (Groq) que convierte alertas bancarias de texto libre en transacciones estructuradas',
         projKakeiB3: 'Stack: Next.js 16 (App Router), React 19, TypeScript, Supabase (PostgreSQL + Auth + RLS), Tailwind CSS v4, Recharts, Resend, Vercel',
 
