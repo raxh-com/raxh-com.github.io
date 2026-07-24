@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#0F0F0F">
   <title>Raheel Ahmad Aguirre</title>
   <meta property="og:title" content="Raheel Ahmad Aguirre">
-  <meta property="og:description" content="Industrial Civil Engineer · Director Ejecutivo · RTR · Santiago, Chile">
+  <meta property="og:description" content="Industrial Civil Engineer · Director Ejecutivo · RTR">
   <meta property="og:type" content="profile">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
 
     /* ══════════════════════════════════════
@@ -17,15 +17,18 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:          #F8F6F1;
-      --cream:       #F4F1EA;
-      --ink:         #0F0F0F;
-      --ink-mid:     #4A4A4A;
-      --ink-soft:    #888888;
-      --line:        #DDD9D0;
+      /* Tema oscuro — el sitio continúa el fondo del intro splash */
+      --bg:          #0B0B0B;
+      --cream:       #16161A;   /* superficies elevadas */
+      --ink:         #F2F1ED;   /* texto principal (claro) */
+      --ink-mid:     #B9B8B2;
+      --ink-soft:    #7E7D78;
+      --line:        #2A2A2F;
       --accent:      #B8A898;
-      --chip-bg:     #EDEAE4;
+      --chip-bg:     #1E1E23;
       --back-dark:   #0F0F0F;
+      --card-cream:  #F4F1EA;   /* la tarjeta física conserva su crema */
+      --card-ink:    #0F0F0F;
       --serif:       'EB Garamond', Georgia, 'Times New Roman', serif;
       --sans:        'Inter', -apple-system, system-ui, sans-serif;
     }
@@ -62,6 +65,7 @@
     }
 
     .ph-name {
+      /* misma fuente que el intro splash (serif), para que el nombre "aterrice" sin cambiar de letra */
       font-family: var(--serif);
       font-size: clamp(30px, 8vw, 52px);
       font-weight: 500;
@@ -177,12 +181,12 @@
       overflow: hidden;
     }
 
-    /* ── Card Front ── */
+    /* ── Card Front ── (mantiene su crema físico sobre el fondo oscuro) */
     .card-face--front {
-      background: var(--cream);
+      background: var(--card-cream);
       box-shadow:
-        0 2px 8px rgba(0,0,0,0.10),
-        0 8px 32px rgba(0,0,0,0.12),
+        0 2px 8px rgba(0,0,0,0.45),
+        0 8px 32px rgba(0,0,0,0.55),
         inset 0 0 0 0.5px rgba(0,0,0,0.06);
     }
 
@@ -194,7 +198,7 @@
       font-family: var(--serif);
       font-size: clamp(7px, 2vw, 10.5px);
       letter-spacing: 0.03em;
-      color: var(--ink);
+      color: var(--card-ink);
     }
 
     .cf-company {
@@ -210,7 +214,7 @@
       font-family: var(--serif);
       font-weight: 600;
       font-size: clamp(10px, 2.9vw, 15px);
-      color: var(--ink);
+      color: var(--card-ink);
       line-height: 1.1;
     }
 
@@ -228,7 +232,7 @@
       font-family: var(--serif);
       font-size: clamp(5.5px, 1.5vw, 8.5px);
       letter-spacing: 0.07em;
-      color: var(--ink);
+      color: var(--card-ink);
       text-transform: uppercase;
       margin-top: 2px;
     }
@@ -248,7 +252,7 @@
       font-size: clamp(9px, 2.6vw, 14px);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--ink);
+      color: var(--card-ink);
     }
 
     .cf-role {
@@ -256,7 +260,7 @@
       font-style: italic;
       font-size: clamp(7px, 1.9vw, 10.5px);
       letter-spacing: 0.04em;
-      color: var(--ink);
+      color: var(--card-ink);
       margin-top: 5px;
     }
 
@@ -269,11 +273,12 @@
 
     /* ── Card Back ── */
     .card-face--back {
-      background: var(--back-dark);
+      background: #1A1A1F;
       transform: rotateY(180deg);
       box-shadow:
-        0 2px 8px rgba(0,0,0,0.25),
-        0 8px 40px rgba(0,0,0,0.30);
+        0 2px 8px rgba(0,0,0,0.45),
+        0 8px 40px rgba(0,0,0,0.55),
+        inset 0 0 0 1px rgba(255,255,255,0.10);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -631,7 +636,7 @@
     }
 
     .ielts-cell {
-      background: #fff;
+      background: var(--chip-bg);
       border: 1px solid var(--line);
       border-radius: 5px;
       padding: 7px 12px;
@@ -767,7 +772,13 @@
        PRINT MODE — solo el CV
     ══════════════════════════════════════ */
     @media print {
+      /* al imprimir, volver a paleta clara (el sitio en pantalla es oscuro) */
+      :root {
+        --bg: #ffffff; --cream: #f4f1ea; --ink: #0F0F0F; --ink-mid: #4A4A4A;
+        --ink-soft: #888888; --line: #DDD9D0; --chip-bg: #EDEAE4;
+      }
       .card-section, .quick-actions, .qr-section, .page-footer,
+      .scroll-hud, .lang-toggle, .intro-splash, .cv-download,
       .divider:first-of-type { display: none; }
       .page-header { border: none; padding: 0 0 24px; }
       .cv-wrap { padding: 0; max-width: 100%; }
@@ -810,13 +821,13 @@
       z-index: 100;
       display: flex;
       gap: 2px;
-      background: rgba(248, 246, 241, 0.82);
+      background: rgba(22, 22, 26, 0.85);
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 3px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
     }
 
     .lang-toggle button {
@@ -836,12 +847,228 @@
 
     .lang-toggle button.active {
       background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ══════════════════════════════════════
+       SCROLL — barra de progreso + flecha "sigue bajando"
+    ══════════════════════════════════════ */
+    /* Barra de progreso estilo HUD de videojuego, fija en esquina inferior-izquierda */
+    /* ── HUD de progreso estilo 8-bit / retro (marco pixel, relleno continuo) ── */
+    .scroll-hud {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 200;
+      width: 232px;
+      pointer-events: none;
+      -webkit-user-select: none;
+      user-select: none;
+      font-family: 'Press Start 2P', monospace;
+    }
+    .sp-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8px;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 7px;
+    }
+    .sp-arrow {
+      color: #5AC54F;
+      font-size: 11px;
+      line-height: 1;
+      transition: opacity 0.2s;
+      animation: spBlink 0.8s steps(1, end) infinite;
+    }
+    .scroll-hud.scrolled .sp-arrow { opacity: 0; }
+    @keyframes spBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+
+    .sp-track {
+      height: 22px;
+      background: #1D1D22;
+      border: 3px solid var(--ink);
+      border-radius: 0;                                   /* cuadrado = pixel */
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.55);             /* sombra dura, sin blur */
+      padding: 3px;
+      overflow: hidden;
+    }
+    .sp-fill {
+      height: 100%;
+      width: 0;
+      /* barra continua con leve degradado vertical (brillo arriba) */
+      background: linear-gradient(180deg, #7CE86F 0%, #5AC54F 45%, #3F9E37 100%);
+      box-shadow: 0 0 8px rgba(90,197,79,0.5);
+      transition: width 0.25s ease-out;                   /* avance suave y fluido */
+    }
+    .sp-pct {
+      display: block;
+      font-size: 8px;
+      color: var(--ink);
+      text-align: right;
+      margin-top: 7px;
+    }
+
+    @media (max-width: 520px) {
+      .scroll-hud { width: 178px; top: 14px; left: 12px; }
+      .sp-track { height: 19px; }
+      .sp-label, .sp-pct { font-size: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sp-fill { transition: none; }
+      .sp-arrow { animation: none; }
+    }
+
+    /* ══════════════════════════════════════
+       INTRO SPLASH — nombre con efecto "loader" al abrir el QR
+    ══════════════════════════════════════ */
+    .intro-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: #0B0B0B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    .intro-splash.done { opacity: 0; pointer-events: none; }
+
+    .loader-wrapper {
+      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6vw;
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 5.5vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      user-select: none;
+      -webkit-user-select: none;
       color: #fff;
+      white-space: nowrap;
+    }
+
+    .loader {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-color: transparent;
+      -webkit-mask: repeating-linear-gradient(90deg, transparent 0, transparent 6px, black 7px, black 8px);
+      mask: repeating-linear-gradient(90deg, transparent 0, transparent 6px, black 7px, black 8px);
+    }
+    .loader::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 50% 50%, #ff0 0%, transparent 50%),
+        radial-gradient(circle at 45% 45%, #f00 0%, transparent 45%),
+        radial-gradient(circle at 55% 55%, #0ff 0%, transparent 45%),
+        radial-gradient(circle at 45% 55%, #0f0 0%, transparent 45%),
+        radial-gradient(circle at 55% 45%, #00f 0%, transparent 45%);
+      -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0%, transparent 10%, black 25%);
+      mask: radial-gradient(circle at 50% 50%, transparent 0%, transparent 10%, black 25%);
+      animation: transform-animation 2s infinite alternate, opacity-animation 4s infinite;
+      animation-timing-function: cubic-bezier(0.6, 0.8, 0.5, 1);
+    }
+    @keyframes transform-animation { 0% { transform: translate(-55%); } 100% { transform: translate(55%); } }
+    @keyframes opacity-animation { 0%, 100% { opacity: 0; } 15% { opacity: 1; } 65% { opacity: 0; } }
+
+    .loader-letter {
+      display: inline-block;
+      opacity: 0;
+      animation: loader-letter-anim 4s infinite linear;
+      z-index: 2;
+    }
+    @keyframes loader-letter-anim {
+      0%   { opacity: 0; }
+      5%   { opacity: 1; text-shadow: 0 0 4px #fff; transform: scale(1.1) translateY(-2px); }
+      20%  { opacity: 0.2; }
+      100% { opacity: 0; }
+    }
+
+    /* Fase 2: las letras se asientan (todas encendidas, sin parpadeo) */
+    .intro-splash .loader-wrapper {
+      transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: center;
+      will-change: transform;
+    }
+    .intro-splash.settle .loader {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .intro-splash.settle .loader-letter {
+      animation: none;
+      opacity: 1;
+      transform: none;
+      text-shadow: none;
+      transition: opacity 0.35s ease;
+    }
+
+    /* Fase 3: el contenido aparece en cascada cuando el nombre aterriza */
+    body.intro-lock { overflow: hidden; }
+    @keyframes introRise   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes introFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    body.intro-reveal .ph-name       { animation: introFadeIn 0.55s ease both 0.15s; }
+    body.intro-reveal .ph-eyebrow    { animation: introRise 0.6s ease both 0.35s; }
+    body.intro-reveal .ph-title      { animation: introRise 0.6s ease both 0.5s; }
+    body.intro-reveal .card-section  { animation: introRise 0.7s ease both 0.65s; }
+    body.intro-reveal .quick-actions { animation: introRise 0.7s ease both 0.8s; }
+    body.intro-reveal .cv-download   { animation: introRise 0.7s ease both 0.95s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .intro-splash { display: none; }
+      body.intro-reveal .ph-name, body.intro-reveal .ph-eyebrow, body.intro-reveal .ph-title,
+      body.intro-reveal .card-section, body.intro-reveal .quick-actions,
+      body.intro-reveal .cv-download { animation: none; }
     }
 
   </style>
 </head>
 <body>
+
+  <!-- Intro splash: nombre con efecto loader al abrir -->
+  <div class="intro-splash" id="introSplash">
+    <div class="loader-wrapper">
+      <span class="loader-letter" style="animation-delay:0.10s">R</span>
+      <span class="loader-letter" style="animation-delay:0.19s">A</span>
+      <span class="loader-letter" style="animation-delay:0.28s">H</span>
+      <span class="loader-letter" style="animation-delay:0.37s">E</span>
+      <span class="loader-letter" style="animation-delay:0.46s">E</span>
+      <span class="loader-letter" style="animation-delay:0.55s">L</span>
+      <span class="loader-letter" style="animation-delay:0.64s">&nbsp;</span>
+      <span class="loader-letter" style="animation-delay:0.73s">A</span>
+      <span class="loader-letter" style="animation-delay:0.82s">H</span>
+      <span class="loader-letter" style="animation-delay:0.91s">M</span>
+      <span class="loader-letter" style="animation-delay:1.00s">A</span>
+      <span class="loader-letter" style="animation-delay:1.09s">D</span>
+      <span class="loader-letter" style="animation-delay:1.18s">&nbsp;</span>
+      <span class="loader-letter" style="animation-delay:1.27s">A</span>
+      <span class="loader-letter" style="animation-delay:1.36s">G</span>
+      <span class="loader-letter" style="animation-delay:1.45s">U</span>
+      <span class="loader-letter" style="animation-delay:1.54s">I</span>
+      <span class="loader-letter" style="animation-delay:1.63s">R</span>
+      <span class="loader-letter" style="animation-delay:1.72s">R</span>
+      <span class="loader-letter" style="animation-delay:1.81s">E</span>
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <!-- Barra de progreso de lectura (HUD estilo 8-bit) -->
+  <div class="scroll-hud" id="scrollHud">
+    <div class="sp-label">
+      <span data-i18n="scrollProgress">Scroll</span>
+      <span class="sp-arrow">▼</span>
+    </div>
+    <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
+    <span class="sp-pct" id="spPct">0%</span>
+  </div>
 
   <!-- ═══════════════════════════════════
        LANGUAGE TOGGLE
@@ -856,10 +1083,9 @@
        PAGE HEADER
   ═══════════════════════════════════ -->
   <header class="page-header">
-    <div class="ph-eyebrow">RTR · Santiago, Chile</div>
+    <div class="ph-eyebrow">RTR</div>
     <h1 class="ph-name">Raheel Ahmad Aguirre</h1>
     <div class="ph-title" data-i18n="title">Industrial Civil Engineer &amp; Executive Director</div>
-    <div class="ph-location">Santiago, Chile</div>
   </header>
 
 
@@ -896,10 +1122,8 @@
             <div class="cb-contact">+56 9 6320 0075</div>
             <div class="cb-contact">raheelahmad2019@gmail.com</div>
             <div class="cb-contact">rtr.raheel@gmail.com</div>
-            <div class="cb-contact">Santiago, Chile</div>
           </div>
           <div class="cb-tag" data-i18n="role">Executive Director</div>
-          <div class="card-glare"></div>
         </div>
 
       </div>
@@ -979,7 +1203,7 @@
     <section class="cv-block">
       <div class="cv-label" data-i18n="lblProfile">Professional Profile</div>
       <p class="cv-profile" data-i18n="profileText">
-        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector and the founding of a digital content venture. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
+        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector, and founder of RTR, a small digital-solutions business (SME) building custom web and SaaS products for real clients. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
       </p>
     </section>
 
@@ -1182,6 +1406,7 @@
         <ul class="cv-bullets">
           <li data-i18n="projMonbanB1">Designed and deployed a vehicle access control system: visitor pre-registration, WhatsApp link-based entry flow, real-time concierge alert panel with response-time metrics per visit</li>
           <li data-i18n="projMonbanB2">Security-first architecture: Role-Level Security (RLS) via Supabase, token-based visitor auth, automated data-retention compliant with Chile's data privacy law (Ley 21.719)</li>
+          <li data-i18n="projMonbanClient">Currently closing its first real-estate company as a client to deploy the system across their residential buildings</li>
           <li data-i18n="projMonbanB3">Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Auth + Realtime + RLS), Netlify</li>
         </ul>
       </div>
@@ -1234,7 +1459,7 @@
        FOOTER
   ═══════════════════════════════════ -->
   <footer class="page-footer">
-    <div class="footer-text">Raheel Ahmad Aguirre · RTR · Santiago, Chile</div>
+    <div class="footer-text">Raheel Ahmad Aguirre · RTR</div>
   </footer>
 
 
@@ -1242,6 +1467,72 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <script>
+    /* ════════════════════════════════════
+       INTRO SPLASH — se muestra una vez por sesión, se desvanece o se salta al tocar
+    ════════════════════════════════════ */
+    (function() {
+      const splash = document.getElementById('introSplash');
+      if (!splash) return;
+      const wrapper = splash.querySelector('.loader-wrapper');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let already = false;
+      try { already = sessionStorage.getItem('introShown') === '1'; } catch (e) {}
+      if (already || prefersReduced) {
+        if (splash.parentNode) splash.parentNode.removeChild(splash);
+        return;   // sin intro: el contenido queda visible normal
+      }
+      try { sessionStorage.setItem('introShown', '1'); } catch (e) {}
+
+      document.body.classList.add('intro-lock');   // sin scroll durante la intro
+      window.scrollTo(0, 0);
+      let phase = 0;
+      let timer = null;
+
+      function finish() {
+        // Fase 3: crossfade del nombre + cascada del contenido
+        if (phase >= 3) return;
+        phase = 3;
+        document.body.classList.add('intro-reveal');
+        splash.classList.add('done');
+        setTimeout(function() {
+          if (splash.parentNode) splash.parentNode.removeChild(splash);
+          document.body.classList.remove('intro-lock');
+        }, 700);
+      }
+
+      function lift() {
+        // Fase 2: vuelo — medir el nombre del header y volar hasta él (FLIP)
+        if (phase >= 2) return;
+        phase = 2;
+        const target = document.querySelector('.ph-name');
+        if (!target || !wrapper) { finish(); return; }
+        const s = wrapper.getBoundingClientRect();
+        const t = target.getBoundingClientRect();
+        const dx = (t.left + t.width / 2) - (s.left + s.width / 2);
+        const dy = (t.top + t.height / 2) - (s.top + s.height / 2);
+        let scale = t.width / s.width;
+        scale = Math.max(0.7, Math.min(scale, 1.8));
+        wrapper.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scale + ')';
+        setTimeout(finish, 900);
+      }
+
+      function settle() {
+        // Fase 1→2: las letras se asientan encendidas y se apaga el barrido
+        if (phase >= 1) return;
+        phase = 1;
+        splash.classList.add('settle');
+        setTimeout(lift, 500);
+      }
+
+      timer = setTimeout(settle, 2200);
+      splash.addEventListener('click', function() {
+        // saltar la intro: directo a la cascada
+        clearTimeout(timer);
+        document.body.classList.remove('intro-lock');
+        finish();
+      });
+    })();
+
     /* ════════════════════════════════════
        IDIOMA — ES / EN (contenido bilingüe, sin librerías)
        El HTML viene en inglés por defecto; el diccionario aporta el español.
@@ -1255,9 +1546,10 @@
         qaSave: 'Guardar Contacto',
         cvDownload: 'Ver mi CV aquí',
         cvDownloadHint: 'Toca para abrir el PDF',
+        scrollProgress: 'Baja',
 
         lblProfile: 'Perfil Profesional',
-        profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros y la fundación de un emprendimiento de contenido digital. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
+        profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros, y fundador de RTR, una pyme de soluciones digitales que construye productos web y SaaS a medida para clientes reales. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
 
         lblExperience: 'Experiencia Profesional',
         expCorfoRole: 'CORFO — Practicante Departamento de Innovación',
@@ -1337,6 +1629,7 @@
         projShokuB3: 'Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, Supabase (Auth + PostgreSQL + Realtime), Recharts, Vercel',
         projMonbanRole: 'MONBAN 門番 — Control de Acceso Inteligente para Condominios',
         projMonbanB1: 'Diseñé y desplegué un sistema de control de acceso vehicular: pre-registro de visitas, flujo de ingreso por enlace de WhatsApp, panel de alertas al conserje en tiempo real con métricas de tiempo de respuesta por visita',
+        projMonbanClient: 'Actualmente cerrando su primer cliente inmobiliario para desplegar el sistema en sus edificios residenciales',
         projMonbanB2: 'Arquitectura con seguridad como prioridad: Role-Level Security (RLS) vía Supabase, autenticación de visitas por token, retención de datos automatizada conforme a la Ley de privacidad de Chile (Ley 21.719)',
         projMonbanB3: 'Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Auth + Realtime + RLS), Netlify',
         projKaruteRole: 'KARUTE カルテ — Plataforma de Fichas Médicas QR',
@@ -1580,6 +1873,26 @@
           setTimeout(run, DELAY);
         });
       });
+    })();
+
+    /* ══════════════════════════════════════
+       SCROLL — barra de progreso + ocultar la flecha al empezar a bajar
+    ══════════════════════════════════════ */
+    (function() {
+      const fill = document.getElementById('spFill');
+      const pctEl = document.getElementById('spPct');
+      const hud = document.getElementById('scrollHud');
+      function onScroll() {
+        const st = window.scrollY || document.documentElement.scrollTop;
+        const h  = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = h > 0 ? Math.min(100, (st / h) * 100) : 0;
+        if (fill) fill.style.width = pct + '%';
+        if (pctEl) pctEl.textContent = Math.round(pct) + '%';
+        if (hud) hud.classList.toggle('scrolled', st > 40);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
     })();
 
     /* ══════════════════════════════════════
