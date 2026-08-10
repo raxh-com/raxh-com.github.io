@@ -1216,7 +1216,7 @@
     <section class="cv-block">
       <div class="cv-label" data-i18n="lblProfile">Professional Profile</div>
       <p class="cv-profile" data-i18n="profileText">
-        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector, and founder of RTR, a small digital-solutions business (SME) building custom web and SaaS products for real clients. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
+        Industrial Civil Engineer with a multidisciplinary foundation spanning quantitative analytics, operational strategy, and entrepreneurship. Track record at CORFO — Chile's premier national innovation and economic development agency — alongside industrial operations in the mining services sector, and founder of RTR, a small digital-solutions business (SME) building custom web and SaaS products for real clients. My current system, DAICHŌ, runs in production at a mining maintenance workshop in northern Chile. Incoming Master of Commerce candidate at The University of Western Australia (July 2026), pursuing advanced commercial and strategic leadership expertise for application in Chile's resources and business sectors.
       </p>
     </section>
 
@@ -1386,13 +1386,30 @@
 
       <div class="cv-entry">
         <div class="cv-entry-header">
+          <div class="cv-entry-role" data-i18n="projDaichoRole">DAICHŌ 台帳 — ERP / MRO Platform for a Mining Maintenance Workshop</div>
+          <div class="cv-entry-date" data-i18n="projDaichoDate">2026 – Present</div>
+        </div>
+        <div class="cv-entry-org" data-i18n="projDaichoOrg">RTR · Servicios Naxos SPA — Pozo Almonte, Chile · In production</div>
+        <ul class="cv-bullets">
+          <li data-i18n="projDaichoB1">Sole designer and developer of a live ERP + MRO system for a workshop repairing and fabricating components for large-scale mining — replacing a spreadsheet-only operation where management could not see the shop floor without asking for it</li>
+          <li data-i18n="projDaichoB2">21 screens and ~11k lines of TypeScript over a 51-table PostgreSQL model built around the physical component by serial number: life file, evaluation and dynamic scope, work orders, document dossier, quoting and costing, drag-and-drop Gantt with S-curve planning, works history, and a client transparency portal</li>
+          <li data-i18n="projDaichoB3">Access control enforced in the database rather than the interface: role-based Row Level Security across all 51 tables plus SECURITY DEFINER functions for the client portal, verified per role against the live database across 18 SQL migrations</li>
+          <li data-i18n="projDaichoB4">Shop-floor capture by QR: scanning a component opens its Gantt tasks and shift-hour logging on a phone, with offline-tolerant idempotent sync</li>
+          <li data-i18n="projDaichoB5">Auditing the client's own spreadsheets surfaced indirect costs that never reached the sale price, duplicate supplier billing, and a progress-formula error understating real completion by up to 10.5 points in reports already delivered to the client</li>
+          <li data-i18n="projDaichoB6">Led an adversarial security audit — 49 confirmed findings — and its remediation, plus data-protection work against Chile's Ley 21.719</li>
+          <li data-i18n="projDaichoB7">Stack: Next.js 16, React 19, TypeScript, Supabase (PostgreSQL + Auth + Realtime + RLS + Storage), n8n, Netlify</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <div class="cv-entry-role" data-i18n="projNagareRole">NAGARE — Restaurant Management SaaS Platform</div>
           <div class="cv-entry-date" data-i18n="projNagareDate">2024 – Present</div>
         </div>
         <div class="cv-entry-org">RTR · Chile</div>
         <ul class="cv-bullets">
           <li data-i18n="projNagareB1">Built a full-stack multi-tenant SaaS platform: QR digital menus, real-time ordering system, kitchen display (KDS), waiter app, and admin panel with KPI analytics dashboard</li>
-          <li data-i18n="projNagareB2">3 active paying clients (restaurants, Iquique – Chile) on a monthly subscription model</li>
+          <li data-i18n="projNagareB2">Built end to end and demo-ready; in conversation with a café for the first live deployment</li>
           <li data-i18n="projNagareB3">Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify</li>
         </ul>
       </div>
@@ -1563,7 +1580,7 @@
         scrollProgress: 'Baja',
 
         lblProfile: 'Perfil Profesional',
-        profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros, y fundador de RTR, una pyme de soluciones digitales que construye productos web y SaaS a medida para clientes reales. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
+        profileText: 'Ingeniero Civil Industrial con una base multidisciplinaria que abarca analítica cuantitativa, estrategia operacional y emprendimiento. Experiencia en CORFO — la principal agencia nacional de innovación y desarrollo económico de Chile — junto con operaciones industriales en el sector de servicios mineros, y fundador de RTR, una pyme de soluciones digitales que construye productos web y SaaS a medida para clientes reales. Mi sistema actual, DAICHŌ, corre en producción en una maestranza minera del norte de Chile. Candidato al Máster en Comercio de The University of Western Australia (julio 2026), buscando profundizar en liderazgo estratégico y comercial para aplicarlo en los sectores de recursos y negocios de Chile.',
 
         lblExperience: 'Experiencia Profesional',
         expCorfoRole: 'CORFO — Practicante Departamento de Innovación',
@@ -1632,10 +1649,20 @@
         ieltsCefr: 'MCER',
 
         lblProjects: 'Proyectos',
+        projDaichoRole: 'DAICHŌ 台帳 — Plataforma ERP / MRO para una Maestranza Minera',
+        projDaichoDate: '2026 – Presente',
+        projDaichoOrg: 'RTR · Servicios Naxos SPA — Pozo Almonte, Chile · En producción',
+        projDaichoB1: 'Diseñé y construí solo un sistema ERP + MRO en producción para una maestranza que repara y fabrica componentes para la gran minería — reemplazando una operación que vivía en planillas, donde Gerencia no podía ver el taller sin tener que preguntarle',
+        projDaichoB2: '21 pantallas y ~11 mil líneas de TypeScript sobre un modelo PostgreSQL de 51 tablas construido alrededor del componente físico por número de serie: ficha de vida, evaluación y alcance dinámico, órdenes de trabajo, expediente documental, cotización y costeo, carta Gantt arrastrable con curva S, historial de obras y portal de transparencia para el cliente',
+        projDaichoB3: 'El permiso se decide en la base de datos, no en la interfaz: Row Level Security por rol en las 51 tablas más funciones SECURITY DEFINER para el portal del cliente, verificado rol por rol contra la base en vivo a lo largo de 18 migraciones SQL',
+        projDaichoB4: 'Registro en taller por QR: escanear un componente abre sus tareas de la carta Gantt y la carga de horas de turno desde el teléfono, con sincronización idempotente tolerante a cortes',
+        projDaichoB5: 'Auditar las propias planillas del cliente destapó costos indirectos que nunca llegaron al precio de venta, facturación duplicada de un proveedor, y un error de fórmula que subestimaba el avance real hasta en 10,5 puntos en informes ya entregados al cliente',
+        projDaichoB6: 'Dirigí una auditoría de seguridad adversaria — 49 hallazgos confirmados — y su corrección, además del trabajo de protección de datos frente a la Ley 21.719',
+        projDaichoB7: 'Stack: Next.js 16, React 19, TypeScript, Supabase (PostgreSQL + Auth + Realtime + RLS + Storage), n8n, Netlify',
         projNagareRole: 'NAGARE — Plataforma SaaS de Gestión para Restaurantes',
         projNagareDate: '2024 – Presente',
         projNagareB1: 'Construí una plataforma SaaS multi-tenant full-stack: menús digitales QR, sistema de pedidos en tiempo real, pantalla de cocina (KDS), app de garzón y panel de administración con dashboard de KPIs',
-        projNagareB2: '3 clientes activos de pago (restaurantes, Iquique – Chile) bajo modelo de suscripción mensual',
+        projNagareB2: 'Construida de punta a punta y lista para demo; en conversaciones con un café para el primer despliegue real',
         projNagareB3: 'Stack: JavaScript, HTML/CSS, Supabase (PostgreSQL + Realtime + Auth), Netlify',
         projShokuRole: 'SHOKU 食 — App de Dieta Hipocalórica',
         projShokuB1: 'Construí una app de seguimiento de dieta con horarios de comida cada 3–4 horas, catálogo de equivalencias (intercambio entre porciones equivalentes), seguimiento de macros y registro manual o por código de barras',
