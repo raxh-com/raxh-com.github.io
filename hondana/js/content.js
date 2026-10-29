@@ -43,7 +43,7 @@ ui: {
 /* ──────────────────────────────── NIVEL I · ESTUDIOS ─────────────────────── */
 studies: [
   {
-    id: 'lirima', color: '#1e3a2b', t: 58, h: 168, fs: 11, spine: 'Lirima',
+    id: 'lirima', tex: 'green', color: '#1e3a2b', t: 58, h: 168, fs: 11, spine: 'Lirima',
     title: { es: 'Colegio Lirima', en: 'Lirima School' },
     sub: { es: 'Iquique · enseñanza media · 2016 – 2019', en: 'Iquique · secondary school · 2016 – 2019' },
     author: { es: 'Tomo I', en: 'Volume I' },
@@ -65,7 +65,7 @@ studies: [
     ],
   },
   {
-    id: 'udp', color: '#5a1a1e', t: 74, h: 182, fs: 11, spine: { es: 'UDP · Ingeniería', en: 'UDP · Engineering' },
+    id: 'udp', tex: 'burgundy', color: '#5a1a1e', t: 74, h: 182, fs: 11, spine: { es: 'UDP · Ingeniería', en: 'UDP · Engineering' },
     title: { es: 'Universidad Diego Portales', en: 'Universidad Diego Portales' },
     sub: { es: 'Ingeniería Civil Industrial · 2020 – 2026', en: 'Industrial Civil Engineering · 2020 – 2026' },
     author: { es: 'Tomo II', en: 'Volume II' },
@@ -97,7 +97,7 @@ studies: [
     ],
   },
   {
-    id: 'uwa', color: '#1a2744', t: 66, h: 176, fs: 11, spine: 'UWA · MCom',
+    id: 'uwa', tex: 'navy', color: '#1a2744', t: 66, h: 176, fs: 11, spine: 'UWA · MCom',
     title: { es: 'University of Western Australia', en: 'University of Western Australia' },
     sub: { es: 'Master of Commerce · 2026 – 2028', en: 'Master of Commerce · 2026 – 2028' },
     author: { es: 'Tomo III · en curso', en: 'Volume III · in progress' },
@@ -127,7 +127,7 @@ studies: [
 /* ──────────────────────────────── NIVEL II · PROYECTOS ───────────────────── */
 projects: [
   {
-    id: 'daicho', kanji: '台帳', color: '#201c1c', t: 46, h: 178, fs: 11,
+    id: 'daicho', tex: 'burgundy', tint: 'saturate(0) brightness(.62)', kanji: '台帳', color: '#201c1c', t: 46, h: 178, fs: 11,
     title: { es: 'Daichō', en: 'Daichō' },
     sub: { es: 'ERP / MRO para una maestranza minera', en: 'ERP / MRO for a mining-services workshop' },
     author: { es: 'Desplegado · 2026', en: 'Deployed · 2026' },
@@ -160,7 +160,7 @@ projects: [
     ],
   },
   {
-    id: 'nagare', kanji: '流れ', color: '#1c3f45', t: 42, h: 172, fs: 11,
+    id: 'nagare', tex: 'navy', tint: 'hue-rotate(-28deg) saturate(.9)', kanji: '流れ', color: '#1c3f45', t: 42, h: 172, fs: 11,
     title: { es: 'Nagare', en: 'Nagare' },
     sub: { es: 'Autopedido por QR para restaurantes', en: 'QR self-ordering for restaurants' },
     author: { es: 'Construido · 2024 – hoy', en: 'Built · 2024 – present' },
@@ -187,7 +187,7 @@ projects: [
     ],
   },
   {
-    id: 'kakei', kanji: '家計', color: '#6e5219', t: 42, h: 170, fs: 11,
+    id: 'kakei', tex: 'burgundy', tint: 'hue-rotate(30deg) saturate(.7) brightness(1.02)', kanji: '家計', color: '#6e5219', t: 42, h: 170, fs: 11,
     title: { es: 'Kakei', en: 'Kakei' },
     sub: { es: 'Finanzas del hogar con open banking', en: 'Household finance with open banking' },
     author: { es: 'En desarrollo · 2026', en: 'In development · 2026' },
@@ -211,7 +211,7 @@ projects: [
     ],
   },
   {
-    id: 'monban', kanji: '門番', color: '#3f5133', t: 42, h: 170, fs: 11,
+    id: 'monban', tex: 'green', tint: 'hue-rotate(22deg) saturate(.75)', kanji: '門番', color: '#3f5133', t: 42, h: 170, fs: 11,
     title: { es: 'Monban', en: 'Monban' },
     sub: { es: 'Control de acceso para condominios', en: 'Access control for gated communities' },
     author: { es: 'Cerrando el primer cliente · 2026', en: 'Closing its first client · 2026' },
@@ -236,7 +236,7 @@ projects: [
     ],
   },
   {
-    id: 'shoku', kanji: '食', color: '#2a4d35', t: 40, h: 166, fs: 11,
+    id: 'shoku', tex: 'green', kanji: '食', color: '#2a4d35', t: 40, h: 166, fs: 11,
     title: { es: 'Shoku', en: 'Shoku' },
     sub: { es: 'Dieta de 1700 kcal, en el bolsillo', en: 'A 1700-kcal diet, in the pocket' },
     author: { es: 'En uso diario · 2026', en: 'In daily use · 2026' },
@@ -260,7 +260,7 @@ projects: [
     ],
   },
   {
-    id: 'karute', kanji: 'カルテ', color: '#4f1f22', t: 38, h: 162, fs: 10.5,
+    id: 'karute', tex: 'burgundy', tint: 'hue-rotate(-16deg) brightness(.92)', kanji: 'カルテ', color: '#4f1f22', t: 38, h: 162, fs: 10.5,
     title: { es: 'Karute', en: 'Karute' },
     sub: { es: 'Ficha médica familiar por QR', en: 'Family medical record by QR' },
     author: { es: 'En uso · 2026', en: 'In use · 2026' },
@@ -282,7 +282,7 @@ projects: [
     ],
   },
   {
-    id: 'kagi', kanji: '鍵', color: '#2f2d3a', t: 36, h: 160, fs: 10.5,
+    id: 'kagi', tex: 'navy', tint: 'saturate(.25) brightness(.85)', kanji: '鍵', color: '#2f2d3a', t: 36, h: 160, fs: 10.5,
     title: { es: 'Kagi', en: 'Kagi' },
     sub: { es: 'Baúl de contraseñas de conocimiento cero', en: 'Zero-knowledge password vault' },
     author: { es: 'Uso personal · 2026', en: 'Personal use · 2026' },
@@ -305,7 +305,7 @@ projects: [
     ],
   },
   {
-    id: 'denpyo', kanji: '伝票', color: '#6b3f17', t: 38, h: 164, fs: 10.5,
+    id: 'denpyo', tex: 'burgundy', tint: 'hue-rotate(36deg) saturate(.65) brightness(1.08)', kanji: '伝票', color: '#6b3f17', t: 38, h: 164, fs: 10.5,
     title: { es: 'Denpyō', en: 'Denpyō' },
     sub: { es: 'Horas, facturas y tope de visa', en: 'Hours, invoices and the visa cap' },
     author: { es: 'En uso · 2026', en: 'In use · 2026' },
@@ -322,7 +322,7 @@ projects: [
     ],
   },
   {
-    id: 'honyaku', kanji: '翻訳', color: '#1d3350', t: 34, h: 156, fs: 10,
+    id: 'honyaku', tex: 'navy', kanji: '翻訳', color: '#1d3350', t: 34, h: 156, fs: 10,
     title: { es: 'Honyaku', en: 'Honyaku' },
     sub: { es: 'Traducir al seleccionar', en: 'Translate on select' },
     author: { es: 'Instalado · 2026', en: 'Installed · 2026' },
@@ -339,7 +339,7 @@ projects: [
     ],
   },
   {
-    id: 'shitsuji', kanji: '執事', color: '#3b1f3b', t: 36, h: 160, fs: 10.5,
+    id: 'shitsuji', tex: 'burgundy', tint: 'hue-rotate(-42deg) saturate(.85)', kanji: '執事', color: '#3b1f3b', t: 36, h: 160, fs: 10.5,
     title: { es: 'Shitsuji', en: 'Shitsuji' },
     sub: { es: 'El mayordomo de la pieza', en: 'The room\'s butler' },
     author: { es: 'En planificación · 2026 – 2027', en: 'Planned · 2026 – 2027' },
@@ -356,7 +356,7 @@ projects: [
     ],
   },
   {
-    id: 'morse', kanji: '・—', color: '#7a341a', t: 32, h: 150, fs: 10,
+    id: 'morse', tex: 'burgundy', tint: 'hue-rotate(18deg) brightness(1.12)', kanji: '・—', color: '#7a341a', t: 32, h: 150, fs: 10,
     title: { es: 'Pulseras Morse', en: 'Morse bracelets' }, spine: 'Morse',
     sub: { es: 'Un par que vibra a 15.000 km', en: 'A pair that vibrates 15,000 km apart' },
     author: { es: 'Diseñado · 2026', en: 'Designed · 2026' },

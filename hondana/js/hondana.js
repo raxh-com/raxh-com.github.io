@@ -113,7 +113,8 @@ function bookEl(b, shelf) {
   el.dataset.id = b.id; el.dataset.shelf = shelf;
   el.style.setProperty('--t', b.t); el.style.setProperty('--h', b.h); el.style.setProperty('--c', b.color); el.style.setProperty('--fs', b.fs || 11);
   el.setAttribute('aria-label', `${T(b.title)} — ${T(b.sub)}`);
-  el.innerHTML = `<span class="b-spine"><span class="b-head"></span><span class="b-label"></span><span class="b-bands"></span><span class="b-title">${esc(T(b.spine || b.title))}</span><span class="b-orn t">❦</span><span class="b-kanji ${(b.kanji || '').length > 2 ? 'is-long' : ''}">${esc(b.kanji || '')}</span></span>`;
+  if (b.tint) el.style.setProperty('--tint', b.tint);
+  el.innerHTML = `<span class="b-spine"><span class="b-tex ${b.tex || 'burgundy'}"></span><span class="b-label"></span><span class="b-title">${esc(T(b.spine || b.title))}</span><span class="b-kanji ${(b.kanji || '').length > 2 ? 'is-long' : ''}">${esc(b.kanji || '')}</span></span>`;
   return el;
 }
 function renderShelves() {
@@ -121,9 +122,10 @@ function renderShelves() {
   st.innerHTML = ''; pr.innerHTML = '';
   CONTENT.studies.forEach(b => st.appendChild(bookEl(b, 'studies')));
   const end = document.createElement('div'); end.className = 'bookend'; st.appendChild(end);
+  const nook = $('#nook'); nook.innerHTML = '';
   const pile = document.createElement('div'); pile.className = 'pile'; pile.setAttribute('aria-hidden', 'true');
-  pile.innerHTML = [['#3a2a44', 118, 14, 0], ['#6b4a1c', 104, 12, 6], ['#24343a', 110, 16, 2]].map(([c, w, h, x]) => `<span style="--pc:${c};--pw:${w};--ph:${h};--px:${x}"></span>`).join('');
-  st.appendChild(pile);
+  pile.innerHTML = [['#4a1518', 118, 14, 0], ['#1e3a2b', 104, 12, 6], ['#1a2744', 110, 16, 2]].map(([c, w, h, x]) => `<span style="--pc:${c};--pw:${w};--ph:${h};--px:${x}"></span>`).join('');
+  nook.appendChild(pile);
   CONTENT.projects.forEach(b => pr.appendChild(bookEl(b, 'projects')));
   if (state.book) { const el = $(`.book[data-id="${state.book}"]`); if (el) { el.classList.add('is-hidden'); state.bookEl = el; } }
 }
@@ -212,7 +214,7 @@ function applyCamera(animate = true) {
   if (!state.level) { cabinet.style.transform = geo.fit < 1 ? `scale(${geo.fit.toFixed(3)})` : ''; state.maxPan = 0; return; }
   const p = geo.p[state.level]; const narrow = innerWidth < 700;
   let s = narrow
-    ? (state.level === 'contact' ? innerWidth * 0.98 / geo.cabW : Math.min(innerHeight * 0.58 / (p.h * 1.25), 2.4))
+    ? Math.min(innerHeight * 0.58 / (p.h * 1.25), 2.6)
     : Math.min(innerWidth * 0.96 / geo.cabW, innerHeight * 0.74 / (p.h * 1.3));
   s = Math.max(geo.fit, s);
   const maxPan = Math.max(0, (geo.cabW * s - innerWidth) / 2 + 20);
@@ -476,7 +478,7 @@ function setupDrawers() {
   $$('.drawer').forEach(d => {
     let g = null;
     const unit = () => parseFloat(getComputedStyle(cabinet).width) / 560;
-    d.addEventListener('pointerdown', e => { if (d.classList.contains('is-open') || state.intro) return; g = { pid: e.pointerId, y0: e.clientY, max: 22 * unit() * (1 / (state.level ? 1 : geo.fit)), moved: false }; try { d.setPointerCapture(e.pointerId); } catch (err) {} });
+    d.addEventListener('pointerdown', e => { if (d.classList.contains('is-open') || state.intro) return; g = { pid: e.pointerId, y0: e.clientY, max: 16 * unit() * (1 / (state.level ? 1 : geo.fit)), moved: false }; try { d.setPointerCapture(e.pointerId); } catch (err) {} });
     d.addEventListener('pointermove', e => { if (!g || e.pointerId !== g.pid) return; const dy = clamp(e.clientY - g.y0, 0, g.max * 1.15); if (dy > 4) { g.moved = true; d.classList.add('is-dragging'); } d.style.setProperty('--dy', `${dy}px`); });
     const up = e => {
       if (!g || e.pointerId !== g.pid) return; const dy = clamp(e.clientY - g.y0, 0, g.max * 1.15); const was = g; g = null;
