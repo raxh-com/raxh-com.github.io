@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 540" width="420" height="540">
+  <defs>
+    <style>
+      .wm{font-family:'Fraunces','Times New Roman',serif;font-weight:600;letter-spacing:4px;fill:#4F4A45;}
+      .kn{font-family:'Fraunces','Times New Roman',serif;font-weight:500;fill:#CE9582;}
+      .tg{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-weight:500;fill:#7A736B;}
+    </style>
+  </defs>
+
+  <!-- monolith line mark -->
+  <g fill="none" stroke="#4F4A45" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="130" y="92" width="76" height="240" rx="6"/>
+    <rect x="206" y="60" width="84" height="272" rx="6"/>
+  </g>
+  <line x1="248" y1="60" x2="248" y2="332" stroke="#CE9582" stroke-width="7" stroke-linecap="round"/>
+  <line x1="106" y1="332" x2="314" y2="332" stroke="#869678" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- wordmark -->
+  <text class="wm" x="210" y="420" font-size="64" text-anchor="middle">MONBAN</text>
+  <text class="kn" x="210" y="462" font-size="26" text-anchor="middle">門番</text>
+  <text class="tg" x="210" y="500" font-size="16" text-anchor="middle" letter-spacing="1.5">Cada acceso, protegido y registrado.</text>
+</svg>

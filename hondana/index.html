@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raheel Ahmad Aguirre · 本棚</title>
+  <meta name="description" content="El portafolio de Raheel Ahmad Aguirre como una estantería: estudios, proyectos y correspondencia, libro por libro.">
+  <meta name="theme-color" content="#0a0705">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hondana.css">
+</head>
+<body>
+
+<div class="intro" id="intro" aria-hidden="true">
+  <div>
+    <div class="kanji">本棚</div>
+    <div class="sub">hondana · la estantería</div>
+  </div>
+</div>
+
+<div class="room">
+  <div class="floor"></div>
+  <div class="lamp" id="lamp"></div>
+  <div class="vignette"></div>
+
+  <div class="stage" id="stage">
+    <div class="cabinet" id="cabinet">
+      <div class="crown"><div class="plaque" id="plaque"></div></div>
+
+      <div class="carcass">
+
+        <!-- NIVEL I · ESTUDIOS -->
+        <section class="level" data-level="studies">
+          <div class="back"></div><div class="wall l"></div><div class="wall r"></div><div class="ceiling"></div><div class="board"></div>
+          <div class="books" id="booksStudies"></div>
+          <div class="edge"></div>
+          <button type="button" class="tag"></button>
+        </section>
+
+        <!-- NIVEL II · PROYECTOS -->
+        <section class="level" data-level="projects">
+          <div class="back"></div><div class="wall l"></div><div class="wall r"></div><div class="ceiling"></div><div class="board"></div>
+          <div class="books" id="booksProjects"></div>
+          <div class="edge"></div>
+          <button type="button" class="tag"></button>
+        </section>
+
+        <!-- NIVEL III · CORRESPONDENCIA -->
+        <section class="level level--contact" data-level="contact">
+          <div class="back"></div><div class="wall l"></div><div class="wall r"></div><div class="ceiling"></div><div class="board"></div>
+          <div class="stuff">
+            <div class="easel">
+              <div class="card-scene" id="cardScene" role="button" tabindex="0" aria-label="Tarjeta de presentación">
+                <div class="card-3d" id="card3d">
+                  <div class="card-face card-face--front">
+                    <div class="cf-phone" id="cardPhone"></div>
+                    <div class="cf-company">
+                      <div class="cf-company-name"><span>R</span><span>T</span><span class="r-mirror">R</span></div>
+                      <div class="cf-company-tag" id="cardEmailTag"></div>
+                    </div>
+                    <div class="cf-center">
+                      <div class="cf-name" id="cardName"></div>
+                      <div class="cf-rule"></div>
+                      <div class="cf-role" id="cardRole"></div>
+                    </div>
+                    <div class="card-glare"></div>
+                  </div>
+                  <div class="card-face card-face--back">
+                    <div class="cb-brand"><span>R</span><span>T</span><span class="r-mirror">R</span></div>
+                    <div class="cb-rule"></div>
+                    <div class="cb-contact" id="cbPhone"></div>
+                    <div class="cb-contact" id="cbPhone2"></div>
+                    <div class="cb-contact" id="cbEmail"></div>
+                    <div class="cb-contact" id="cbEmail2"></div>
+                    <div class="cb-tag" id="cardRole2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="album">
+              <div class="album-title" id="albumTitle"></div>
+              <div class="stamps" id="stamps"></div>
+            </div>
+          </div>
+          <div class="edge"></div>
+          <button type="button" class="tag"></button>
+        </section>
+
+      </div>
+
+      <div class="drawers">
+        <button type="button" class="drawer" id="drawerCV"><span class="d-label"></span><span class="handle"></span><span class="d-inside"></span></button>
+        <button type="button" class="drawer" id="drawerVcard"><span class="d-label"></span><span class="handle"></span><span class="d-inside"></span></button>
+      </div>
+      <div class="plinth"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="hud" aria-label="Navegación">
+  <div class="hud-title" id="hudTitle"></div>
+  <button type="button" class="hud-btn hud-back" id="hudBack" hidden><span aria-hidden="true">←</span><span></span></button>
+  <div class="hud-btn hud-lang" id="hudLang" role="group" aria-label="Idioma / Language"><span data-lang="es">ES</span><span data-lang="en">EN</span></div>
+  <button type="button" class="hud-btn hud-sound" id="hudSound"><span class="on-icon">♪</span><span class="off-icon">♪̸</span></button>
+  <div class="hud-hint" id="hudHint"></div>
+</nav>
+
+<div class="reader" id="reader" hidden>
+  <div class="book-wrap" id="bookWrap"><div id="book"></div></div>
+  <button type="button" class="reader-close" id="readerClose"><span aria-hidden="true">↩ </span><span></span></button>
+  <div class="pager"><button type="button" id="pagerPrev" aria-label="←">‹</button><span id="pagerText"></span><button type="button" id="pagerNext" aria-label="→">›</button></div>
+</div>
+<div class="flyer-persp" id="flyerPersp" aria-hidden="true"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script src="js/udp-courses.js"></script>
+<script src="js/uwa-units.js"></script>
+<script src="js/content.js"></script>
+<script src="js/hondana.js"></script>
+</body>
+</html>
